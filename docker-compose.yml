@@ -1,0 +1,72 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: victus-webapp-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-victus_app}
+      POSTGRES_USER: ${POSTGRES_USER:-victus}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-victus}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - victus_webapp_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-victus} -d ${POSTGRES_DB:-victus_app}"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+    container_name: victus-webapp-backend
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-victus}:${POSTGRES_PASSWORD:-victus}@postgres:5432/${POSTGRES_DB:-victus_app}
+      POSTGRES_HOST: postgres
+      POSTGRES_INTERNAL_PORT: 5432
+      CORS_ALLOW_ORIGINS: ${CORS_ALLOW_ORIGINS:-http://localhost:5173}
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost:5173}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      GOOGLE_REDIRECT_URI: ${GOOGLE_REDIRECT_URI:-http://localhost:8000/api/auth/google/callback}
+      DEMO_USER_EMAIL: ${DEMO_USER_EMAIL:-demo@victus.health}
+      DEMO_USER_PASSWORD: ${DEMO_USER_PASSWORD:-victus-demo-2026}
+      DEMO_USER_DISPLAY_NAME: ${DEMO_USER_DISPLAY_NAME:-Mateo Vargas}
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    volumes:
+      - ./backend/app:/app/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health').read()"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: victus-webapp-frontend
+    env_file:
+      - .env
+    environment:
+      VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8000}
+    ports:
+      - "${FRONTEND_PORT:-5173}:5173"
+    volumes:
+      - ./frontend:/app
+      - victus_webapp_frontend_node_modules:/app/node_modules
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  victus_webapp_postgres_data:
+  victus_webapp_frontend_node_modules:

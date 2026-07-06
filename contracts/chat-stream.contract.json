@@ -1,0 +1,24 @@
+{
+  "contract_id": "victus.webapp.chat_stream.v1",
+  "owner": "victus-webapp",
+  "status": "draft",
+  "endpoint": "POST /api/chat/stream",
+  "auth": "Requires Victus HttpOnly session cookies and X-CSRF-Token header.",
+  "request": {
+    "message": "string, 1..8000 chars",
+    "conversation_id": "uuid|null",
+    "workspace_id": "chat|diets|biometrics|profile|about"
+  },
+  "response": {
+    "content_type": "text/plain; charset=utf-8",
+    "headers": {
+      "X-Victus-Conversation-Id": "uuid",
+      "X-Victus-Agent-Turn-Id": "uuid"
+    },
+    "body": "Incremental text chunks streamed to the browser"
+  },
+  "notes": [
+    "V1 uses a FastAPI mock gateway.",
+    "LangGraph integration should preserve the same browser-facing contract."
+  ]
+}

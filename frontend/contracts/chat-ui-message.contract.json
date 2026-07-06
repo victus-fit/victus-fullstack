@@ -1,0 +1,17 @@
+{
+  "contract_id": "victus.web.chat_ui_message.v1",
+  "owner": "victus-webapp",
+  "status": "draft",
+  "description": "Frontend render contract for chat messages in Victus WebApp V1.",
+  "fields": {
+    "id": "string",
+    "role": "assistant | user",
+    "text": "string",
+    "createdAt": "string",
+    "evidence": "EvidenceReference[] | undefined"
+  },
+  "notes": [
+    "This is a frontend rendering contract, not the canonical backend message contract.",
+    "Future AI SDK integration should map UIMessage parts into this render model or render parts directly."
+  ]
+}

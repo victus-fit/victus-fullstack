@@ -1,0 +1,30 @@
+{
+  "contract_id": "victus.webapp.auth_session.v1",
+  "owner": "victus-webapp",
+  "status": "draft",
+  "description": "Browser session created by FastAPI using HttpOnly access and refresh JWT cookies.",
+  "cookies": {
+    "victus_access": {
+      "http_only": true,
+      "purpose": "Short-lived access JWT",
+      "default_ttl_minutes": 15
+    },
+    "victus_refresh": {
+      "http_only": true,
+      "purpose": "Rotating refresh JWT",
+      "default_ttl_days": 7
+    },
+    "victus_csrf": {
+      "http_only": false,
+      "purpose": "Double-submit CSRF token for unsafe requests"
+    }
+  },
+  "jwt_claims": {
+    "sub": "app user id",
+    "sid": "web session id",
+    "typ": "access | refresh",
+    "jti": "refresh token id only",
+    "iat": "issued at epoch seconds",
+    "exp": "expiration epoch seconds"
+  }
+}

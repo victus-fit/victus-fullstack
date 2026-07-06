@@ -1,0 +1,22 @@
+{
+  "contract_id": "victus.web.evidence_reference.v1",
+  "owner": "victus-webapp",
+  "status": "draft",
+  "description": "Minimal evidence object needed by the chat UI demo.",
+  "fields": {
+    "id": "string",
+    "title": "string",
+    "summary": "string",
+    "confidence": "high | medium | low"
+  },
+  "future_fields": [
+    "paper_id",
+    "canonical_evidence_id",
+    "source_quote",
+    "source_block_id",
+    "doi",
+    "year",
+    "population",
+    "outcome"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "contract_id": "victus.webapp.database_boundary.v1",
+  "owner": "victus-webapp",
+  "status": "draft",
+  "webapp_owns": [
+    "app_users",
+    "auth_identities",
+    "web_sessions",
+    "user_settings",
+    "app_workspaces",
+    "app_conversations",
+    "app_messages",
+    "message_artifacts",
+    "user_files",
+    "agent_requests"
+  ],
+  "agent_owns": [
+    "agent_user_identities",
+    "user_events",
+    "projector_offsets",
+    "agent_turns",
+    "node_runs",
+    "projections"
+  ],
+  "cross_system_references": [
+    "agent_user_id",
+    "agent_conversation_id",
+    "agent_turn_id"
+  ],
+  "rules": [
+    "Do not create physical foreign keys from webapp DB to agent DB.",
+    "Do not duplicate LangGraph projector state in the webapp DB.",
+    "Store visible product state in the webapp DB."
+  ]
+}

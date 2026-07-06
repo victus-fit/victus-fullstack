@@ -1,0 +1,21 @@
+{
+  "contract_id": "victus.web.design_tokens.v1",
+  "owner": "victus-webapp",
+  "status": "draft",
+  "tokens": {
+    "light": {
+      "primitive": ["#134611", "#3e8914", "#3da35d", "#96e072", "#e8fccf"],
+      "semantic": ["bg-app", "bg-shell", "bg-surface", "text-primary", "text-muted", "accent-primary", "evidence-high"]
+    },
+    "dark": {
+      "primitive": ["#161925", "#23395b", "#406e8e", "#8ea8c3", "#cbf7ed"],
+      "semantic": ["bg-app", "bg-shell", "bg-surface", "text-primary", "text-muted", "accent-primary", "evidence-high"]
+    }
+  },
+  "rules": [
+    "No gradients in V1 core product UI.",
+    "No decorative AI glow.",
+    "Use color semantically, not as surface decoration.",
+    "Chat remains the primary product surface."
+  ]
+}
