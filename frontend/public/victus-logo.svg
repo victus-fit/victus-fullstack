@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title desc">
+<title id="title">Victus compass</title><desc id="desc">Brújula verde con aguja orientada al noreste y dos puntos de referencia.</desc>
+<defs>
+  <linearGradient id="needle" x1="22" y1="98" x2="96" y2="22" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#087443"/><stop offset=".52" stop-color="#0F9D58"/><stop offset="1" stop-color="#67C943"/>
+  </linearGradient>
+</defs>
+<circle cx="60" cy="60" r="43" fill="none" stroke="#2FA56A" stroke-width="2.8"/>
+<circle cx="60" cy="60" r="38.5" fill="none" stroke="#147C4B" stroke-width="1.6" opacity=".9"/>
+<path d="M60 10l2.4 13.2L60 31l-2.4-7.8L60 10Zm0 100-2.4-13.2L60 89l2.4 7.8L60 110ZM10 60l13.2-2.4L31 60l-7.8 2.4L10 60Zm100 0-13.2 2.4L89 60l7.8-2.4L110 60Z" fill="#2FA56A"/>
+<path d="M31.5 31.5l10.8 7.2-3.6 3.6-7.2-10.8Zm57 57-10.8-7.2 3.6-3.6 7.2 10.8Z" fill="#2FA56A" opacity=".85"/>
+<path d="M31.5 88.5l7.2-10.8 3.6 3.6-10.8 7.2Zm57-57-7.2 10.8-3.6-3.6 10.8-7.2Z" fill="#2FA56A" opacity=".85"/>
+<path d="M32 91 55 53 92 29 68 67 32 91Z" fill="url(#needle)"/>
+<path d="M55 53 92 29 68 67Z" fill="#087443" opacity=".95"/>
+<circle cx="60" cy="60" r="8" fill="#09110C" stroke="#5FCF8D" stroke-width="4"/>
+<circle cx="94" cy="25" r="5.5" fill="#67C943" stroke="#07100A" stroke-width="2"/>
+<circle cx="28" cy="96" r="5.5" fill="#4E6FFF" stroke="#07100A" stroke-width="2"/>
+</svg>

@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'motion/react';
-import { Bot, UserRound } from 'lucide-react';
+import { UserRound } from 'lucide-react';
 import type { ChatMessageModel } from '../types';
 import { TypingIndicator } from './TypingIndicator';
 
@@ -26,11 +26,11 @@ export function ChatMessage({ message, isStreaming }: ChatMessageProps) {
       className={`message-row ${isUser ? 'user' : 'assistant'}`}
     >
       <div className="message-avatar" aria-hidden="true">
-        {isUser ? <UserRound size={17} /> : <Bot size={17} />}
+        {isUser ? <UserRound size={17} /> : <img src="/VictusBotIcon.png" alt="" />}
       </div>
       <div className="message-bubble">
         <div className="message-meta">
-          <span>{isUser ? 'You' : 'Victus'}</span>
+          <span>{isUser ? 'Tú' : 'Victus'}</span>
           <span>·</span>
           <span>{message.createdAt}</span>
         </div>

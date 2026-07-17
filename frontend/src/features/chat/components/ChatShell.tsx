@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence } from 'motion/react';
-import { LogOut, Moon, PanelLeftClose, PanelLeftOpen, RotateCcw, Sun, UserPlus } from 'lucide-react';
+import { LogOut, PanelLeftClose, PanelLeftOpen, RotateCcw, UserPlus } from 'lucide-react';
 import type { AuthUser } from '../../../auth/AuthContext';
-import type { ThemeName } from '../../../lib/useTheme';
 import { WorkspacePage } from '../../workspaces/components/WorkspacePage';
 import { ChatMessage } from './ChatMessage';
 import { Composer } from './Composer';
@@ -11,17 +10,15 @@ import { suggestedPrompts } from '../data/demoResponses';
 import type { AgentWorkspace, VictusChatController } from '../types';
 
 interface ChatShellProps {
-  theme: ThemeName;
   mode: 'demo' | 'app';
   user?: AuthUser | null;
   chat: VictusChatController;
-  onToggleTheme: () => void;
   onLogin?: () => void;
   onRegister?: () => void;
   onLogout?: () => void;
 }
 
-export function ChatShell({ theme, mode, user, chat, onToggleTheme, onLogin, onRegister, onLogout }: ChatShellProps) {
+export function ChatShell({ mode, user, chat, onLogin, onRegister, onLogout }: ChatShellProps) {
   const {
     messages,
     status,
@@ -50,7 +47,7 @@ export function ChatShell({ theme, mode, user, chat, onToggleTheme, onLogin, onR
   );
 
   const activeTraceLabel = trace.find((step) => step.state === 'active')?.label;
-  const statusLabel = status === 'ready' ? (isLoadingHistory ? 'Loading thread' : 'Ready') : activeTraceLabel ?? 'Streaming response';
+  const statusLabel = status === 'ready' ? (isLoadingHistory ? 'Cargando conversación' : 'Contexto actualizado') : activeTraceLabel ?? 'Victus está respondiendo';
 
   function openWorkspace(workspace: AgentWorkspace) {
     setActiveWorkspace(workspace);
@@ -83,11 +80,11 @@ export function ChatShell({ theme, mode, user, chat, onToggleTheme, onLogin, onR
       />
 
       {activeWorkspace === 'chat' ? (
-        <main className="chat-main">
+        <main className="chat-main" id="main-content">
           <header className="chat-header">
             <div className="header-title">
-              <strong>{mode === 'demo' ? 'Victus Demo' : 'Chat'}</strong>
-              <span>{mode === 'demo' ? 'Public preview · register to open your workspace' : statusLabel}</span>
+              <strong>{mode === 'demo' ? 'Plan para bajar grasa sin perder energía' : 'Chat'}</strong>
+              <span>{mode === 'demo' ? 'Victus utiliza tu perfil y progreso reciente' : statusLabel}</span>
             </div>
             <div className="header-actions">
               <button
@@ -99,16 +96,13 @@ export function ChatShell({ theme, mode, user, chat, onToggleTheme, onLogin, onR
               >
                 {isSidebarCollapsed ? <PanelLeftOpen size={16} /> : <PanelLeftClose size={16} />}
               </button>
-              <button className="mode-button" onClick={onToggleTheme} type="button">
-                {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />} {theme === 'dark' ? 'Light' : 'Dark'}
-              </button>
               <button className="secondary-button" onClick={reset} type="button">
                 <RotateCcw size={15} /> Nuevo
               </button>
               {mode === 'demo' ? (
                 <>
                   <button className="secondary-button auth-secondary" onClick={onLogin} type="button">
-                    Login
+                    Ingresar
                   </button>
                   <button className="primary-pill" onClick={onRegister} type="button">
                     <UserPlus size={15} /> Registrarse
@@ -129,13 +123,13 @@ export function ChatShell({ theme, mode, user, chat, onToggleTheme, onLogin, onR
             <div className="chat-inner">
               {mode === 'demo' ? (
                 <div className="demo-note" role="note">
-                  <strong>Demo pública</strong>
-                  <span>Primera cara de Victus: chat profesional, módulos del agente y preview de evidencia.</span>
+                  <strong>Vista pública</strong>
+                  <span>Prueba cómo Victus adapta un plan alimentario con preferencias, hábitos y biométricas.</span>
                 </div>
               ) : user?.is_demo ? (
                 <div className="demo-note read-only-note" role="note">
-                  <strong>Perfil demo solo lectura</strong>
-                  <span>Datos ficticios para mostrar capacidades. Regístrate para guardar tus propios datos.</span>
+                  <strong>Perfil de prueba solo lectura</strong>
+                  <span>Datos ficticios para mostrar capacidades. Crea una cuenta para guardar tus propios datos.</span>
                 </div>
               ) : null}
               <div className="messages-stack">
@@ -159,8 +153,8 @@ export function ChatShell({ theme, mode, user, chat, onToggleTheme, onLogin, onR
                 <strong>{statusLabel}</strong>
               </div>
               <div className="context-pill">
-                <span>Evidence</span>
-                <strong>{latestEvidence.length ? `${latestEvidence.length} cards` : 'Waiting'}</strong>
+                <span>Evidencia</span>
+                <strong>{latestEvidence.length ? `${latestEvidence.length} tarjetas` : 'Pendiente'}</strong>
               </div>
               <div className="prompt-row" aria-label="Suggested prompts">
                 {suggestedPrompts.map((prompt) => (
@@ -182,20 +176,79 @@ export function ChatShell({ theme, mode, user, chat, onToggleTheme, onLogin, onR
             <div className="composer-inner">
               <Composer status={status} onSend={sendMessage} />
               <div className="composer-meta">
-                <span>Enter to send · Shift + Enter for newline</span>
-                <span>{mode === 'demo' ? 'Demo stream' : statusLabel}</span>
+                <span>Enter para enviar · Shift + Enter para nueva línea</span>
+                <span>{mode === 'demo' ? 'Vista de bienestar' : statusLabel}</span>
               </div>
             </div>
           </div>
         </main>
+      ) : null}
+
+      {activeWorkspace === 'chat' ? (
+        <aside className="chat-context-panel" aria-label="Tu contexto">
+          <div className="context-title">
+            <strong>Tu contexto</strong>
+            <span>Editar</span>
+          </div>
+          <div className="context-card">
+            <div className="context-label">Objetivo</div>
+            <div className="context-value">Reducir grasa corporal manteniendo energía y rendimiento.</div>
+          </div>
+          <div className="context-card">
+            <div className="context-label">Esta semana</div>
+            <div className="metric-line">
+              <strong>71%</strong>
+              <span>adherencia</span>
+            </div>
+            <div className="progress">
+              <span style={{ width: '71%' }} />
+            </div>
+          </div>
+          <div className="context-card">
+            <div className="context-label">Preferencias</div>
+            <div className="mini-list">
+              <div className="mini-item">
+                <span>Cocina rápida</span>
+                <span>Activa</span>
+              </div>
+              <div className="mini-item">
+                <span>Sin mariscos</span>
+                <span>Restricción</span>
+              </div>
+              <div className="mini-item">
+                <span>Presupuesto</span>
+                <span>Medio</span>
+              </div>
+            </div>
+          </div>
+          <div className="context-card">
+            <div className="context-label">Últimas biométricas</div>
+            <div className="mini-list">
+              <div className="mini-item">
+                <span>Peso</span>
+                <span>78,4 kg</span>
+              </div>
+              <div className="mini-item">
+                <span>Sueño promedio</span>
+                <span>7 h 08 min</span>
+              </div>
+              <div className="mini-item">
+                <span>Pasos diarios</span>
+                <span>7.820</span>
+              </div>
+            </div>
+          </div>
+          <div className="context-card">
+            <div className="context-label">Patrón detectado</div>
+            <div className="context-value">Tu hambre aumenta entre las 17:00 y 19:00 los días de trabajo presencial.</div>
+          </div>
+        </aside>
       ) : (
         <WorkspacePage
           workspace={activeWorkspace}
           user={user}
           sidebarCollapsed={isSidebarCollapsed}
           onToggleSidebar={() => setIsSidebarCollapsed((value) => !value)}
-          theme={theme}
-          onToggleTheme={onToggleTheme}
         />
       )}
     </div>

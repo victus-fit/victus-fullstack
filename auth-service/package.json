@@ -1,0 +1,27 @@
+{
+  "name": "victus-auth-service",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc --noEmit",
+    "db:migrate": "npx auth migrate --yes",
+    "start": "tsx src/server.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.7",
+    "better-auth": "^1.4.5",
+    "hono": "^4.11.1",
+    "pg": "^8.16.3",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.2",
+    "@types/pg": "^8.15.6"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  }
+}

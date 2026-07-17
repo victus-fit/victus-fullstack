@@ -9,7 +9,7 @@ from fastapi.responses import JSONResponse
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.api import auth, chat, conversations, personal_data, users, workspaces
+from app.api import auth, chat, conversations, oauth, personal_data, users, v1, workspaces
 from app.core.config import get_settings
 from app.db import AsyncSessionLocal, create_database_schema, engine
 from app.models import AppWorkspace
@@ -57,7 +57,7 @@ app.add_middleware(
     allow_origins=settings.cors_origins,
     allow_credentials=True,
     allow_methods=["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
-    allow_headers=["Content-Type", "X-CSRF-Token"],
+    allow_headers=["Content-Type", "X-CSRF-Token", "Authorization"],
     expose_headers=["X-Victus-Conversation-Id", "X-Victus-Agent-Turn-Id"],
 )
 
@@ -85,3 +85,5 @@ app.include_router(workspaces.router, prefix="/api")
 app.include_router(conversations.router, prefix="/api")
 app.include_router(personal_data.router, prefix="/api")
 app.include_router(chat.router, prefix="/api")
+app.include_router(v1.router)
+app.include_router(oauth.router)

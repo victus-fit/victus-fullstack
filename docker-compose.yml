@@ -49,6 +49,41 @@ services:
       retries: 12
     restart: unless-stopped
 
+  auth-service:
+    build:
+      context: ./auth-service
+    container_name: victus-webapp-auth
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-victus}:${POSTGRES_PASSWORD:-victus}@postgres:5432/${POSTGRES_DB:-victus_app}
+      AUTH_SERVICE_PORT: 8001
+      BETTER_AUTH_URL: ${BETTER_AUTH_URL:-http://localhost:8001}
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:-}
+      BACKEND_ORIGIN: ${BACKEND_ORIGIN:-http://localhost:8000}
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost:5173}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      SECRET_KEY: ${SECRET_KEY}
+      JWT_ALGORITHM: ${JWT_ALGORITHM:-HS256}
+      ACCESS_TOKEN_MINUTES: ${ACCESS_TOKEN_MINUTES:-15}
+      REFRESH_TOKEN_DAYS: ${REFRESH_TOKEN_DAYS:-7}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      COOKIE_SAMESITE: ${COOKIE_SAMESITE:-lax}
+    ports:
+      - "${AUTH_SERVICE_PORT:-8001}:8001"
+    volumes:
+      - ./auth-service/src:/app/src
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8001/health').then(r=>r.ok?process.exit(0):process.exit(1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+
   frontend:
     build:
       context: ./frontend
@@ -57,6 +92,7 @@ services:
       - .env
     environment:
       VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8000}
+      VITE_AUTH_BASE_URL: ${VITE_AUTH_BASE_URL:-http://localhost:8001}
     ports:
       - "${FRONTEND_PORT:-5173}:5173"
     volumes:
@@ -64,6 +100,8 @@ services:
       - victus_webapp_frontend_node_modules:/app/node_modules
     depends_on:
       backend:
+        condition: service_healthy
+      auth-service:
         condition: service_healthy
     restart: unless-stopped
 

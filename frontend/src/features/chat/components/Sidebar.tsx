@@ -31,31 +31,31 @@ const agentApps: Array<{
   {
     id: 'chat',
     label: 'Chat',
-    description: 'Conversación principal con evidencia y recomendaciones.',
+    description: 'Ajustes y preguntas sobre tu plan diario.',
     icon: MessageSquareText,
   },
   {
     id: 'diets',
-    label: 'Dietas',
-    description: 'Planes, adherencia, ajustes y restricciones alimentarias.',
+    label: 'Plan semanal',
+    description: 'Comidas, adherencia, alternativas y restricciones.',
     icon: Apple,
   },
   {
     id: 'biometrics',
-    label: 'Biometrics',
-    description: 'Peso, sueño, presión, hábitos y señales de recuperación.',
+    label: 'Biométricas',
+    description: 'Peso, sueño, hábitos y señales de recuperación.',
     icon: Activity,
   },
   {
     id: 'profile',
-    label: 'Profile',
-    description: 'Preferencias, objetivos, contexto y datos persistentes.',
+    label: 'Perfil',
+    description: 'Preferencias, objetivos y contexto personal.',
     icon: UserRound,
   },
   {
     id: 'about',
-    label: 'About',
-    description: 'Qué demuestra esta V1 y cómo se conecta con FastAPI.',
+    label: 'Acerca de',
+    description: 'Alcance y límites de Victus.',
     icon: FileText,
   },
 ];
@@ -81,12 +81,12 @@ export function Sidebar({
       <div className="brand-row">
         <CompassMark />
         <div className="brand-wordmark" aria-hidden={isCollapsed}>
-          <strong>Victus</strong>
-          <span>Scientific health intelligence</span>
+          <strong>victus</strong>
+          <span>Plan personal activo</span>
         </div>
       </div>
 
-      <div className="sidebar-section-title">Agent apps</div>
+      <div className="sidebar-section-title">Principal</div>
       <nav className="agent-app-list" aria-label="Victus agent applications">
         {agentApps.map((app) => {
           const Icon = app.icon;
@@ -116,13 +116,13 @@ export function Sidebar({
       <div className="thread-list sidebar-optional">
         {mode === 'app' ? (
           <button className="thread-action" type="button" onClick={onNewConversation}>
-            <MessageSquarePlus size={15} /> Nuevo chat
+            <MessageSquarePlus size={15} /> Nueva conversación
           </button>
         ) : null}
         {mode === 'demo' ? (
           <button className="thread-item is-active" type="button" onClick={() => onWorkspaceChange('chat')}>
-            <strong>Public demo</strong>
-            <span>Primera cara de la app.</span>
+            <strong>Plan para bajar grasa sin perder energía</strong>
+            <span>Preview pública.</span>
           </button>
         ) : conversations.length ? (
           conversations.map((conversation) => (
@@ -148,13 +148,13 @@ export function Sidebar({
         <div className="sidebar-status-card">
           <span className="status-dot" />
           <div>
-            <span>{mode === 'demo' ? 'Public demo' : 'Secure session'}</span>
-            <strong>{mode === 'demo' ? 'Mock stream ready' : 'FastAPI gateway'}</strong>
+            <span>{mode === 'demo' ? 'Vista pública' : 'Sesión segura'}</span>
+            <strong>{mode === 'demo' ? 'Contexto listo' : 'Contexto actualizado'}</strong>
           </div>
         </div>
         <div className="sidebar-architecture">
           <Compass size={14} />
-          <span>React → FastAPI → LangGraph</span>
+          <span>Dieta · bienestar · preferencias</span>
         </div>
       </div>
     </aside>

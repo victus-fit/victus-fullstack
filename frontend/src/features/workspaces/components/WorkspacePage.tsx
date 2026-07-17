@@ -1,7 +1,6 @@
 import type React from 'react';
-import { FileText, Moon, PanelLeftClose, PanelLeftOpen, Sun, type LucideIcon } from 'lucide-react';
+import { FileText, PanelLeftClose, PanelLeftOpen, type LucideIcon } from 'lucide-react';
 import type { AuthUser } from '../../../auth/AuthContext';
-import type { ThemeName } from '../../../lib/useTheme';
 import { BiometricsDashboard } from '../../userData/components/BiometricsDashboard';
 import { DataLoadingState } from '../../userData/components/DataLoadingState';
 import { DietsDashboard } from '../../userData/components/DietsDashboard';
@@ -14,26 +13,24 @@ interface WorkspacePageProps {
   user?: AuthUser | null;
   sidebarCollapsed: boolean;
   onToggleSidebar: () => void;
-  theme: ThemeName;
-  onToggleTheme: () => void;
 }
 
 const labels: Record<Exclude<AgentWorkspace, 'chat'>, { title: string; subtitle: string }> = {
   diets: { title: 'Dietas', subtitle: 'Planes, preferencias y restricciones renderizadas para el usuario.' },
   biometrics: { title: 'Biometrics', subtitle: 'Peso, sueño, energía y adherencia en gráficos simples.' },
   profile: { title: 'Profile', subtitle: 'Contexto persistente para personalización y seguridad.' },
-  about: { title: 'About', subtitle: 'Arquitectura de demo y boundary hacia LangGraph.' },
+  about: { title: 'About', subtitle: 'Arquitectura de producto y boundary hacia LangGraph.' },
 };
 
 const aboutCopy = {
   icon: FileText,
   title: 'About this V1',
-  subtitle: 'La demo se centra en chat primero, navegación por aplicaciones del agente y una base visual profesional.',
+  subtitle: 'La experiencia se centra en chat primero, navegación por espacios del agente y una base visual profesional.',
   blocks: [
     ['Frontend', 'Vite, React, TypeScript, Motion y CSS tokens. Sin gradientes ni estética genérica de IA.'],
     ['Backend', 'FastAPI con auth, cookies HttpOnly, JWT, CSRF, Postgres y endpoints protegidos para datos personales.'],
     ['Data UX', 'Peso, sueño, adherencia, energía y preferencias ya se visualizan como producto, no como JSON técnico.'],
-    ['V0.4 Core', 'Conversaciones y mensajes persistidos, perfil demo read-only y AgentGateway mock/real como boundary.'],
+    ['V0.4 Core', 'Conversaciones y mensajes persistidos, perfil de prueba read-only y AgentGateway mock/real como boundary.'],
   ],
 } satisfies {
   icon: LucideIcon;
@@ -46,9 +43,7 @@ function WorkspaceHeader({
   workspace,
   sidebarCollapsed,
   onToggleSidebar,
-  theme,
-  onToggleTheme,
-}: Pick<WorkspacePageProps, 'workspace' | 'sidebarCollapsed' | 'onToggleSidebar' | 'theme' | 'onToggleTheme'>) {
+}: Pick<WorkspacePageProps, 'workspace' | 'sidebarCollapsed' | 'onToggleSidebar'>) {
   const label = labels[workspace];
   return (
     <header className="workspace-header">
@@ -59,9 +54,6 @@ function WorkspaceHeader({
       <div className="header-actions">
         <button className="icon-button" onClick={onToggleSidebar} type="button" aria-label={sidebarCollapsed ? 'Show sidebar' : 'Hide sidebar'}>
           {sidebarCollapsed ? <PanelLeftOpen size={16} /> : <PanelLeftClose size={16} />}
-        </button>
-        <button className="mode-button" onClick={onToggleTheme} type="button">
-          {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />} {theme === 'dark' ? 'Light' : 'Dark'}
         </button>
       </div>
     </header>
@@ -92,7 +84,7 @@ function AboutWorkspace() {
   );
 }
 
-export function WorkspacePage({ workspace, user, sidebarCollapsed, onToggleSidebar, theme, onToggleTheme }: WorkspacePageProps) {
+export function WorkspacePage({ workspace, user, sidebarCollapsed, onToggleSidebar }: WorkspacePageProps) {
   const overview = useHealthOverview();
 
   let content: React.ReactNode;
@@ -122,13 +114,11 @@ export function WorkspacePage({ workspace, user, sidebarCollapsed, onToggleSideb
   }
 
   return (
-    <main className="workspace-main data-main">
+    <main className="workspace-main data-main" id="main-content">
       <WorkspaceHeader
         workspace={workspace}
         sidebarCollapsed={sidebarCollapsed}
         onToggleSidebar={onToggleSidebar}
-        theme={theme}
-        onToggleTheme={onToggleTheme}
       />
       {content}
     </main>

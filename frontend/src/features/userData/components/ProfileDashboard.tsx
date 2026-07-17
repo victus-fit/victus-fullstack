@@ -20,7 +20,7 @@ export function ProfileDashboard({ overview, user }: ProfileDashboardProps) {
           <div className="read-only-banner">
             <ShieldCheck size={17} />
             <div>
-              <strong>Perfil demo bloqueado</strong>
+              <strong>Perfil de prueba bloqueado</strong>
               <span>Estos datos son ficticios y no se pueden actualizar. Sirven para probar Dietas, Biometrics y Profile.</span>
             </div>
           </div>

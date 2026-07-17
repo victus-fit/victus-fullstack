@@ -46,6 +46,44 @@ class SessionResponse(BaseModel):
     authenticated: bool
 
 
+class RelayProfile(BaseModel):
+    goals: list[str] = Field(default_factory=list)
+    restrictions: list[str] = Field(default_factory=list)
+    preferences: list[str] = Field(default_factory=list)
+
+
+class RelayMeResponse(BaseModel):
+    id: str
+    email: EmailStr
+    name: str | None = None
+    display_name: str | None = None
+    plan: str = "free"
+    profile: RelayProfile
+
+
+class OAuthTokenRequest(BaseModel):
+    grant_type: str
+    client_id: str
+    code: str | None = None
+    redirect_uri: str | None = None
+    code_verifier: str | None = None
+    refresh_token: str | None = None
+
+
+class OAuthTokenResponse(BaseModel):
+    access_token: str
+    refresh_token: str
+    expires_in: int
+    token_type: str = "Bearer"
+    scope: str
+
+
+class OAuthRevokeRequest(BaseModel):
+    client_id: str
+    token: str
+    token_type_hint: str | None = None
+
+
 class UserSettingsResponse(BaseModel):
     theme: str
     sidebar_collapsed: bool

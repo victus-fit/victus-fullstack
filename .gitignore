@@ -12,3 +12,18 @@ __pycache__/
 *.db
 
 .DS_Store
+
+# Local automation and build artifacts
+.playwright-mcp/
+node_modules/
+auth-service/node_modules/
+frontend/dist/
+frontend/node_modules/
+frontend/*.tsbuildinfo
+
+# Root-level visual scratch exports
+/VictusLogo.png
+/Diseño sin título.png
+/newlook/
+/newlook-*.png
+/victus-*-newlook*.png

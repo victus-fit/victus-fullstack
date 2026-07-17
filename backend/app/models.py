@@ -66,6 +66,20 @@ class WebSession(Base, TimestampMixin):
     user: Mapped[AppUser] = relationship(back_populates="sessions")
 
 
+class OAuthAuthorizationCode(Base, TimestampMixin):
+    __tablename__ = "oauth_authorization_codes"
+
+    code_hash: Mapped[str] = mapped_column(String(128), primary_key=True)
+    client_id: Mapped[str] = mapped_column(String(80), index=True, nullable=False)
+    user_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("app_users.user_id", ondelete="CASCADE"), index=True)
+    redirect_uri: Mapped[str] = mapped_column(Text, nullable=False)
+    scope: Mapped[str] = mapped_column(Text, nullable=False)
+    code_challenge: Mapped[str] = mapped_column(String(160), nullable=False)
+    code_challenge_method: Mapped[str] = mapped_column(String(16), nullable=False)
+    expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
+    used_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+
+
 class UserSettings(Base):
     __tablename__ = "user_settings"
 

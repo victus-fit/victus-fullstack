@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Victus">
+  <rect width="64" height="64" rx="14" fill="#171a15"/>
+  <path d="M32 10 47 54H36L32 41 28 54H17L32 10Z" fill="#e8eddf"/>
+  <path d="M32 20 39 54H25L32 20Z" fill="#78856f"/>
+</svg>

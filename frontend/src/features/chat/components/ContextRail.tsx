@@ -22,7 +22,7 @@ export function ContextRail({ evidence, trace }: ContextRailProps) {
         </div>
         <div className="metric-row">
           <span>Mode</span>
-          <strong>Demo stream</strong>
+          <strong>Flujo local</strong>
         </div>
       </section>
 

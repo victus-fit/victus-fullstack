@@ -39,10 +39,19 @@ def hash_secret(value: str) -> str:
     return hashlib.sha256(value.encode("utf-8")).hexdigest()
 
 
-def create_jwt(*, user_id: uuid.UUID, session_id: uuid.UUID, token_type: TokenType, jti: str | None = None) -> str:
+def create_jwt(
+    *,
+    user_id: uuid.UUID,
+    session_id: uuid.UUID,
+    token_type: TokenType,
+    jti: str | None = None,
+    expires_delta: timedelta | None = None,
+) -> str:
     settings = get_settings()
     now = utcnow()
-    if token_type == "access":
+    if expires_delta is not None:
+        expires_at = now + expires_delta
+    elif token_type == "access":
         expires_at = now + timedelta(minutes=settings.access_token_minutes)
     else:
         expires_at = now + timedelta(days=settings.refresh_token_days)
