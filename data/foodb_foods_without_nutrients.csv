@@ -1,0 +1,224 @@
+food_id,name,food_group,food_subgroup,category,public_id,exclusion_reason,imported_at
+1,Angelica,Herbs and Spices,Herbs,specific,FOOD00001,no_nutrient_content,2026-07-30 03:27:51.551731+00
+3,Silver linden,Herbs and Spices,Herbs,specific,FOOD00003,no_nutrient_content,2026-07-30 03:27:51.551731+00
+10,Lemon verbena,Herbs and Spices,Herbs,specific,FOOD00010,no_nutrient_content,2026-07-30 03:27:51.551731+00
+75,Black crowberry,Fruits,Berries,specific,FOOD00075,no_nutrient_content,2026-07-30 03:27:51.551731+00
+78,Wax apple,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+80,Tartary buckwheat,Cereals and cereal products,Cereals,specific,FOOD00080,no_nutrient_content,2026-07-30 03:27:51.551731+00
+84,Black huckleberry,Fruits,Berries,specific,FOOD00084,no_nutrient_content,2026-07-30 03:27:51.551731+00
+89,Hyssop,Herbs and Spices,Herbs,specific,FOOD00089,no_nutrient_content,2026-07-30 03:27:51.551731+00
+90,Star anise,Herbs and Spices,Spices,specific,FOOD00090,no_nutrient_content,2026-07-30 03:27:51.551731+00
+96,Grass pea,Pulses,Peas,specific,FOOD00096,no_nutrient_content,2026-07-30 03:27:51.551731+00
+102,Mexican oregano,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+104,Lupine,Pulses,Other pulses,specific,FOOD00104,no_nutrient_content,2026-07-30 03:27:51.551731+00
+107,German camomile,Herbs and Spices,Herbs,specific,FOOD00107,no_nutrient_content,2026-07-30 03:27:51.551731+00
+109,Mentha,Herbs and Spices,Herbs,specific,FOOD00109,no_nutrient_content,2026-07-30 03:27:51.551731+00
+110,Orange mint,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+111,Cornmint,Herbs and Spices,Herbs,specific,FOOD00111,no_nutrient_content,2026-07-30 03:27:51.551731+00
+114,Medlar,Fruits,Pomes,specific,FOOD00114,no_nutrient_content,2026-07-30 03:27:51.551731+00
+116,Mulberry,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+123,Pot marjoram,Herbs and Spices,Herbs,specific,FOOD00123,no_nutrient_content,2026-07-30 03:27:51.551731+00
+136,Black chokeberry,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+163,Black raspberry,Fruits,Berries,specific,FOOD00163,no_nutrient_content,2026-07-30 03:27:51.551731+00
+168,Winter savory,Herbs and Spices,Herbs,specific,FOOD00168,no_nutrient_content,2026-07-30 03:27:51.551731+00
+172,Cherry tomato,Vegetables,Fruit vegetables,specific,FOOD00172,no_nutrient_content,2026-07-30 03:27:51.551731+00
+176,Rowanberry,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+185,Small-leaf linden,Herbs and Spices,Herbs,specific,FOOD00185,no_nutrient_content,2026-07-30 03:27:51.551731+00
+189,Lowbush blueberry,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+190,Sparkleberry,Fruits,Berries,specific,FOOD00190,no_nutrient_content,2026-07-30 03:27:51.551731+00
+196,Common verbena,Herbs and Spices,Herbs,specific,FOOD00196,no_nutrient_content,2026-07-30 03:27:51.551731+00
+201,Climbing bean,Pulses,Beans,specific,FOOD00201,no_nutrient_content,2026-07-30 03:27:51.551731+00
+207,Arctic blackberry,Fruits,Berries,specific,FOOD00207,no_nutrient_content,2026-07-30 03:27:51.551731+00
+209,Bayberry,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+210,Elliott's blueberry,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+211,Canada blueberry,Fruits,Berries,specific,FOOD00211,no_nutrient_content,2026-07-30 03:27:51.551731+00
+212,Bog bilberry,Fruits,Berries,specific,FOOD00212,no_nutrient_content,2026-07-30 03:27:51.551731+00
+213,Buffalo currant,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+215,Celery stalks,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+216,Chinese chives,Herbs and Spices,Herbs,specific,FOOD00216,no_nutrient_content,2026-07-30 03:27:51.551731+00
+217,European cranberry,Fruits,Berries,specific,FOOD00217,no_nutrient_content,2026-07-30 03:27:51.551731+00
+218,Deerberry,Fruits,Berries,specific,FOOD00218,no_nutrient_content,2026-07-30 03:27:51.551731+00
+219,Ginseng,Herbs and Spices,Spices,specific,FOOD00219,no_nutrient_content,2026-07-30 03:27:51.551731+00
+220,Cascade huckleberry,Fruits,Berries,specific,FOOD00220,no_nutrient_content,2026-07-30 03:27:51.551731+00
+221,Oval-leaf huckleberry,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+222,Evergreen huckleberry,Fruits,Berries,specific,FOOD00222,no_nutrient_content,2026-07-30 03:27:51.551731+00
+223,Red huckleberry,Fruits,Berries,specific,FOOD00223,no_nutrient_content,2026-07-30 03:27:51.551731+00
+225,Macadamia nut (M. tetraphylla),Nuts,Nuts,specific,FOOD00225,no_nutrient_content,2026-07-30 03:27:51.551731+00
+226,Garden onion (var.),Vegetables,Onion-family vegetables,specific,FOOD00226,no_nutrient_content,2026-07-30 03:27:51.551731+00
+227,Summer grape,Fruits,Berries,specific,FOOD00227,no_nutrient_content,2026-07-30 03:27:51.551731+00
+228,Fox grape,Fruits,Berries,specific,FOOD00228,no_nutrient_content,2026-07-30 03:27:51.551731+00
+230,Peach (var.),Fruits,Drupes,specific,FOOD00230,no_nutrient_content,2026-07-30 03:27:51.551731+00
+231,Pepper (C. baccatum),,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+232,Pepper (C. chinense),Vegetables,Fruit vegetables,specific,FOOD00232,no_nutrient_content,2026-07-30 03:27:51.551731+00
+233,Pepper (Capsicum),,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+235,Red rice,Cereals and cereal products,Cereals,specific,FOOD00235,no_nutrient_content,2026-07-30 03:27:51.551731+00
+236,Annual wild rice,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+238,Lemon thyme,Herbs and Spices,Herbs,specific,FOOD00238,no_nutrient_content,2026-07-30 03:27:51.551731+00
+239,Tronchuda cabbage,Vegetables,Cabbages,specific,FOOD00239,no_nutrient_content,2026-07-30 03:27:51.551731+00
+240,Japanese walnut,Nuts,Nuts,specific,FOOD00240,no_nutrient_content,2026-07-30 03:27:51.551731+00
+244,Rocket salad,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+248,Half-highbush blueberry,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+250,Chicory leaves,Vegetables,Leaf vegetables,specific,FOOD00250,no_nutrient_content,2026-07-30 03:27:51.551731+00
+251,Komatsuna,Vegetables,Cabbages,specific,FOOD00251,no_nutrient_content,2026-07-30 03:27:51.551731+00
+254,Chicory roots,Vegetables,Root vegetables,specific,FOOD00254,no_nutrient_content,2026-07-30 03:27:51.551731+00
+255,Grapefruit/Pummelo hybrid,Fruits,Citrus,specific,FOOD00255,no_nutrient_content,2026-07-30 03:27:51.551731+00
+257,Jostaberry,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+258,Kai-lan,Vegetables,Cabbages,specific,FOOD00258,no_nutrient_content,2026-07-30 03:27:51.551731+00
+259,Italian oregano,Herbs and Spices,Herbs,specific,FOOD00259,no_nutrient_content,2026-07-30 03:27:51.551731+00
+260,Oxheart cabbage,Vegetables,Cabbages,specific,FOOD00260,no_nutrient_content,2026-07-30 03:27:51.551731+00
+262,Black radish,Vegetables,Root vegetables,specific,FOOD00262,no_nutrient_content,2026-07-30 03:27:51.551731+00
+263,Radish (var.),Vegetables,Root vegetables,specific,FOOD00263,no_nutrient_content,2026-07-30 03:27:51.551731+00
+265,Sweet rowanberry,Fruits,Berries,specific,FOOD00265,no_nutrient_content,2026-07-30 03:27:51.551731+00
+266,Pineappple sage,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+267,Skunk currant,Fruits,Berries,specific,FOOD00267,no_nutrient_content,2026-07-30 03:27:51.551731+00
+276,Sourdough,Cereals and cereal products,Doughs,specific,FOOD00275,no_nutrient_content,2026-07-30 03:27:51.551731+00
+278,Fortified wine,Beverages,Fortified wines,specific,FOOD00277,no_nutrient_content,2026-07-30 03:27:51.551731+00
+310,Wild boar,Animal foods,Swine,specific,FOOD00307,no_nutrient_content,2026-07-30 03:27:51.551731+00
+316,Buffalo,Animal foods,Bovines,specific,FOOD00312,no_nutrient_content,2026-07-30 03:27:51.551731+00
+353,Mule deer,Animal foods,Venison,specific,FOOD00348,no_nutrient_content,2026-07-30 03:27:51.551731+00
+358,Mallard duck,Animal foods,Poultry,specific,FOOD00353,no_nutrient_content,2026-07-30 03:27:51.551731+00
+364,Elk,Animal foods,Venison,specific,FOOD00359,no_nutrient_content,2026-07-30 03:27:51.551731+00
+365,Emu,Animal foods,Poultry,specific,FOOD00360,no_nutrient_content,2026-07-30 03:27:51.551731+00
+373,Greylag goose,Animal foods,Poultry,specific,FOOD00368,no_nutrient_content,2026-07-30 03:27:51.551731+00
+383,Horse,Animal foods,Equines,specific,FOOD00378,no_nutrient_content,2026-07-30 03:27:51.551731+00
+435,Velvet duck,Animal foods,Poultry,specific,FOOD00427,no_nutrient_content,2026-07-30 03:27:51.551731+00
+451,European rabbit,Animal foods,Lagomorphs,specific,FOOD00442,no_nutrient_content,2026-07-30 03:27:51.551731+00
+512,Coalfish pollock,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+528,Pacific halibut,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+607,Sago palm,Herbs and Spices,Oilseed crops,specific,FOOD00593,no_nutrient_content,2026-07-30 03:27:51.551731+00
+627,Berry wine,Beverages,Fermented beverages,specific,FOOD00613,no_nutrient_content,2026-07-30 03:27:51.551731+00
+628,Other wine,Beverages,Fermented beverages,specific,FOOD00614,no_nutrient_content,2026-07-30 03:27:51.551731+00
+629,Apple cider,Beverages,Fermented beverages,specific,FOOD00615,no_nutrient_content,2026-07-30 03:27:51.551731+00
+705,Other cocoa product,Cocoa and cocoa products,Cocoa products,specific,FOOD00683,no_nutrient_content,2026-07-30 03:27:51.551731+00
+708,Cocoa liquor,Cocoa and cocoa products,Cocoa products,specific,FOOD00686,no_nutrient_content,2026-07-30 03:27:51.551731+00
+794,Veggie burger,Dishes,Sandwiches,specific,FOOD00769,no_nutrient_content,2026-07-30 03:27:51.551731+00
+828,Dough,Cereals and cereal products,Doughs,specific,FOOD00801,no_nutrient_content,2026-07-30 03:27:51.551731+00
+879,Pepper (C. pubescens),,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+882,Chinese bayberry,Fruits,Berries,specific,FOOD00852,no_nutrient_content,2026-07-30 03:27:51.551731+00
+883,Mushrooms,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+885,Onion-family vegetables,Vegetables,Onion-family vegetables,generic,FOOD00855,no_nutrient_content,2026-07-30 03:27:51.551731+00
+886,Pomes,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+887,Brassicas,Vegetables,Brassicas,generic,FOOD00857,no_nutrient_content,2026-07-30 03:27:51.551731+00
+889,Citrus,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+890,Cocoa and cocoa products,Cocoa and cocoa products,Cocoa and cocoa products,generic,FOOD00860,no_nutrient_content,2026-07-30 03:27:51.551731+00
+892,Crustaceans,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+893,Milk and milk products,Milk and milk products,Milk and milk products,generic,FOOD00863,no_nutrient_content,2026-07-30 03:27:51.551731+00
+894,Fats and oils,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+897,Herbs and Spices,Herbs and Spices,Herbs and Spices,generic,FOOD00866,no_nutrient_content,2026-07-30 03:27:51.551731+00
+898,Pulses,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+900,Mollusks,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+901,Nuts,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+902,Beverages,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+903,Fruits,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+904,Green vegetables,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+905,Root vegetables,,,,,no_nutrient_content,2026-07-30 03:27:51.551731+00
+906,Sunburst squash (pattypan squash),Gourds,Gourds,specific,FOOD00874,no_nutrient_content,2026-07-30 03:27:51.551731+00
+907,Green zucchini,Gourds,Gourds,specific,FOOD00875,no_nutrient_content,2026-07-30 03:27:51.551731+00
+908,Yellow zucchini,Gourds,Gourds,specific,FOOD00876,no_nutrient_content,2026-07-30 03:27:51.551731+00
+909,Green bell pepper,Vegetables,Fruit vegetables,specific,FOOD00877,no_nutrient_content,2026-07-30 03:27:51.551731+00
+910,Yellow bell pepper,Vegetables,Fruit vegetables,specific,FOOD00878,no_nutrient_content,2026-07-30 03:27:51.551731+00
+911,Orange bell pepper,Vegetables,Fruit vegetables,specific,FOOD00879,no_nutrient_content,2026-07-30 03:27:51.551731+00
+912,Red bell pepper,Vegetables,Fruit vegetables,specific,FOOD00880,no_nutrient_content,2026-07-30 03:27:51.551731+00
+913,Italian sweet red pepper,Vegetables,Fruit vegetables,specific,FOOD00881,no_nutrient_content,2026-07-30 03:27:51.551731+00
+914,Yellow wax bean,Pulses,Beans,specific,FOOD00882,no_nutrient_content,2026-07-30 03:27:51.551731+00
+915,Green bean,Pulses,Beans,specific,FOOD00883,no_nutrient_content,2026-07-30 03:27:51.551731+00
+916,Saskatoon berry,Fruits,Berries,specific,FOOD00884,no_nutrient_content,2026-07-30 03:27:51.551731+00
+917,Nanking cherry,Fruits,Berries,specific,FOOD00885,no_nutrient_content,2026-07-30 03:27:51.551731+00
+918,Japanese pumpkin,Gourds,Gourds,specific,FOOD00886,no_nutrient_content,2026-07-30 03:27:51.551731+00
+919,White cabbage,Vegetables,Cabbages,specific,FOOD00887,no_nutrient_content,2026-07-30 03:27:51.551731+00
+920,Romaine lettuce,Vegetables,Leaf vegetables,specific,FOOD00888,no_nutrient_content,2026-07-30 03:27:51.551731+00
+921,"Cow milk, pasteurized, vitamin A + D added, 0% fat",Milk and milk products,Unfermented milks,specific,FOOD00889,no_nutrient_content,2026-07-30 03:27:51.551731+00
+922,"Cow milk, pasteurized, vitamin A + D added, 1% fat",Milk and milk products,Unfermented milks,specific,FOOD00890,no_nutrient_content,2026-07-30 03:27:51.551731+00
+923,"Cow milk, pasteurized, vitamin A + D added, 2% fat",Milk and milk products,Unfermented milks,specific,FOOD00891,no_nutrient_content,2026-07-30 03:27:51.551731+00
+924,"Cow milk, pasteurized, vitamin D added, 3.25% fat",Milk and milk products,Unfermented milks,specific,FOOD00892,no_nutrient_content,2026-07-30 03:27:51.551731+00
+925,Castanospermum australe,Vegetables,,,FOOD00893,no_nutrient_content,2026-07-30 03:27:51.551731+00
+926,Gentiana lutea,Vegetables,,,FOOD00894,no_nutrient_content,2026-07-30 03:27:51.551731+00
+927,Juniperus communis,Vegetables,,,FOOD00895,no_nutrient_content,2026-07-30 03:27:51.551731+00
+928,Albizia gummifera,Vegetables,,,FOOD00896,no_nutrient_content,2026-07-30 03:27:51.551731+00
+929,Mundu,Fruits,Tropical fruits,,FOOD00897,no_nutrient_content,2026-07-30 03:27:51.551731+00
+930,Rabbiteye blueberry,Fruits,Berries,specific,FOOD00898,no_nutrient_content,2026-07-30 03:27:51.551731+00
+931,Yali pear,Fruits,Pomes,specific,FOOD00899,no_nutrient_content,2026-07-30 03:27:51.551731+00
+932,Asparagus racemosus,Vegetables,Shoot vegetables,specific,FOOD00900,no_nutrient_content,2026-07-30 03:27:51.551731+00
+933,Evergreen blackberry,Fruits,Berries,specific,FOOD00901,no_nutrient_content,2026-07-30 03:27:51.551731+00
+934,Asparagus fern,Herbs and Spices,Herbs,specific,FOOD00902,no_nutrient_content,2026-07-30 03:27:51.551731+00
+935,Thornless blackberry,Fruits,Berries,specific,FOOD00903,no_nutrient_content,2026-07-30 03:27:51.551731+00
+936,Tropical highland blackberry,Fruits,Berries,specific,FOOD00904,no_nutrient_content,2026-07-30 03:27:51.551731+00
+937,Andean blackberry,Fruits,Berries,specific,FOOD00905,no_nutrient_content,2026-07-30 03:27:51.551731+00
+938,Blackberry,Fruits,Berries,specific,FOOD00906,no_nutrient_content,2026-07-30 03:27:51.551731+00
+941,Olive oil,Herbs and Spices,Oilseed crops,,FOOD00909,no_nutrient_content,2026-07-30 03:27:51.551731+00
+942,Macroalgae,Aquatic foods,Seaweed,,FOOD00910,no_nutrient_content,2026-07-30 03:27:51.551731+00
+943,Red wine,Beverages,Fermented beverages,,FOOD00911,no_nutrient_content,2026-07-30 03:27:51.551731+00
+944,linseed oil,Herbs and Spices,Oilseed crops,,FOOD00912,no_nutrient_content,2026-07-30 03:27:51.551731+00
+945,Rapeseed oil,Herbs and Spices,Oilseed crops,,FOOD00913,no_nutrient_content,2026-07-30 03:27:51.551731+00
+946,Soybean oil,Herbs and Spices,Oilseed crops,,FOOD00914,no_nutrient_content,2026-07-30 03:27:51.551731+00
+947,Guarana,Herbs and Spices,Herbs,,FOOD00915,no_nutrient_content,2026-07-30 03:27:51.551731+00
+948,Mate,Herbs and Spices,Herbs,,FOOD00916,no_nutrient_content,2026-07-30 03:27:51.551731+00
+949,White wine,Beverages,Fermented beverages,,FOOD00917,no_nutrient_content,2026-07-30 03:27:51.551731+00
+950,Sour orange,Fruits,Citrus,,FOOD00918,no_nutrient_content,2026-07-30 03:27:51.551731+00
+951,Egg yolk,Eggs,Eggs,,FOOD00919,no_nutrient_content,2026-07-30 03:27:51.551731+00
+952,Rosé wine,Beverages,Fermented beverages,,FOOD00920,no_nutrient_content,2026-07-30 03:27:51.551731+00
+953,White mulberry,Herbs and Spices,Herbs,,FOOD00921,no_nutrient_content,2026-07-30 03:27:51.551731+00
+954,Canola oil,Herbs and Spices,Oilseed crops,,FOOD00922,no_nutrient_content,2026-07-30 03:27:51.551731+00
+955,Dessert wine,Beverages,Fermented beverages,,FOOD00923,no_nutrient_content,2026-07-30 03:27:51.551731+00
+956,Red champagne,Beverages,Alcoholic beverages,,FOOD00924,no_nutrient_content,2026-07-30 03:27:51.551731+00
+958,White champagne,Beverages,Alcoholic beverages,,FOOD00926,no_nutrient_content,2026-07-30 03:27:51.551731+00
+959,Red grape juice,Beverages,Beverages,,FOOD00927,no_nutrient_content,2026-07-30 03:27:51.551731+00
+960,White grape juice,Beverages,Beverages,,FOOD00928,no_nutrient_content,2026-07-30 03:27:51.551731+00
+961,Crosne,Vegetables,Root vegetables,,FOOD00929,no_nutrient_content,2026-07-30 03:27:51.551731+00
+962,Red clover,Herbs and Spices,Herbs,,FOOD00930,no_nutrient_content,2026-07-30 03:27:51.551731+00
+963,Partridge berry,Fruits,Berries,,FOOD00931,no_nutrient_content,2026-07-30 03:27:51.551731+00
+964,Mikan,Fruits,Citrus,,FOOD00932,no_nutrient_content,2026-07-30 03:27:51.551731+00
+965,Mozzarella cheese,Milk and milk products,Fermented milk products,,FOOD00933,no_nutrient_content,2026-07-30 03:27:51.551731+00
+966,Plain cream cheese,Milk and milk products,Fermented milk products,,FOOD00934,no_nutrient_content,2026-07-30 03:27:51.551731+00
+967,Cheddar Cheese,Milk and milk products,Fermented milk products,,FOOD00935,no_nutrient_content,2026-07-30 03:27:51.551731+00
+968,Parmesan cheese,Milk and milk products,Fermented milk products,,FOOD00936,no_nutrient_content,2026-07-30 03:27:51.551731+00
+969,Almond milk,Milk and milk products,Other milk products,,FOOD00937,no_nutrient_content,2026-07-30 03:27:51.551731+00
+970,Coconut milk,Milk and milk products,Other milk products,,FOOD00938,no_nutrient_content,2026-07-30 03:27:51.551731+00
+971,Salted butter,Milk and milk products,Other milk products,,FOOD00939,no_nutrient_content,2026-07-30 03:27:51.551731+00
+972,Sunflower oil,Herbs and Spices,Oilseed crops,,FOOD00940,no_nutrient_content,2026-07-30 03:27:51.551731+00
+973,Coconut oil,Herbs and Spices,Oilseed crops,,FOOD00941,no_nutrient_content,2026-07-30 03:27:51.551731+00
+974,Peanut oil,Herbs and Spices,Oilseed crops,,FOOD00942,no_nutrient_content,2026-07-30 03:27:51.551731+00
+975,Cottonseed oil,Herbs and Spices,Oilseed crops,,FOOD00943,no_nutrient_content,2026-07-30 03:27:51.551731+00
+976,Corn oil,Herbs and Spices,Oilseed crops,,FOOD00944,no_nutrient_content,2026-07-30 03:27:51.551731+00
+977,Avocado oil,Herbs and Spices,Oilseed crops,,FOOD00945,no_nutrient_content,2026-07-30 03:27:51.551731+00
+978,Grapeseed oil,Herbs and Spices,Oilseed crops,,FOOD00946,no_nutrient_content,2026-07-30 03:27:51.551731+00
+979,Sesame oil,Herbs and Spices,Oilseed crops,,FOOD00947,no_nutrient_content,2026-07-30 03:27:51.551731+00
+980,Monterey Jack cheese,Milk and milk products,Fermented milk products,,FOOD00948,no_nutrient_content,2026-07-30 03:27:51.551731+00
+981,Swiss cheese,Milk and milk products,Fermented milk products,,FOOD00949,no_nutrient_content,2026-07-30 03:27:51.551731+00
+982,Cottage cheese,Milk and milk products,Fermented milk products,,FOOD00950,no_nutrient_content,2026-07-30 03:27:51.551731+00
+983,Blue cheese,Milk and milk products,Fermented milk products,,FOOD00951,no_nutrient_content,2026-07-30 03:27:51.551731+00
+984,Clam,Aquatic foods,Bivalvia,,FOOD00952,no_nutrient_content,2026-07-30 03:27:51.551731+00
+986,Whole wheat bread,Cereals and cereal products,Cereals,,FOOD00954,no_nutrient_content,2026-07-30 03:27:51.551731+00
+987,Jalapeno pepper,Vegetables,Fruit vegetables,,FOOD00955,no_nutrient_content,2026-07-30 03:27:51.551731+00
+988,Greek feta cheese,Milk and milk products,Fermented milk products,,FOOD00956,no_nutrient_content,2026-07-30 03:27:51.551731+00
+989,Eddoe,Vegetables,Root vegetables,,FOOD00957,no_nutrient_content,2026-07-30 03:27:51.551731+00
+990,Plantain,Fruits,Tropical fruits,,FOOD00958,no_nutrient_content,2026-07-30 03:27:51.551731+00
+991,Clementine,Fruits,Citrus,,FOOD00959,no_nutrient_content,2026-07-30 03:27:51.551731+00
+992,Green apple,Fruits,Pomes,,FOOD00960,no_nutrient_content,2026-07-30 03:27:51.551731+00
+993,White onion,Vegetables,Onion-family vegetables,,FOOD00961,no_nutrient_content,2026-07-30 03:27:51.551731+00
+994,Red onion,Vegetables,Onion-family vegetables,,FOOD00962,no_nutrient_content,2026-07-30 03:27:51.551731+00
+995,Green onion,Vegetables,Onion-family vegetables,,FOOD00963,no_nutrient_content,2026-07-30 03:27:51.551731+00
+996,Green grape,Fruits,Berries,,FOOD00964,no_nutrient_content,2026-07-30 03:27:51.551731+00
+997,Red grape,Fruits,Berries,,FOOD00965,no_nutrient_content,2026-07-30 03:27:51.551731+00
+998,Black plum,Fruits,Berries,,FOOD00966,no_nutrient_content,2026-07-30 03:27:51.551731+00
+999,Green cabbage,Vegetables,Cabbages,,FOOD00967,no_nutrient_content,2026-07-30 03:27:51.551731+00
+1000,Black raisin,Fruits,Berries,,FOOD00968,no_nutrient_content,2026-07-30 03:27:51.551731+00
+1001,Cannellini bean,Pulses,Beans,,FOOD00969,no_nutrient_content,2026-07-30 03:27:51.551731+00
+1002,Green lentil,Pulses,Pulses,,FOOD00970,no_nutrient_content,2026-07-30 03:27:51.551731+00
+1003,Cubanelle pepper,Vegetables,Fruit vegetables,,FOOD00971,no_nutrient_content,2026-07-30 03:27:51.551731+00
+1004,Acorn squash,Gourds,Gourds,,FOOD00972,no_nutrient_content,2026-07-30 03:27:51.551731+00
+1005,Iceberg lettuce,Vegetables,Leaf vegetables,,FOOD00973,no_nutrient_content,2026-07-30 03:27:51.551731+00
+1006,Japanese sea bass,Aquatic foods,Fishes,,FOOD00974,no_nutrient_content,2026-07-30 03:27:51.551731+00
+1007,Pea shoots,Vegetables,Leaf vegetables,,FOOD00975,no_nutrient_content,2026-07-30 03:27:51.551731+00
+1008,Yau choy,Vegetables,Leaf vegetables,,FOOD00976,no_nutrient_content,2026-07-30 03:27:51.551731+00
+1009,Water spinach,Vegetables,Leaf vegetables,,FOOD00977,no_nutrient_content,2026-07-30 03:27:51.551731+00
+1010,Chineese plum,Fruits,Berries,,FOOD00978,no_nutrient_content,2026-07-30 03:27:51.551731+00
+1011,Green plum,Fruits,Berries,,FOOD00979,no_nutrient_content,2026-07-30 03:27:51.551731+00
+1012,Wampee,Fruits,Berries,,FOOD00980,no_nutrient_content,2026-07-30 03:27:51.551731+00
+1013,Pitaya,Fruits,Tropical fruits,,FOOD00981,no_nutrient_content,2026-07-30 03:27:51.551731+00
+1014,Goji,Fruits,Berries,,FOOD00982,no_nutrient_content,2026-07-30 03:27:51.551731+00
+1015,Monk fruit,Fruits,Berries,,FOOD00983,no_nutrient_content,2026-07-30 03:27:51.551731+00
+1016,Cantaloupe melon,Gourds,Gourds,,FOOD00984,no_nutrient_content,2026-07-30 03:27:51.551731+00
+1017,Hawthorn,Fruits,Berries,,FOOD00985,no_nutrient_content,2026-07-30 03:27:51.551731+00
+1018,Lantern fruit,Fruits,Berries,,FOOD00986,no_nutrient_content,2026-07-30 03:27:51.551731+00
+1020,Cape gooseberry,Fruits,Berries,,FOOD00988,no_nutrient_content,2026-07-30 03:27:51.551731+00

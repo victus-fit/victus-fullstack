@@ -1,10 +1,10 @@
-# Victus Backend
+# Victus backend
 
-FastAPI backend for Victus WebApp.
+Unified TypeScript/Hono backend for the Victus web application. See the [repository overview](../docs/Overview.md) and [ADR 003](../docs/adr/003-unified-typescript-backend.md).
 
 ## Responsibilities
 
-- User registration and login.
+- User registration, login, and Google identity integration.
 - HttpOnly cookie sessions.
 - Access JWT and rotating refresh JWT.
 - CSRF protection for unsafe browser requests.
@@ -16,14 +16,14 @@ FastAPI backend for Victus WebApp.
 ## Run without Docker
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-uvicorn app.main:app --reload
+npm install
+npm run dev
 ```
 
 Use Docker Compose for the recommended local flow.
 
 ## Startup behavior
 
-Docker starts the backend through `scripts/start.sh`. It waits for the Postgres service DNS name and port before launching Uvicorn. If the backend is run inside Compose, `DATABASE_URL` must use host `postgres`. If it is run directly on the host machine, use `localhost`.
+Docker starts the backend through `scripts/start.sh`. It waits for PostgreSQL, applies Better Auth migrations, and starts the Hono server. Inside Compose, `DATABASE_URL` must use host `postgres`; when running directly on the host, use `localhost`.
+
+The complete linked route catalog is in [`docs/Overview.md`](../docs/Overview.md#api-routes).

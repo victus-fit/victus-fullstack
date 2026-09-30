@@ -1,0 +1,24 @@
+{
+  "contract_id": "victus.oauth.dev_access_token.v1",
+  "owner": "victus-backend",
+  "status": "active",
+  "method": "POST",
+  "path": "/oauth/dev-token",
+  "availability": {
+    "feature_flag": "ENABLE_DEV_AUTH=true",
+    "allowed_environments": ["local", "development", "test"],
+    "disabled_behavior": 404,
+    "invalid_environment_behavior": "startup failure"
+  },
+  "response": {
+    "access_token": "short-lived JWT issued by the normal access-token signer",
+    "token_type": "Bearer",
+    "expires_in": 3600
+  },
+  "constraints": {
+    "fixed_server_side_user": true,
+    "refresh_token": false,
+    "requires_active_session_row": true,
+    "token_must_not_be_logged_or_persisted_by_clients": true
+  }
+}

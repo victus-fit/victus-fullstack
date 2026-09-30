@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 
-export type AppRoute = 'landing' | 'demo' | 'login' | 'register' | 'app';
+export type AppRoute = 'landing' | 'login' | 'register' | 'app';
 
 function routeFromPath(pathname: string): AppRoute {
-  if (pathname.startsWith('/demo')) return 'demo';
   if (pathname.startsWith('/login')) return 'login';
   if (pathname.startsWith('/register')) return 'register';
   if (pathname.startsWith('/app')) return 'app';
@@ -12,6 +11,11 @@ function routeFromPath(pathname: string): AppRoute {
 
 export function navigate(path: string) {
   window.history.pushState({}, '', path);
+  window.dispatchEvent(new PopStateEvent('popstate'));
+}
+
+export function replace(path: string) {
+  window.history.replaceState({}, '', path);
   window.dispatchEvent(new PopStateEvent('popstate'));
 }
 

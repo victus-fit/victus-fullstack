@@ -1,4 +1,4 @@
-.PHONY: init up down restart logs ps health reset
+.PHONY: init up down restart logs ps health reset dev-token
 
 init:
 	./scripts/victus init
@@ -20,6 +20,9 @@ ps:
 
 health:
 	./scripts/victus health
+
+dev-token:
+	@./scripts/victus dev-token
 
 reset:
 	./scripts/victus reset

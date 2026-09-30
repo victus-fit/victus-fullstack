@@ -9,7 +9,6 @@ export interface AuthUser {
   status: string;
   locale: string;
   timezone: string;
-  is_demo: boolean;
 }
 
 interface AuthResponse {
@@ -34,7 +33,6 @@ interface AuthContextValue {
   error: string | null;
   refreshMe: () => Promise<void>;
   login: (credentials: Credentials) => Promise<void>;
-  loginDemo: () => Promise<void>;
   register: (credentials: Credentials) => Promise<void>;
   logout: () => Promise<void>;
 }
@@ -84,18 +82,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const loginDemo = useCallback(async () => {
-    setError(null);
-    try {
-      const response = await apiFetch<AuthResponse>('/api/auth/demo', { method: 'POST' });
-      setUser(response.user);
-    } catch (caught) {
-      const message = errorMessage(caught);
-      setError(message);
-      throw caught;
-    }
-  }, []);
-
   const register = useCallback(async (credentials: Credentials) => {
     setError(null);
     try {
@@ -122,8 +108,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const value = useMemo(
-    () => ({ user, isLoading, error, refreshMe, login, loginDemo, register, logout }),
-    [user, isLoading, error, refreshMe, login, loginDemo, register, logout],
+    () => ({ user, isLoading, error, refreshMe, login, register, logout }),
+    [user, isLoading, error, refreshMe, login, register, logout],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

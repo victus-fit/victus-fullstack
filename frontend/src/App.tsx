@@ -1,29 +1,36 @@
-import { AuthProvider } from './auth/AuthContext';
+import { useEffect } from 'react';
+import { AuthProvider, useAuth } from './auth/AuthContext';
 import { AuthPage } from './pages/AuthPage';
-import { DemoChatPage } from './pages/DemoChatPage';
 import { LandingPage } from './pages/LandingPage';
 import { ProtectedAppPage } from './pages/ProtectedAppPage';
-import { useRoute } from './lib/navigation';
+import { replace, useRoute } from './lib/navigation';
 import { useTheme } from './lib/useTheme';
+import { LanguageProvider, useLanguage } from './i18n/LanguageContext';
 
 function AppRoutes() {
   const route = useRoute();
+  const auth = useAuth();
   useTheme();
 
-  if (route === 'demo') return <DemoChatPage />;
+  useEffect(() => {
+    if (!auth.isLoading && auth.user && route !== 'app') replace('/app');
+  }, [auth.isLoading, auth.user, route]);
+
+  if (auth.isLoading) return <main className="loading-screen" id="main-content" aria-live="polite" />;
+  if (auth.user) return <ProtectedAppPage />;
+
   if (route === 'login') return <AuthPage mode="login" />;
   if (route === 'register') return <AuthPage mode="register" />;
   if (route === 'app') return <ProtectedAppPage />;
   return <LandingPage />;
 }
 
+function AppContent() { const { t } = useLanguage(); return <><a className="skip-link" href="#main-content">{t('skip')}</a><AppRoutes /></>; }
+
 export function App() {
   return (
     <AuthProvider>
-      <a className="skip-link" href="#main-content">
-        Saltar al contenido
-      </a>
-      <AppRoutes />
+      <LanguageProvider><AppContent /></LanguageProvider>
     </AuthProvider>
   );
 }

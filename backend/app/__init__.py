@@ -1,1 +1,0 @@
-"""Victus WebApp backend package."""

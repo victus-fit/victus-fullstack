@@ -78,6 +78,11 @@ case "${1:-help}" in
     curl -fsS http://localhost:${BACKEND_PORT:-8000}/health || true
     echo
     ;;
+  dev-token)
+    create_env_if_missing >&2
+    curl -fsS --request POST "http://localhost:${BACKEND_PORT:-8000}/oauth/dev-token" \
+      | python3 -c 'import json,sys; print(json.load(sys.stdin)["access_token"])'
+    ;;
   reset)
     create_env_if_missing
     compose down -v --remove-orphans
@@ -104,6 +109,7 @@ Usage:
   ./scripts/victus logs [service]  Follow logs; service can be frontend/backend/postgres
   ./scripts/victus ps              Show service status
   ./scripts/victus health          Check backend health
+  ./scripts/victus dev-token       Print a short-lived local access token
   ./scripts/victus reset           Stop and delete development volumes
   ./scripts/victus backend-shell   Open shell in backend container
   ./scripts/victus db-shell        Open psql in postgres container

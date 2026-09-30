@@ -1,0 +1,33 @@
+{
+  "name": "victus-backend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "tsx src/server.ts",
+    "build": "tsc --noEmit",
+    "test": "node --import tsx --test tests-ts/**/*.test.ts",
+    "materialize:foodb-content": "tsx scripts/materialize-foodb-content.ts",
+    "import:foodb-localizations": "tsx scripts/import-foodb-localizations.ts",
+    "demo:jwks": "tsx scripts/print-demo-jwks.ts"
+  },
+  "dependencies": {
+    "@arizeai/phoenix-otel": "^2.1.0",
+    "@hono/node-server": "^1.19.7",
+    "@opentelemetry/api": "^1.9.1",
+    "argon2": "^0.44.0",
+    "better-auth": "^1.4.5",
+    "hono": "^4.11.1",
+    "pg": "^8.16.3",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.2",
+    "@types/pg": "^8.15.6"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  }
+}

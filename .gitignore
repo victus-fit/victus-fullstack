@@ -27,3 +27,4 @@ frontend/*.tsbuildinfo
 /newlook/
 /newlook-*.png
 /victus-*-newlook*.png
+data/foodb_2020_04_07_csv/Content.csv

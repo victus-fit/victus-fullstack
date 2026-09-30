@@ -2,6 +2,7 @@ import { FormEvent, KeyboardEvent, useRef, useState } from 'react';
 import { SendHorizonal } from 'lucide-react';
 import { motion } from 'motion/react';
 import type { ChatStatus } from '../types';
+import { useLanguage } from '../../../i18n/LanguageContext';
 
 interface ComposerProps {
   status: ChatStatus;
@@ -9,6 +10,7 @@ interface ComposerProps {
 }
 
 export function Composer({ status, onSend }: ComposerProps) {
+  const { t } = useLanguage();
   const [value, setValue] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const isReady = status === 'ready';
@@ -50,7 +52,7 @@ export function Composer({ status, onSend }: ComposerProps) {
         onKeyDown={onKeyDown}
         disabled={!isReady}
         rows={1}
-        placeholder="Pregunta a Victus..."
+        placeholder={t('askVictus')}
       />
       <motion.button
         className="send-button"

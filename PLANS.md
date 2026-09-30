@@ -1,5 +1,110 @@
 # Victus landing and chat visual update
 
+## Authenticated-app routing and sign out
+
+### Goal
+
+Keep authenticated users in `/app`, prevent the public landing from rendering for an active session, and provide a clear sign-out action that returns users to the unauthenticated David demo landing.
+
+### Scope
+
+- Frontend route guard based on the established `AuthContext` session.
+- Sidebar sign-out control and handoff from the protected page.
+- No authentication API, cookie, or backend session changes.
+
+### Assumptions
+
+- `AuthProvider` is the source of truth for whether the current browser session is active.
+- Calling the existing `logout` method clears local auth state even if the best-effort logout request cannot complete.
+
+### Steps
+
+1. Make the top-level router render a loading state while the session is checked, then replace any public/auth route with `/app` for an authenticated user.
+2. Pass a sign-out callback from the protected app page to the shared sidebar.
+3. Add a sidebar footer action that logs out and navigates to the public landing.
+4. Validate frontend typechecking and production build.
+
+### Validation
+
+- `npm run typecheck` in `frontend/`.
+- Production Vite build in a temporary output directory.
+
+### Risks
+
+- Routing is client-side only; a direct request for `/` may briefly show the loading state while the session is verified.
+
+
+## Agent contract alignment and David-plan scoping
+
+### Goal
+
+Restore authenticated chat compatibility with the current Victus Agent contract and ensure David's beta weekly-plan fixture is not presented as an assigned plan for newly registered users.
+
+### Scope
+
+- Normal chat gateway payload only.
+- Frontend weekly-plan state for demo/David versus other authenticated users.
+- No changes to the public demo endpoint, database schema, or plan persistence.
+
+### Assumptions
+
+- `/chat` in Victus Agent is authoritative and expects `locale` and `timezone`.
+- `/demo/chat` remains a distinct, scoped demo contract that accepts `language`.
+- David's weekly plan is a display fixture until persistent plan assignment exists.
+
+### Steps
+
+1. Translate the normal web chat language setting into the Agent's `locale` field and forward the authenticated user's timezone.
+2. Pass the active user context to the weekly-plan workspace.
+3. Render David's fixture only for the public demo or David's demo identity; render an explicit no-plan-assigned state for all other users.
+4. Validate backend and frontend typechecks/builds.
+
+### Validation
+
+- `npm run build` in `backend/`.
+- `npm run typecheck` and a production Vite build in `frontend/`.
+
+### Risks
+
+- This deliberately does not invent a persistence model for plans; plan assignment remains unavailable to ordinary accounts.
+
+
+## Sidebar and David weekly-plan beta view
+
+### Goal
+
+Expose four clearly named primary areas in the shared app/demo sidebar—Chat, Registro de comidas, Plan semanal, and Biométricas—and provide a read-only weekly plan selected for David in the beta experience.
+
+### Scope
+
+- Frontend-only navigation labels and workspace selection.
+- A static, read-only weekly-plan workspace for David.
+- Shared sidebar behavior used by both the landing demo and authenticated app.
+
+### Assumptions
+
+- The requested plan is a beta visual/data fixture; no persistence or API endpoint is introduced.
+- The existing editable meal-log screen becomes Registro de comidas.
+- Profile remains implemented but is not part of the requested primary navigation.
+
+### Steps
+
+1. Split the current diet workspace identifier into meal-log and weekly-plan views.
+2. Update the common sidebar to show the four requested primary labels and route each item to its appropriate workspace.
+3. Add David's read-only weekly plan, with per-day meals, targets, and an explicit beta/read-only label.
+4. Add responsive styles that reuse the existing workspace visual system.
+5. Validate TypeScript and the production frontend build.
+
+### Validation
+
+- `npm run typecheck` in `frontend/`.
+- `npm run build` in `frontend/`.
+
+### Risks
+
+- The plan is deliberately non-persistent. It must not be mistaken for the meal-log source of truth.
+
+
 ## Goal
 
 Replace the old Victus frontend visual identity for the currently developed landing page and chat experience with the current dark diet and wellbeing product UI, restrained Google-Sheets-inspired green accent, dense product previews, and practical recommendation copy.
@@ -318,3 +423,93 @@ Expose a stable backend contract for the local `victus-agent` MCP server to vali
 
 - Existing local dependencies may be installed only in Docker, so host-side tests may require the backend environment.
 - The CLI token issuer is outside this repository; this change validates the backend half of the relay contract.
+
+---
+
+# Landing interactive preview
+
+## Goal
+
+Connect the landing-page preview to the existing authenticated chat controller while retaining the login handoff for visitors.
+
+## Scope
+
+- Landing preview chat UI and its existing login handoff.
+- No separate conversation API, agent API, or persistence model.
+
+## Validation
+
+- Frontend typecheck and production build where filesystem permissions allow it.
+
+---
+
+# Ephemeral interactive demo
+
+## Goal
+
+Let an anonymous landing-page visitor add, edit, and remove meals and record
+biometrics during one demo session, using the product's existing response
+shapes without persisting or sharing their data.
+
+## Scope
+
+- Add an in-memory, TTL-bound demo session store keyed by a client-generated
+  identifier that exists only for the page lifetime.
+- Expose demo endpoints returning the same meal-log, food-search, and health
+  overview shapes consumed by the authenticated application.
+- Route the landing preview through those endpoints and reuse the existing
+  diet and workspace UI.
+- Add a small metric-entry form to the biometrics workspace.
+
+## Assumptions
+
+- In-memory storage is acceptable for the current single-instance demo.
+- Reloading creates a new identifier, making prior state unreachable even if
+  its server-side TTL has not elapsed.
+
+## Steps
+
+1. Define table-shaped in-memory demo records and scoped demo API routes.
+2. Add a frontend page-lifetime demo session client and direct existing data
+   requests to the demo routes only while the landing preview is active.
+3. Reuse the normal diet and biometrics components in the preview.
+4. Cover API isolation behaviour and validate both projects.
+
+## Validation
+
+- `npm test` and `npm run build` in `backend/`
+- `npm run typecheck` and a Vite build to a temporary output directory in
+  `frontend/`
+- `git diff --check`
+
+## Risks
+
+- The upstream `demo:david` agent remains read-only; session-specific diet
+  recommendations need a compatible agent endpoint in a later change.
+
+---
+
+# Persisted David demo template
+
+## Goal
+
+Store David's immutable demo baseline in the existing application user data
+tables, then initialize every anonymous demo session from that persisted
+template while preserving session-only edits.
+
+## Scope
+
+- Seed a reserved David user, baseline metrics, and profile preferences.
+- Load that template when an ephemeral demo session is first created.
+- Keep visitor changes in the existing TTL-bound session map.
+
+## Non-goals
+
+- No visitor demo change is written to PostgreSQL.
+- No new permanent diet-plan model is introduced; the current product schema
+  has meal logs but no recipe-plan table.
+
+## Validation
+
+- Backend unit tests for template seeding/session cloning.
+- Backend typecheck and test suite.

@@ -1,20 +1,18 @@
-FROM python:3.12-slim
+FROM node:20.19.0-bookworm-slim
 
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
-    PIP_NO_CACHE_DIR=1
+ENV NPM_CONFIG_AUDIT=false \
+    NPM_CONFIG_FUND=false \
+    NPM_CONFIG_UPDATE_NOTIFIER=false
 
 WORKDIR /app
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends gcc \
-    && rm -rf /var/lib/apt/lists/*
+COPY package.json package-lock.json ./
+RUN npm ci
 
-COPY requirements.txt ./requirements.txt
-RUN pip install -r requirements.txt
-
-COPY app ./app
+COPY tsconfig.json ./
+COPY src ./src
 COPY scripts ./scripts
+COPY data ./data
 RUN chmod +x ./scripts/start.sh
 
 EXPOSE 8000

@@ -2,7 +2,7 @@
   "contract_id": "victus.web.evidence_reference.v1",
   "owner": "victus-webapp",
   "status": "draft",
-  "description": "Minimal evidence object needed by the chat UI demo.",
+  "description": "Minimal evidence object needed by the chat UI.",
   "fields": {
     "id": "string",
     "title": "string",

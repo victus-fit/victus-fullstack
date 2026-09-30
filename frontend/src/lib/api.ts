@@ -59,6 +59,7 @@ async function parseError(response: Response): Promise<ApiError> {
 export async function apiFetch<T>(path: string, init: RequestInit = {}): Promise<T> {
   const method = init.method?.toUpperCase() ?? 'GET';
   const headers = new Headers(init.headers);
+  const demo = demoRequest(path);
 
   if (init.body && !headers.has('Content-Type')) {
     headers.set('Content-Type', 'application/json');
@@ -68,8 +69,9 @@ export async function apiFetch<T>(path: string, init: RequestInit = {}): Promise
     const csrf = csrfToken();
     if (csrf) headers.set('X-CSRF-Token', csrf);
   }
+  if (demo) headers.set('X-Demo-Session-Id', demo.sessionId);
 
-  const response = await fetch(`${API_BASE_URL}${path}`, {
+  const response = await fetch(`${API_BASE_URL}${demo?.path ?? path}`, {
     ...init,
     method,
     headers,
@@ -86,10 +88,12 @@ export async function apiFetch<T>(path: string, init: RequestInit = {}): Promise
 
 export async function apiStream(path: string, payload: unknown): Promise<Response> {
   const headers = new Headers({ 'Content-Type': 'application/json' });
+  const demo = demoRequest(path);
   const csrf = csrfToken();
   if (csrf) headers.set('X-CSRF-Token', csrf);
+  if (demo) headers.set('X-Demo-Session-Id', demo.sessionId);
 
-  const response = await fetch(`${API_BASE_URL}${path}`, {
+  const response = await fetch(`${API_BASE_URL}${demo?.path ?? path}`, {
     method: 'POST',
     headers,
     body: JSON.stringify(payload),
@@ -106,3 +110,4 @@ export async function apiStream(path: string, payload: unknown): Promise<Respons
 export function apiUrl(path: string): string {
   return `${API_BASE_URL}${path}`;
 }
+import { demoRequest } from '../features/demo/demoSession';

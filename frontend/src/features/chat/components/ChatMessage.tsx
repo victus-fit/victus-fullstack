@@ -1,7 +1,8 @@
 import { AnimatePresence, motion } from 'motion/react';
-import { UserRound } from 'lucide-react';
+import Markdown from 'react-markdown';
 import type { ChatMessageModel } from '../types';
 import { TypingIndicator } from './TypingIndicator';
+import { useLanguage } from '../../../i18n/LanguageContext';
 
 interface ChatMessageProps {
   message: ChatMessageModel;
@@ -14,6 +15,7 @@ const messageTransition = {
 };
 
 export function ChatMessage({ message, isStreaming }: ChatMessageProps) {
+  const { t } = useLanguage();
   const isUser = message.role === 'user';
 
   return (
@@ -25,17 +27,14 @@ export function ChatMessage({ message, isStreaming }: ChatMessageProps) {
       transition={messageTransition}
       className={`message-row ${isUser ? 'user' : 'assistant'}`}
     >
-      <div className="message-avatar" aria-hidden="true">
-        {isUser ? <UserRound size={17} /> : <img src="/VictusBotIcon.png" alt="" />}
-      </div>
       <div className="message-bubble">
         <div className="message-meta">
-          <span>{isUser ? 'Tú' : 'Victus'}</span>
+          <span>{isUser ? t('user') : 'Victus'}</span>
           <span>·</span>
           <span>{message.createdAt}</span>
         </div>
         <div className="message-text">
-          {message.text.length > 0 ? message.text : <TypingIndicator />}
+          {message.text.length > 0 ? <Markdown>{message.text}</Markdown> : <TypingIndicator />}
           {isStreaming && message.text.length > 0 ? <span className="stream-caret" aria-hidden="true" /> : null}
         </div>
 

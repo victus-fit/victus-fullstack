@@ -1,0 +1,770 @@
+food_id,name,food_group,food_subgroup,category,public_id,imported_at
+2,Savoy cabbage,Vegetables,Cabbages,specific,FOOD00002,2026-07-30 03:27:51.551731+00
+4,Kiwi,Fruits,Tropical fruits,specific,FOOD00004,2026-07-30 03:27:51.551731+00
+5,Allium,Vegetables,Onion-family vegetables,specific,FOOD00005,2026-07-30 03:27:51.551731+00
+6,Garden onion,,,,,2026-07-30 03:27:51.551731+00
+7,Leek,Vegetables,Onion-family vegetables,specific,FOOD00007,2026-07-30 03:27:51.551731+00
+8,Garlic,Herbs and Spices,Herbs,specific,FOOD00008,2026-07-30 03:27:51.551731+00
+9,Chives,Herbs and Spices,Herbs,specific,FOOD00009,2026-07-30 03:27:51.551731+00
+11,Cashew nut,Nuts,Nuts,specific,FOOD00011,2026-07-30 03:27:51.551731+00
+12,Pineapple,Fruits,Tropical fruits,specific,FOOD00012,2026-07-30 03:27:51.551731+00
+13,Dill,Herbs and Spices,Herbs,specific,FOOD00013,2026-07-30 03:27:51.551731+00
+14,Custard apple,Fruits,Tropical fruits,specific,FOOD00014,2026-07-30 03:27:51.551731+00
+15,Wild celery,Herbs and Spices,Spices,specific,FOOD00015,2026-07-30 03:27:51.551731+00
+16,Peanut,Nuts,Nuts,specific,FOOD00016,2026-07-30 03:27:51.551731+00
+17,Burdock,,,,,2026-07-30 03:27:51.551731+00
+18,Horseradish,Herbs and Spices,Spices,specific,FOOD00018,2026-07-30 03:27:51.551731+00
+19,Tarragon,,,,,2026-07-30 03:27:51.551731+00
+20,Mugwort,Herbs and Spices,Herbs,specific,FOOD00020,2026-07-30 03:27:51.551731+00
+21,Asparagus,Vegetables,Shoot vegetables,specific,FOOD00021,2026-07-30 03:27:51.551731+00
+22,Oat,Cereals and cereal products,Cereals,specific,FOOD00022,2026-07-30 03:27:51.551731+00
+23,Star fruit,Fruits,Tropical fruits,specific,FOOD00023,2026-07-30 03:27:51.551731+00
+24,Brazil nut,Nuts,Nuts,specific,FOOD00024,2026-07-30 03:27:51.551731+00
+25,Common beet,Vegetables,Leaf vegetables,specific,FOOD00025,2026-07-30 03:27:51.551731+00
+26,Borage,Herbs and Spices,Oilseed crops,specific,FOOD00026,2026-07-30 03:27:51.551731+00
+27,Chinese mustard,Vegetables,Cabbages,specific,FOOD00027,2026-07-30 03:27:51.551731+00
+28,Swede,Vegetables,Root vegetables,specific,FOOD00028,2026-07-30 03:27:51.551731+00
+29,Rape,Vegetables,Root vegetables,specific,FOOD00029,2026-07-30 03:27:51.551731+00
+30,Common cabbage,,,,,2026-07-30 03:27:51.551731+00
+31,Cauliflower,,,,,2026-07-30 03:27:51.551731+00
+32,Brussel sprouts,Vegetables,Cabbages,specific,FOOD00032,2026-07-30 03:27:51.551731+00
+33,Kohlrabi,,,,,2026-07-30 03:27:51.551731+00
+34,Broccoli,Vegetables,Cabbages,specific,FOOD00034,2026-07-30 03:27:51.551731+00
+35,Chinese cabbage,,,,,2026-07-30 03:27:51.551731+00
+36,Turnip,,,,,2026-07-30 03:27:51.551731+00
+37,Pigeon pea,Pulses,Peas,specific,FOOD00037,2026-07-30 03:27:51.551731+00
+38,Tea,Teas,Teas,specific,FOOD00038,2026-07-30 03:27:51.551731+00
+39,Capers,Herbs and Spices,Spices,specific,FOOD00039,2026-07-30 03:27:51.551731+00
+40,Pepper,Vegetables,Fruit vegetables,specific,FOOD00040,2026-07-30 03:27:51.551731+00
+41,Papaya,Fruits,Tropical fruits,specific,FOOD00041,2026-07-30 03:27:51.551731+00
+42,Safflower,Herbs and Spices,Oilseed crops,specific,FOOD00042,2026-07-30 03:27:51.551731+00
+43,Caraway,Herbs and Spices,Spices,specific,FOOD00043,2026-07-30 03:27:51.551731+00
+44,Pecan nut,,,,,2026-07-30 03:27:51.551731+00
+45,Chestnut,,,,,2026-07-30 03:27:51.551731+00
+46,Roman camomile,Herbs and Spices,Herbs,specific,FOOD00046,2026-07-30 03:27:51.551731+00
+47,Chickpea,Pulses,Peas,specific,FOOD00047,2026-07-30 03:27:51.551731+00
+48,Endive,Vegetables,Leaf vegetables,specific,FOOD00048,2026-07-30 03:27:51.551731+00
+49,Chicory,Vegetables,Root vegetables,specific,FOOD00049,2026-07-30 03:27:51.551731+00
+50,Chinese cinnamon,Herbs and Spices,Spices,specific,FOOD00050,2026-07-30 03:27:51.551731+00
+51,Ceylon cinnamon,Herbs and Spices,Spices,specific,FOOD00051,2026-07-30 03:27:51.551731+00
+52,Watermelon,Gourds,Gourds,specific,FOOD00052,2026-07-30 03:27:51.551731+00
+53,Lime,Fruits,Citrus,specific,FOOD00053,2026-07-30 03:27:51.551731+00
+54,Lemon,Fruits,Citrus,specific,FOOD00054,2026-07-30 03:27:51.551731+00
+55,Pummelo,Fruits,Citrus,specific,FOOD00055,2026-07-30 03:27:51.551731+00
+56,"Mandarin orange (Clementine, Tangerine)",Fruits,Citrus,specific,FOOD00056,2026-07-30 03:27:51.551731+00
+57,Sweet orange,Fruits,Citrus,specific,FOOD00057,2026-07-30 03:27:51.551731+00
+58,Coffee,Coffee and coffee products,Coffee,generic,FOOD00058,2026-07-30 03:27:51.551731+00
+59,Arabica coffee,,,,,2026-07-30 03:27:51.551731+00
+60,Robusta coffee,Coffee and coffee products,Coffee,specific,FOOD00060,2026-07-30 03:27:51.551731+00
+61,Coriander,Herbs and Spices,Herbs,specific,FOOD00061,2026-07-30 03:27:51.551731+00
+62,Common hazelnut,Nuts,Nuts,specific,FOOD00062,2026-07-30 03:27:51.551731+00
+63,Saffron,,,,,2026-07-30 03:27:51.551731+00
+64,Muskmelon,Gourds,Gourds,specific,FOOD00064,2026-07-30 03:27:51.551731+00
+65,Cucumber,Gourds,Gourds,specific,FOOD00065,2026-07-30 03:27:51.551731+00
+66,Cucurbita,Gourds,Gourds,specific,FOOD00066,2026-07-30 03:27:51.551731+00
+67,Cumin,Herbs and Spices,Spices,specific,FOOD00067,2026-07-30 03:27:51.551731+00
+68,Turmeric,,,,,2026-07-30 03:27:51.551731+00
+69,Quince,Fruits,Pomes,specific,FOOD00069,2026-07-30 03:27:51.551731+00
+70,Lemon grass,Herbs and Spices,Herbs,specific,FOOD00070,2026-07-30 03:27:51.551731+00
+71,Globe artichoke,Vegetables,Shoot vegetables,specific,FOOD00071,2026-07-30 03:27:51.551731+00
+72,Wild carrot,Vegetables,Root vegetables,specific,FOOD00072,2026-07-30 03:27:51.551731+00
+73,Japanese persimmon,Fruits,Tropical fruits,specific,FOOD00073,2026-07-30 03:27:51.551731+00
+74,Cardamom,Herbs and Spices,Spices,specific,FOOD00074,2026-07-30 03:27:51.551731+00
+76,Loquat,,,,,2026-07-30 03:27:51.551731+00
+77,Rocket salad (ssp.),Vegetables,Leaf vegetables,specific,FOOD00077,2026-07-30 03:27:51.551731+00
+79,Common buckwheat,Cereals and cereal products,Cereals,specific,FOOD00079,2026-07-30 03:27:51.551731+00
+81,Fig,Fruits,Other fruits,specific,FOOD00081,2026-07-30 03:27:51.551731+00
+82,Fennel,Herbs and Spices,Herbs,specific,FOOD00082,2026-07-30 03:27:51.551731+00
+83,Strawberry,Fruits,Berries,specific,FOOD00083,2026-07-30 03:27:51.551731+00
+85,Soy bean,Soy,Soy,specific,FOOD00085,2026-07-30 03:27:51.551731+00
+86,Sunflower,Herbs and Spices,Oilseed crops,specific,FOOD00086,2026-07-30 03:27:51.551731+00
+87,Sea-buckthornberry,Fruits,Berries,specific,FOOD00087,2026-07-30 03:27:51.551731+00
+88,Barley,Cereals and cereal products,Cereals,specific,FOOD00088,2026-07-30 03:27:51.551731+00
+91,Swamp cabbage,Vegetables,Leaf vegetables,specific,FOOD00091,2026-07-30 03:27:51.551731+00
+92,Sweet potato,Vegetables,Tubers,specific,FOOD00092,2026-07-30 03:27:51.551731+00
+93,Black walnut,,,,,2026-07-30 03:27:51.551731+00
+94,Common walnut,Nuts,Nuts,specific,FOOD00094,2026-07-30 03:27:51.551731+00
+95,Lettuce,Vegetables,Leaf vegetables,specific,FOOD00095,2026-07-30 03:27:51.551731+00
+97,Sweet bay,,,,,2026-07-30 03:27:51.551731+00
+98,Lentils,,,,,2026-07-30 03:27:51.551731+00
+99,Garden cress,Vegetables,Leaf vegetables,specific,FOOD00099,2026-07-30 03:27:51.551731+00
+100,Lovage,,,,,2026-07-30 03:27:51.551731+00
+101,Flaxseed,Herbs and Spices,Oilseed crops,specific,FOOD00101,2026-07-30 03:27:51.551731+00
+103,Lichee,Fruits,Tropical fruits,specific,FOOD00103,2026-07-30 03:27:51.551731+00
+105,Apple,Fruits,Pomes,specific,FOOD00105,2026-07-30 03:27:51.551731+00
+106,Mango,Fruits,Tropical fruits,specific,FOOD00106,2026-07-30 03:27:51.551731+00
+108,Lemon balm,Herbs and Spices,Herbs,specific,FOOD00108,2026-07-30 03:27:51.551731+00
+112,Spearmint,,,,,2026-07-30 03:27:51.551731+00
+113,Peppermint,Herbs and Spices,Herbs,specific,FOOD00113,2026-07-30 03:27:51.551731+00
+115,Bitter gourd,Gourds,Gourds,specific,FOOD00115,2026-07-30 03:27:51.551731+00
+117,Black mulberry,Fruits,Berries,specific,FOOD00117,2026-07-30 03:27:51.551731+00
+118,Nutmeg,,,,,2026-07-30 03:27:51.551731+00
+119,Sweet basil,,,,,2026-07-30 03:27:51.551731+00
+120,Evening primrose,,,,,2026-07-30 03:27:51.551731+00
+121,Olive,,,,,2026-07-30 03:27:51.551731+00
+122,Sweet marjoram,,,,,2026-07-30 03:27:51.551731+00
+124,Common oregano,,,,,2026-07-30 03:27:51.551731+00
+125,Rice,Cereals and cereal products,Cereals,specific,FOOD00125,2026-07-30 03:27:51.551731+00
+126,Millet,Cereals and cereal products,Cereals,specific,FOOD00126,2026-07-30 03:27:51.551731+00
+127,Poppy,Herbs and Spices,Oilseed crops,specific,FOOD00127,2026-07-30 03:27:51.551731+00
+128,Passion fruit,Fruits,Tropical fruits,specific,FOOD00128,2026-07-30 03:27:51.551731+00
+129,Parsnip,Vegetables,Root vegetables,specific,FOOD00129,2026-07-30 03:27:51.551731+00
+130,Avocado,Vegetables,Fruit vegetables,specific,FOOD00130,2026-07-30 03:27:51.551731+00
+131,Parsley,Herbs and Spices,Herbs,specific,FOOD00131,2026-07-30 03:27:51.551731+00
+132,Scarlet bean,,,,,2026-07-30 03:27:51.551731+00
+133,Lima bean,Pulses,Beans,specific,FOOD00133,2026-07-30 03:27:51.551731+00
+134,Common bean,Pulses,Beans,specific,FOOD00134,2026-07-30 03:27:51.551731+00
+135,Date,,,,,2026-07-30 03:27:51.551731+00
+137,Anise,Herbs and Spices,Herbs,specific,FOOD00137,2026-07-30 03:27:51.551731+00
+138,Pine nut,Nuts,Nuts,specific,FOOD00138,2026-07-30 03:27:51.551731+00
+139,Pepper (Spice),Herbs and Spices,Spices,specific,FOOD00139,2026-07-30 03:27:51.551731+00
+140,Pistachio,Nuts,Nuts,specific,FOOD00140,2026-07-30 03:27:51.551731+00
+141,Common pea,Pulses,Peas,specific,FOOD00141,2026-07-30 03:27:51.551731+00
+142,Purslane,Herbs and Spices,Herbs,specific,FOOD00142,2026-07-30 03:27:51.551731+00
+143,"Prunus (Cherry, Plum)",Fruits,Drupes,specific,FOOD00143,2026-07-30 03:27:51.551731+00
+144,Apricot,Fruits,Drupes,specific,FOOD00144,2026-07-30 03:27:51.551731+00
+145,Sweet cherry,Fruits,Drupes,specific,FOOD00145,2026-07-30 03:27:51.551731+00
+146,Sour cherry,Fruits,Drupes,specific,FOOD00146,2026-07-30 03:27:51.551731+00
+147,European plum,,,,,2026-07-30 03:27:51.551731+00
+148,Almond,,,,,2026-07-30 03:27:51.551731+00
+149,Peach,Fruits,Drupes,specific,FOOD00149,2026-07-30 03:27:51.551731+00
+150,Guava,,,,,2026-07-30 03:27:51.551731+00
+151,Pomegranate,Fruits,Tropical fruits,specific,FOOD00151,2026-07-30 03:27:51.551731+00
+152,Pear,Fruits,Pomes,specific,FOOD00152,2026-07-30 03:27:51.551731+00
+153,Radish,Vegetables,Root vegetables,specific,FOOD00153,2026-07-30 03:27:51.551731+00
+154,Garden rhubarb,Vegetables,Stalk vegetables,specific,FOOD00154,2026-07-30 03:27:51.551731+00
+155,Blackcurrant,Fruits,Berries,specific,FOOD00155,2026-07-30 03:27:51.551731+00
+156,Redcurrant,Fruits,Berries,specific,FOOD00156,2026-07-30 03:27:51.551731+00
+157,Gooseberry,Fruits,Berries,specific,FOOD00157,2026-07-30 03:27:51.551731+00
+158,Watercress,Herbs and Spices,Herbs,specific,FOOD00158,2026-07-30 03:27:51.551731+00
+159,Rosemary,,,,,2026-07-30 03:27:51.551731+00
+160,"Rubus (Blackberry, Raspberry)",Fruits,Berries,specific,FOOD00160,2026-07-30 03:27:51.551731+00
+161,Cloudberry,,,,,2026-07-30 03:27:51.551731+00
+162,Red raspberry,,,,,2026-07-30 03:27:51.551731+00
+164,Sorrel,Herbs and Spices,Herbs,specific,FOOD00164,2026-07-30 03:27:51.551731+00
+165,Common sage,Herbs and Spices,Herbs,specific,FOOD00165,2026-07-30 03:27:51.551731+00
+166,Black elderberry,Fruits,Berries,specific,FOOD00166,2026-07-30 03:27:51.551731+00
+167,Summer savory,,,,,2026-07-30 03:27:51.551731+00
+169,Rye,Cereals and cereal products,Cereals,specific,FOOD00169,2026-07-30 03:27:51.551731+00
+170,Sesame,Herbs and Spices,Oilseed crops,specific,FOOD00170,2026-07-30 03:27:51.551731+00
+171,Garden tomato,,,,,2026-07-30 03:27:51.551731+00
+173,Garden tomato (var.),Vegetables,Fruit vegetables,specific,FOOD00173,2026-07-30 03:27:51.551731+00
+174,Eggplant,Vegetables,Fruit vegetables,specific,FOOD00174,2026-07-30 03:27:51.551731+00
+175,Potato,Vegetables,Tubers,specific,FOOD00175,2026-07-30 03:27:51.551731+00
+177,Sorghum,Cereals and cereal products,Cereals,specific,FOOD00177,2026-07-30 03:27:51.551731+00
+178,Spinach,Vegetables,Leaf vegetables,specific,FOOD00178,2026-07-30 03:27:51.551731+00
+179,Cloves,,,,,2026-07-30 03:27:51.551731+00
+180,Tamarind,Fruits,Tropical fruits,specific,FOOD00180,2026-07-30 03:27:51.551731+00
+181,Dandelion,Herbs and Spices,Herbs,specific,FOOD00181,2026-07-30 03:27:51.551731+00
+182,Cocoa bean,Cocoa and cocoa products,Cocoa,specific,FOOD00182,2026-07-30 03:27:51.551731+00
+183,Common thyme,Herbs and Spices,Herbs,specific,FOOD00183,2026-07-30 03:27:51.551731+00
+184,Linden,,,,,2026-07-30 03:27:51.551731+00
+186,Fenugreek,Herbs and Spices,Herbs,specific,FOOD00186,2026-07-30 03:27:51.551731+00
+187,Common wheat,Cereals and cereal products,Cereals,specific,FOOD00187,2026-07-30 03:27:51.551731+00
+188,"Vaccinium (Blueberry, Cranberry, Huckleberry)",Fruits,Berries,specific,FOOD00188,2026-07-30 03:27:51.551731+00
+191,Highbush blueberry,Fruits,Berries,specific,FOOD00191,2026-07-30 03:27:51.551731+00
+192,American cranberry,Fruits,Berries,specific,FOOD00192,2026-07-30 03:27:51.551731+00
+193,Bilberry,Fruits,Berries,specific,FOOD00193,2026-07-30 03:27:51.551731+00
+194,Lingonberry,Fruits,Berries,specific,FOOD00194,2026-07-30 03:27:51.551731+00
+195,Vanilla,Herbs and Spices,Spices,specific,FOOD00195,2026-07-30 03:27:51.551731+00
+197,Broad bean,,,,,2026-07-30 03:27:51.551731+00
+198,Adzuki bean,Pulses,Beans,specific,FOOD00198,2026-07-30 03:27:51.551731+00
+199,Gram bean,Pulses,Beans,specific,FOOD00199,2026-07-30 03:27:51.551731+00
+200,Mung bean,Pulses,Beans,specific,FOOD00200,2026-07-30 03:27:51.551731+00
+202,Cowpea,Pulses,Peas,specific,FOOD00202,2026-07-30 03:27:51.551731+00
+203,Muscadine grape,Fruits,Berries,specific,FOOD00203,2026-07-30 03:27:51.551731+00
+204,Common grape,Fruits,Berries,specific,FOOD00204,2026-07-30 03:27:51.551731+00
+205,Corn,Cereals and cereal products,Cereals,specific,FOOD00205,2026-07-30 03:27:51.551731+00
+206,Ginger,Herbs and Spices,Spices,specific,FOOD00206,2026-07-30 03:27:51.551731+00
+208,Banana,Fruits,Tropical fruits,specific,FOOD00208,2026-07-30 03:27:51.551731+00
+214,Celeriac,Vegetables,Root vegetables,specific,FOOD00214,2026-07-30 03:27:51.551731+00
+224,Longan,,,,,2026-07-30 03:27:51.551731+00
+229,Nectarine,,,,,2026-07-30 03:27:51.551731+00
+234,Rambutan,,,,,2026-07-30 03:27:51.551731+00
+237,Swiss chard,Vegetables,Leaf vegetables,specific,FOOD00237,2026-07-30 03:27:51.551731+00
+241,Welsh onion,Herbs and Spices,Herbs,specific,FOOD00241,2026-07-30 03:27:51.551731+00
+242,Hard wheat,Cereals and cereal products,Cereals,specific,FOOD00242,2026-07-30 03:27:51.551731+00
+243,Shallot,Vegetables,Onion-family vegetables,specific,FOOD00243,2026-07-30 03:27:51.551731+00
+245,Carrot,Vegetables,Root vegetables,specific,FOOD00245,2026-07-30 03:27:51.551731+00
+246,Triticale,Cereals and cereal products,Cereals,specific,FOOD00246,2026-07-30 03:27:51.551731+00
+247,Black cabbage,Vegetables,Cabbages,specific,FOOD00247,2026-07-30 03:27:51.551731+00
+249,Celery leaves,Herbs and Spices,Herbs,specific,FOOD00249,2026-07-30 03:27:51.551731+00
+252,Pak choy,,,,,2026-07-30 03:27:51.551731+00
+253,Napa cabbage,,,,,2026-07-30 03:27:51.551731+00
+256,Grapefruit,,,,,2026-07-30 03:27:51.551731+00
+261,Daikon radish,Vegetables,Root vegetables,specific,FOOD00261,2026-07-30 03:27:51.551731+00
+264,Red beetroot,Vegetables,Root vegetables,specific,FOOD00264,2026-07-30 03:27:51.551731+00
+268,Beer,Beverages,Fermented beverages,specific,FOOD00268,2026-07-30 03:27:51.551731+00
+269,Other bread,Cereals and cereal products,Other breads,specific,FOOD00269,2026-07-30 03:27:51.551731+00
+270,Breakfast cereal,Cereals and cereal products,Cereal products,specific,FOOD00270,2026-07-30 03:27:51.551731+00
+272,Other soy product,Soy,Soy products,specific,FOOD00271,2026-07-30 03:27:51.551731+00
+273,Other cereal product,Cereals and cereal products,Cereal products,specific,FOOD00272,2026-07-30 03:27:51.551731+00
+274,Pasta,Cereals and cereal products,Cereal products,specific,FOOD00273,2026-07-30 03:27:51.551731+00
+275,Biscuit,Cereals and cereal products,Cereal products,specific,FOOD00274,2026-07-30 03:27:51.551731+00
+277,Spirit,Beverages,Distilled beverages,specific,FOOD00276,2026-07-30 03:27:51.551731+00
+279,Other alcoholic beverage,Beverages,Alcoholic beverages,specific,FOOD00278,2026-07-30 03:27:51.551731+00
+280,Abalone,Aquatic foods,Mollusks,specific,FOOD00279,2026-07-30 03:27:51.551731+00
+281,Abiyuch,Fruits,Tropical fruits,specific,FOOD00280,2026-07-30 03:27:51.551731+00
+282,Acerola,Fruits,Tropical fruits,specific,FOOD00281,2026-07-30 03:27:51.551731+00
+283,Acorn,Nuts,Nuts,specific,FOOD00282,2026-07-30 03:27:51.551731+00
+284,Winter squash,Gourds,Gourds,specific,FOOD00283,2026-07-30 03:27:51.551731+00
+285,Agar,Aquatic foods,Seaweed,specific,FOOD00284,2026-07-30 03:27:51.551731+00
+286,Red king crab,Aquatic foods,Crustaceans,specific,FOOD00285,2026-07-30 03:27:51.551731+00
+287,Alfalfa,Herbs and Spices,Herbs,specific,FOOD00286,2026-07-30 03:27:51.551731+00
+288,Allspice,,,,,2026-07-30 03:27:51.551731+00
+289,Amaranth,,,,,2026-07-30 03:27:51.551731+00
+290,Arrowhead,Vegetables,Tubers,specific,FOOD00289,2026-07-30 03:27:51.551731+00
+291,Arrowroot,Vegetables,Tubers,specific,FOOD00290,2026-07-30 03:27:51.551731+00
+292,Asian pear,Fruits,Pomes,specific,FOOD00291,2026-07-30 03:27:51.551731+00
+293,Atlantic herring,Aquatic foods,Fishes,specific,FOOD00292,2026-07-30 03:27:51.551731+00
+294,Atlantic mackerel,Aquatic foods,Fishes,specific,FOOD00293,2026-07-30 03:27:51.551731+00
+295,Painted comber,Aquatic foods,Fishes,specific,FOOD00294,2026-07-30 03:27:51.551731+00
+296,Atlantic pollock,Aquatic foods,Fishes,specific,FOOD00295,2026-07-30 03:27:51.551731+00
+297,Atlantic wolffish,Aquatic foods,Fishes,specific,FOOD00296,2026-07-30 03:27:51.551731+00
+298,Bamboo shoots,Vegetables,Shoot vegetables,specific,FOOD00297,2026-07-30 03:27:51.551731+00
+299,Striped bass,Aquatic foods,Fishes,specific,FOOD00298,2026-07-30 03:27:51.551731+00
+301,Beech nut,,,,,2026-07-30 03:27:51.551731+00
+302,Beluga whale,Aquatic foods,Cetaceans,specific,FOOD00300,2026-07-30 03:27:51.551731+00
+303,Bison,Animal foods,Bovines,specific,FOOD00301,2026-07-30 03:27:51.551731+00
+305,Alaska blackfish,Aquatic foods,Fishes,specific,FOOD00302,2026-07-30 03:27:51.551731+00
+306,Blue crab,,,,,2026-07-30 03:27:51.551731+00
+307,Blue mussel,Aquatic foods,Mollusks,specific,FOOD00304,2026-07-30 03:27:51.551731+00
+308,Northern bluefin tuna,Aquatic foods,Fishes,specific,FOOD00305,2026-07-30 03:27:51.551731+00
+309,Bluefish,,,,,2026-07-30 03:27:51.551731+00
+311,Bowhead whale,Aquatic foods,Cetaceans,specific,FOOD00308,2026-07-30 03:27:51.551731+00
+312,Breadfruit,Fruits,Tropical fruits,specific,FOOD00309,2026-07-30 03:27:51.551731+00
+313,Breadnut tree seed,Herbs and Spices,Other seeds,specific,FOOD00310,2026-07-30 03:27:51.551731+00
+314,Rapini,,,,,2026-07-30 03:27:51.551731+00
+317,Burbot,Aquatic foods,Fishes,specific,FOOD00313,2026-07-30 03:27:51.551731+00
+318,Giant butterbur,Vegetables,Other vegetables,specific,FOOD00314,2026-07-30 03:27:51.551731+00
+319,American butterfish,Aquatic foods,Fishes,specific,FOOD00315,2026-07-30 03:27:51.551731+00
+320,Butternut,,,,,2026-07-30 03:27:51.551731+00
+321,Butternut squash,Gourds,Gourds,specific,FOOD00317,2026-07-30 03:27:51.551731+00
+322,Calabash,Gourds,Gourds,specific,FOOD00318,2026-07-30 03:27:51.551731+00
+323,Cardoon,Vegetables,Shoot vegetables,specific,FOOD00319,2026-07-30 03:27:51.551731+00
+325,Natal plum,Fruits,Tropical fruits,specific,FOOD00320,2026-07-30 03:27:51.551731+00
+326,Carob,Vegetables,Other vegetables,specific,FOOD00321,2026-07-30 03:27:51.551731+00
+327,Common carp,Aquatic foods,Fishes,specific,FOOD00322,2026-07-30 03:27:51.551731+00
+328,Cassava,Vegetables,Tubers,specific,FOOD00323,2026-07-30 03:27:51.551731+00
+329,Channel catfish,Aquatic foods,Fishes,specific,FOOD00324,2026-07-30 03:27:51.551731+00
+330,Chayote,Gourds,Gourds,specific,FOOD00325,2026-07-30 03:27:51.551731+00
+331,Cherimoya,Fruits,Tropical fruits,specific,FOOD00326,2026-07-30 03:27:51.551731+00
+332,Chervil,Herbs and Spices,Spices,specific,FOOD00327,2026-07-30 03:27:51.551731+00
+333,Chia,Herbs and Spices,Other seeds,specific,FOOD00328,2026-07-30 03:27:51.551731+00
+334,Chicken,Animal foods,Poultry,specific,FOOD00329,2026-07-30 03:27:51.551731+00
+335,Chinese broccoli,Vegetables,Cabbages,specific,FOOD00330,2026-07-30 03:27:51.551731+00
+336,Chinese chestnut,,,,,2026-07-30 03:27:51.551731+00
+337,Chinese water chestnut,,,,,2026-07-30 03:27:51.551731+00
+338,Garland chrysanthemum,Vegetables,Leaf vegetables,specific,FOOD00333,2026-07-30 03:27:51.551731+00
+339,Cisco,Aquatic foods,Fishes,specific,FOOD00334,2026-07-30 03:27:51.551731+00
+340,Nuttall cockle,Aquatic foods,Mollusks,specific,FOOD00335,2026-07-30 03:27:51.551731+00
+341,Coconut,,,,,2026-07-30 03:27:51.551731+00
+342,Pacific cod,Aquatic foods,Fishes,specific,FOOD00337,2026-07-30 03:27:51.551731+00
+343,Atlantic cod,,,,,2026-07-30 03:27:51.551731+00
+344,Common octopus,Aquatic foods,Mollusks,specific,FOOD00339,2026-07-30 03:27:51.551731+00
+345,Corn salad,Vegetables,Leaf vegetables,specific,FOOD00340,2026-07-30 03:27:51.551731+00
+346,Cottonseed,Herbs and Spices,Oilseed crops,specific,FOOD00341,2026-07-30 03:27:51.551731+00
+347,Catjang pea,Pulses,Peas,specific,FOOD00342,2026-07-30 03:27:51.551731+00
+348,Malus (Crab apple),,,,,2026-07-30 03:27:51.551731+00
+349,Squashberry,Fruits,Berries,specific,FOOD00344,2026-07-30 03:27:51.551731+00
+350,Atlantic croaker,Aquatic foods,Fishes,specific,FOOD00345,2026-07-30 03:27:51.551731+00
+351,Cusk,Aquatic foods,Fishes,specific,FOOD00346,2026-07-30 03:27:51.551731+00
+352,Cuttlefish,Aquatic foods,Mollusks,specific,FOOD00347,2026-07-30 03:27:51.551731+00
+354,Devilfish,Aquatic foods,Fishes,specific,FOOD00349,2026-07-30 03:27:51.551731+00
+355,Dock,,,,,2026-07-30 03:27:51.551731+00
+356,Dolphin fish,,,,,2026-07-30 03:27:51.551731+00
+357,Freshwater drum,,,,,2026-07-30 03:27:51.551731+00
+359,Dungeness crab,Aquatic foods,Crustaceans,specific,FOOD00354,2026-07-30 03:27:51.551731+00
+360,Durian,,,,,2026-07-30 03:27:51.551731+00
+361,Eastern oyster,Aquatic foods,Mollusks,specific,FOOD00356,2026-07-30 03:27:51.551731+00
+362,Freshwater eel,Aquatic foods,Fishes,specific,FOOD00357,2026-07-30 03:27:51.551731+00
+363,Elderberry,,,,,2026-07-30 03:27:51.551731+00
+366,Oregon yampah,Vegetables,Root vegetables,specific,FOOD00361,2026-07-30 03:27:51.551731+00
+367,European anchovy,Aquatic foods,Fishes,specific,FOOD00362,2026-07-30 03:27:51.551731+00
+368,European chestnut,Nuts,Nuts,specific,FOOD00363,2026-07-30 03:27:51.551731+00
+369,Turbot,Aquatic foods,Fishes,specific,FOOD00364,2026-07-30 03:27:51.551731+00
+370,Fireweed,Herbs and Spices,Herbs,specific,FOOD00365,2026-07-30 03:27:51.551731+00
+371,Florida pompano,Aquatic foods,Fishes,specific,FOOD00366,2026-07-30 03:27:51.551731+00
+372,Ginkgo nuts,Herbs and Spices,Other seeds,specific,FOOD00367,2026-07-30 03:27:51.551731+00
+374,Grape,Fruits,Berries,specific,FOOD00369,2026-07-30 03:27:51.551731+00
+375,Greenland halibut/turbot,Aquatic foods,Fishes,specific,FOOD00370,2026-07-30 03:27:51.551731+00
+376,Groundcherry,,,,,2026-07-30 03:27:51.551731+00
+377,Grouper,,,,,2026-07-30 03:27:51.551731+00
+378,Guinea hen,Animal foods,Poultry,specific,FOOD00373,2026-07-30 03:27:51.551731+00
+379,Haddock,,,,,2026-07-30 03:27:51.551731+00
+380,Hippoglossus (Common halibut),Aquatic foods,Fishes,specific,FOOD00375,2026-07-30 03:27:51.551731+00
+381,Hazelnut,Nuts,Nuts,specific,FOOD00376,2026-07-30 03:27:51.551731+00
+382,Hickory nut,Nuts,Nuts,specific,FOOD00377,2026-07-30 03:27:51.551731+00
+384,Horseradish tree,Vegetables,Other vegetables,specific,FOOD00379,2026-07-30 03:27:51.551731+00
+385,Alaska blueberry,,,,,2026-07-30 03:27:51.551731+00
+386,Hyacinth bean,Pulses,Beans,specific,FOOD00381,2026-07-30 03:27:51.551731+00
+387,Irish moss,Aquatic foods,Seaweed,specific,FOOD00382,2026-07-30 03:27:51.551731+00
+388,Pacific jack mackerel,Aquatic foods,Fishes,specific,FOOD00383,2026-07-30 03:27:51.551731+00
+389,Jackfruit,Fruits,Tropical fruits,specific,FOOD00384,2026-07-30 03:27:51.551731+00
+390,Japanese chestnut,Nuts,Nuts,specific,FOOD00385,2026-07-30 03:27:51.551731+00
+391,Java plum,,,,,2026-07-30 03:27:51.551731+00
+392,Jerusalem artichoke,Vegetables,Tubers,specific,FOOD00387,2026-07-30 03:27:51.551731+00
+393,Jujube,,,,,2026-07-30 03:27:51.551731+00
+394,Jute,,,,,2026-07-30 03:27:51.551731+00
+395,Kale,Vegetables,Cabbages,specific,FOOD00390,2026-07-30 03:27:51.551731+00
+396,Kelp,,,,,2026-07-30 03:27:51.551731+00
+397,King mackerel,,,,,2026-07-30 03:27:51.551731+00
+398,Kumquat,Fruits,Tropical fruits,specific,FOOD00393,2026-07-30 03:27:51.551731+00
+399,Lambsquarters,Vegetables,Leaf vegetables,specific,FOOD00394,2026-07-30 03:27:51.551731+00
+400,Leather chiton,Aquatic foods,Mollusks,specific,FOOD00395,2026-07-30 03:27:51.551731+00
+401,Wild leek,,,,,2026-07-30 03:27:51.551731+00
+402,Common ling,Aquatic foods,Fishes,specific,FOOD00397,2026-07-30 03:27:51.551731+00
+403,Lingcod,,,,,2026-07-30 03:27:51.551731+00
+404,American lobster,Aquatic foods,Crustaceans,specific,FOOD00399,2026-07-30 03:27:51.551731+00
+405,Loganberry,Fruits,Berries,specific,FOOD00400,2026-07-30 03:27:51.551731+00
+406,Lotus,Herbs and Spices,Other seeds,specific,FOOD00401,2026-07-30 03:27:51.551731+00
+407,Sacred lotus,,,,,2026-07-30 03:27:51.551731+00
+408,White lupine,,,,,2026-07-30 03:27:51.551731+00
+409,Malabar spinach,Vegetables,Leaf vegetables,specific,FOOD00404,2026-07-30 03:27:51.551731+00
+410,Mammee apple,,,,,2026-07-30 03:27:51.551731+00
+411,Purple mangosteen,,,,,2026-07-30 03:27:51.551731+00
+412,Alpine sweetvetch,Vegetables,Root vegetables,specific,FOOD00407,2026-07-30 03:27:51.551731+00
+413,Milkfish,Aquatic foods,Fishes,specific,FOOD00408,2026-07-30 03:27:51.551731+00
+414,Monkfish,Aquatic foods,Fishes,specific,FOOD00409,2026-07-30 03:27:51.551731+00
+416,Moth bean,Pulses,Beans,specific,FOOD00410,2026-07-30 03:27:51.551731+00
+417,Mountain yam,Vegetables,Tubers,specific,FOOD00411,2026-07-30 03:27:51.551731+00
+418,Striped mullet,Aquatic foods,Fishes,specific,FOOD00412,2026-07-30 03:27:51.551731+00
+420,White mustard,,,,,2026-07-30 03:27:51.551731+00
+421,Mustard spinach,,,,,2026-07-30 03:27:51.551731+00
+422,New Zealand spinach,Vegetables,Leaf vegetables,specific,FOOD00415,2026-07-30 03:27:51.551731+00
+423,Nopal,Vegetables,Other vegetables,specific,FOOD00416,2026-07-30 03:27:51.551731+00
+424,Ocean pout,Aquatic foods,Fishes,specific,FOOD00417,2026-07-30 03:27:51.551731+00
+425,North Pacific giant octopus,Aquatic foods,Mollusks,specific,FOOD00418,2026-07-30 03:27:51.551731+00
+426,Ohelo berry,Fruits,Berries,specific,FOOD00419,2026-07-30 03:27:51.551731+00
+427,Okra,Vegetables,Other vegetables,specific,FOOD00420,2026-07-30 03:27:51.551731+00
+428,Tunicate,Aquatic foods,Other aquatic foods,specific,FOOD00421,2026-07-30 03:27:51.551731+00
+430,Ostrich,Animal foods,Poultry,specific,FOOD00422,2026-07-30 03:27:51.551731+00
+431,Spotted seal,Aquatic foods,Pinnipeds,specific,FOOD00423,2026-07-30 03:27:51.551731+00
+432,Pacific herring,Aquatic foods,Fishes,specific,FOOD00424,2026-07-30 03:27:51.551731+00
+433,Pacific oyster,,,,,2026-07-30 03:27:51.551731+00
+434,Pacific rockfish,Aquatic foods,Fishes,specific,FOOD00426,2026-07-30 03:27:51.551731+00
+436,Pepper (C. frutescens),Vegetables,Fruit vegetables,specific,FOOD00428,2026-07-30 03:27:51.551731+00
+437,Common persimmon,,,,,2026-07-30 03:27:51.551731+00
+438,Pheasant,Animal foods,Poultry,specific,FOOD00430,2026-07-30 03:27:51.551731+00
+439,Northern pike,Aquatic foods,Fishes,specific,FOOD00431,2026-07-30 03:27:51.551731+00
+440,Pili nut,,,,,2026-07-30 03:27:51.551731+00
+441,Colorado pinyon,,,,,2026-07-30 03:27:51.551731+00
+442,Pitanga,,,,,2026-07-30 03:27:51.551731+00
+443,Plains prickly pear,,,,,2026-07-30 03:27:51.551731+00
+444,French plantain,Fruits,Tropical fruits,specific,FOOD00436,2026-07-30 03:27:51.551731+00
+445,American pokeweed,Vegetables,Shoot vegetables,specific,FOOD00437,2026-07-30 03:27:51.551731+00
+447,Opium poppy,,,,,2026-07-30 03:27:51.551731+00
+448,Prairie turnip,Vegetables,Root vegetables,specific,FOOD00439,2026-07-30 03:27:51.551731+00
+449,Prickly pear,,,,,2026-07-30 03:27:51.551731+00
+450,Quinoa,Herbs and Spices,Other seeds,specific,FOOD00441,2026-07-30 03:27:51.551731+00
+453,Rainbow smelt,Aquatic foods,Fishes,specific,FOOD00443,2026-07-30 03:27:51.551731+00
+454,Rainbow trout,Aquatic foods,Fishes,specific,FOOD00444,2026-07-30 03:27:51.551731+00
+455,Malabar plum,,,,,2026-07-30 03:27:51.551731+00
+456,Rose hip,Herbs and Spices,Herbs,specific,FOOD00446,2026-07-30 03:27:51.551731+00
+457,Roselle,,,,,2026-07-30 03:27:51.551731+00
+458,Orange roughy,Aquatic foods,Fishes,specific,FOOD00448,2026-07-30 03:27:51.551731+00
+459,Sablefish,,,,,2026-07-30 03:27:51.551731+00
+460,Pink salmon,,,,,2026-07-30 03:27:51.551731+00
+461,Chum salmon,,,,,2026-07-30 03:27:51.551731+00
+462,Coho salmon,,,,,2026-07-30 03:27:51.551731+00
+463,Sockeye salmon,,,,,2026-07-30 03:27:51.551731+00
+464,Chinook salmon,Aquatic foods,Fishes,specific,FOOD00454,2026-07-30 03:27:51.551731+00
+465,Atlantic salmon,Aquatic foods,Fishes,specific,FOOD00455,2026-07-30 03:27:51.551731+00
+466,Salmonberry,,,,,2026-07-30 03:27:51.551731+00
+467,Common salsify,Vegetables,Root vegetables,specific,FOOD00457,2026-07-30 03:27:51.551731+00
+468,Sapodilla,Fruits,Tropical fruits,specific,FOOD00458,2026-07-30 03:27:51.551731+00
+469,Mamey sapote,Fruits,Tropical fruits,specific,FOOD00459,2026-07-30 03:27:51.551731+00
+470,Spanish mackerel,Aquatic foods,Fishes,specific,FOOD00460,2026-07-30 03:27:51.551731+00
+471,Pacific sardine,Aquatic foods,Fishes,specific,FOOD00461,2026-07-30 03:27:51.551731+00
+472,Scallop,,,,,2026-07-30 03:27:51.551731+00
+473,Scup,Aquatic foods,Fishes,specific,FOOD00463,2026-07-30 03:27:51.551731+00
+474,Sea cucumber,Aquatic foods,Other aquatic foods,specific,FOOD00464,2026-07-30 03:27:51.551731+00
+475,Steller sea lion,Aquatic foods,Pinnipeds,specific,FOOD00465,2026-07-30 03:27:51.551731+00
+476,Bearded seal,,,,,2026-07-30 03:27:51.551731+00
+477,Ringed seal,Aquatic foods,Pinnipeds,specific,FOOD00467,2026-07-30 03:27:51.551731+00
+478,Sea trout,Aquatic foods,Fishes,specific,FOOD00468,2026-07-30 03:27:51.551731+00
+479,Sesbania flower,,,,,2026-07-30 03:27:51.551731+00
+480,American shad,Aquatic foods,Fishes,specific,FOOD00470,2026-07-30 03:27:51.551731+00
+481,Shark,,,,,2026-07-30 03:27:51.551731+00
+482,Sheefish,Aquatic foods,Fishes,specific,FOOD00472,2026-07-30 03:27:51.551731+00
+483,"Sheep (Mutton, Lamb)",Animal foods,Ovis,specific,FOOD00473,2026-07-30 03:27:51.551731+00
+484,Sheepshead,Aquatic foods,Fishes,specific,FOOD00474,2026-07-30 03:27:51.551731+00
+485,Hedge mustard,,,,,2026-07-30 03:27:51.551731+00
+486,Skipjack tuna,Aquatic foods,Fishes,specific,FOOD00476,2026-07-30 03:27:51.551731+00
+487,Snapper,,,,,2026-07-30 03:27:51.551731+00
+488,Soursop,Fruits,Tropical fruits,specific,FOOD00478,2026-07-30 03:27:51.551731+00
+489,Spelt,Cereals and cereal products,Cereals,specific,FOOD00479,2026-07-30 03:27:51.551731+00
+490,Spirulina,,,,,2026-07-30 03:27:51.551731+00
+491,Squab,Animal foods,Poultry,specific,FOOD00481,2026-07-30 03:27:51.551731+00
+493,Strawberry guava,,,,,2026-07-30 03:27:51.551731+00
+494,Greater sturgeon,Aquatic foods,Fishes,specific,FOOD00483,2026-07-30 03:27:51.551731+00
+495,White sucker,,,,,2026-07-30 03:27:51.551731+00
+496,Sugar apple,,,,,2026-07-30 03:27:51.551731+00
+497,Pumpkinseed sunfish,,,,,2026-07-30 03:27:51.551731+00
+498,Swordfish,Aquatic foods,Fishes,specific,FOOD00487,2026-07-30 03:27:51.551731+00
+499,Taro,Vegetables,Root vegetables,specific,FOOD00488,2026-07-30 03:27:51.551731+00
+500,Teff,,,,,2026-07-30 03:27:51.551731+00
+501,Tilefish,Aquatic foods,Fishes,specific,FOOD00490,2026-07-30 03:27:51.551731+00
+502,Mexican groundcherry,,,,,2026-07-30 03:27:51.551731+00
+503,Towel gourd,Gourds,Gourds,specific,FOOD00492,2026-07-30 03:27:51.551731+00
+504,"Salmonidae (Salmon, Trout)",Aquatic foods,Fishes,specific,FOOD00493,2026-07-30 03:27:51.551731+00
+505,Turkey,Animal foods,Poultry,specific,FOOD00494,2026-07-30 03:27:51.551731+00
+506,"Cattle (Beef, Veal)",Animal foods,Bovines,specific,FOOD00495,2026-07-30 03:27:51.551731+00
+507,Walleye,Aquatic foods,Fishes,specific,FOOD00496,2026-07-30 03:27:51.551731+00
+508,Alaska pollock,Aquatic foods,Fishes,specific,FOOD00497,2026-07-30 03:27:51.551731+00
+509,Wasabi,Herbs and Spices,Spices,specific,FOOD00498,2026-07-30 03:27:51.551731+00
+510,Wax gourd,,,,,2026-07-30 03:27:51.551731+00
+511,Whelk,Aquatic foods,Mollusks,specific,FOOD00500,2026-07-30 03:27:51.551731+00
+513,Broad whitefish,Aquatic foods,Fishes,specific,FOOD00502,2026-07-30 03:27:51.551731+00
+514,Whitefish,,,,,2026-07-30 03:27:51.551731+00
+515,Whiting,,,,,2026-07-30 03:27:51.551731+00
+516,Wild rice,,,,,2026-07-30 03:27:51.551731+00
+517,Tea leaf willow,Herbs and Spices,Herbs,specific,FOOD00506,2026-07-30 03:27:51.551731+00
+518,Winged bean,Pulses,Beans,specific,FOOD00507,2026-07-30 03:27:51.551731+00
+519,Yam,,,,,2026-07-30 03:27:51.551731+00
+520,Jicama,,,,,2026-07-30 03:27:51.551731+00
+521,Yautia,Vegetables,Leaf vegetables,specific,FOOD00510,2026-07-30 03:27:51.551731+00
+522,Yellowfin tuna,,,,,2026-07-30 03:27:51.551731+00
+523,Yellowtail amberjack,Aquatic foods,Fishes,specific,FOOD00512,2026-07-30 03:27:51.551731+00
+524,Pollock,,,,,2026-07-30 03:27:51.551731+00
+525,Albacore tuna,,,,,2026-07-30 03:27:51.551731+00
+526,Gadus (Common cod),Aquatic foods,Fishes,specific,FOOD00515,2026-07-30 03:27:51.551731+00
+527,Atlantic halibut,Aquatic foods,Fishes,specific,FOOD00516,2026-07-30 03:27:51.551731+00
+529,Pacific salmon,,,,,2026-07-30 03:27:51.551731+00
+530,Smelt,,,,,2026-07-30 03:27:51.551731+00
+531,"Clupeinae (Herring, Sardine, Sprat)",Aquatic foods,Fishes,specific,FOOD00520,2026-07-30 03:27:51.551731+00
+532,Spiny lobster,Aquatic foods,Crustaceans,specific,FOOD00521,2026-07-30 03:27:51.551731+00
+533,Snow crab,,,,,2026-07-30 03:27:51.551731+00
+534,Black-eyed pea,Pulses,Peas,specific,FOOD00523,2026-07-30 03:27:51.551731+00
+535,Deer,Animal foods,Venison,specific,FOOD00524,2026-07-30 03:27:51.551731+00
+536,Macadamia nut,,,,,2026-07-30 03:27:51.551731+00
+537,Percoidei (Bass and others),Aquatic foods,Fishes,specific,FOOD00526,2026-07-30 03:27:51.551731+00
+538,Perciformes,,,,,2026-07-30 03:27:51.551731+00
+540,Rabbit,Animal foods,Lagomorphs,specific,FOOD00528,2026-07-30 03:27:51.551731+00
+541,Domestic goat,Animal foods,Caprae,specific,FOOD00529,2026-07-30 03:27:51.551731+00
+542,Beefalo,Animal foods,Bovines,specific,FOOD00530,2026-07-30 03:27:51.551731+00
+544,"Bivalvia (Clam, Mussel, Oyster)",,,,,2026-07-30 03:27:51.551731+00
+545,Squid,Aquatic foods,Mollusks,specific,FOOD00532,2026-07-30 03:27:51.551731+00
+546,Shrimp,Aquatic foods,Crustaceans,specific,FOOD00533,2026-07-30 03:27:51.551731+00
+547,Crayfish,Aquatic foods,Crustaceans,specific,FOOD00534,2026-07-30 03:27:51.551731+00
+548,Flatfish,Aquatic foods,Fishes,specific,FOOD00535,2026-07-30 03:27:51.551731+00
+549,Domestic pig,Animal foods,Swine,specific,FOOD00536,2026-07-30 03:27:51.551731+00
+550,Walrus,,,,,2026-07-30 03:27:51.551731+00
+551,Alaska wild rhubarb,Vegetables,Stalk vegetables,specific,FOOD00538,2026-07-30 03:27:51.551731+00
+552,Oriental wheat,Cereals and cereal products,Cereals,specific,FOOD00539,2026-07-30 03:27:51.551731+00
+553,Yardlong bean,Pulses,Peas,specific,FOOD00540,2026-07-30 03:27:51.551731+00
+555,Quail,Animal foods,Poultry,specific,FOOD00541,2026-07-30 03:27:51.551731+00
+556,Boysenberry,Fruits,Berries,specific,FOOD00542,2026-07-30 03:27:51.551731+00
+557,Persian lime,,,,,2026-07-30 03:27:51.551731+00
+558,Feijoa,,,,,2026-07-30 03:27:51.551731+00
+559,Rowal,,,,,2026-07-30 03:27:51.551731+00
+560,Jew's ear,,,,,2026-07-30 03:27:51.551731+00
+561,Common mushroom,Vegetables,Mushrooms,specific,FOOD00547,2026-07-30 03:27:51.551731+00
+562,Shiitake,Vegetables,Mushrooms,specific,FOOD00548,2026-07-30 03:27:51.551731+00
+563,Purple laver,Aquatic foods,Seaweed,specific,FOOD00549,2026-07-30 03:27:51.551731+00
+564,Wakame,Aquatic foods,Seaweed,specific,FOOD00550,2026-07-30 03:27:51.551731+00
+565,Enokitake,,,,,2026-07-30 03:27:51.551731+00
+566,Epazote,,,,,2026-07-30 03:27:51.551731+00
+567,Oyster mushroom,,,,,2026-07-30 03:27:51.551731+00
+568,Cloud ear fungus,,,,,2026-07-30 03:27:51.551731+00
+569,Maitake,,,,,2026-07-30 03:27:51.551731+00
+570,Ostrich fern,,,,,2026-07-30 03:27:51.551731+00
+571,Spot croaker,Aquatic foods,Fishes,specific,FOOD00557,2026-07-30 03:27:51.551731+00
+572,Sourdock,Herbs and Spices,Herbs,specific,FOOD00558,2026-07-30 03:27:51.551731+00
+573,Tinda,,,,,2026-07-30 03:27:51.551731+00
+574,Atlantic menhaden,Aquatic foods,Fishes,specific,FOOD00560,2026-07-30 03:27:51.551731+00
+575,Wheat,Cereals and cereal products,Cereals,specific,FOOD00561,2026-07-30 03:27:51.551731+00
+576,Common chokecherry,,,,,2026-07-30 03:27:51.551731+00
+577,Agave,,,,,2026-07-30 03:27:51.551731+00
+578,Narrowleaf cattail,,,,,2026-07-30 03:27:51.551731+00
+579,Jellyfish,Aquatic foods,Other aquatic foods,specific,FOOD00565,2026-07-30 03:27:51.551731+00
+580,Anchovy,Aquatic foods,Fishes,specific,FOOD00566,2026-07-30 03:27:51.551731+00
+581,Blue whiting,Aquatic foods,Fishes,specific,FOOD00567,2026-07-30 03:27:51.551731+00
+582,Carp bream,,,,,2026-07-30 03:27:51.551731+00
+583,Chanterelle,Vegetables,Mushrooms,specific,FOOD00569,2026-07-30 03:27:51.551731+00
+584,Sturgeon,Aquatic foods,Fishes,specific,FOOD00570,2026-07-30 03:27:51.551731+00
+585,Charr,,,,,2026-07-30 03:27:51.551731+00
+586,Cinnamon,,,,,2026-07-30 03:27:51.551731+00
+587,Crab,Aquatic foods,Crustaceans,specific,FOOD00573,2026-07-30 03:27:51.551731+00
+588,Common dab,Aquatic foods,Fishes,specific,FOOD00574,2026-07-30 03:27:51.551731+00
+589,Spiny dogfish,Aquatic foods,Fishes,specific,FOOD00575,2026-07-30 03:27:51.551731+00
+590,Anatidae,Animal foods,Poultry,specific,FOOD00576,2026-07-30 03:27:51.551731+00
+591,Anguilliformes,,,,,2026-07-30 03:27:51.551731+00
+592,True frog,Aquatic foods,Amphibians,specific,FOOD00578,2026-07-30 03:27:51.551731+00
+593,Garfish,Aquatic foods,Fishes,specific,FOOD00579,2026-07-30 03:27:51.551731+00
+594,Gadiformes,Aquatic foods,Fishes,specific,FOOD00580,2026-07-30 03:27:51.551731+00
+595,Mountain hare,Animal foods,Lagomorphs,specific,FOOD00581,2026-07-30 03:27:51.551731+00
+596,Lake trout,,,,,2026-07-30 03:27:51.551731+00
+597,Lemon sole,Aquatic foods,Fishes,specific,FOOD00583,2026-07-30 03:27:51.551731+00
+598,Clawed lobster,Aquatic foods,Crustaceans,specific,FOOD00584,2026-07-30 03:27:51.551731+00
+599,Lumpsucker,,,,,2026-07-30 03:27:51.551731+00
+600,"Scombridae (Bonito, Mackerel, Tuna)",Aquatic foods,Fishes,specific,FOOD00586,2026-07-30 03:27:51.551731+00
+601,Marine mussel,Aquatic foods,Mollusks,specific,FOOD00587,2026-07-30 03:27:51.551731+00
+602,Norway haddock,,,,,2026-07-30 03:27:51.551731+00
+603,Norway lobster,Aquatic foods,Crustaceans,specific,FOOD00589,2026-07-30 03:27:51.551731+00
+604,Norway pout,Aquatic foods,Fishes,specific,FOOD00590,2026-07-30 03:27:51.551731+00
+605,Oil palm,Herbs and Spices,Oilseed crops,specific,FOOD00591,2026-07-30 03:27:51.551731+00
+606,True oyster,Aquatic foods,Mollusks,specific,FOOD00592,2026-07-30 03:27:51.551731+00
+608,Persimmon,Fruits,Tropical fruits,specific,FOOD00594,2026-07-30 03:27:51.551731+00
+609,Pikeperch,,,,,2026-07-30 03:27:51.551731+00
+610,"Pleuronectidae (Dab, Halibut, Plaice)",,,,,2026-07-30 03:27:51.551731+00
+611,Rock ptarmigan,Animal foods,Poultry,specific,FOOD00597,2026-07-30 03:27:51.551731+00
+612,Pacific ocean perch,Aquatic foods,Fishes,specific,FOOD00598,2026-07-30 03:27:51.551731+00
+613,Black salsify,Vegetables,Root vegetables,specific,FOOD00599,2026-07-30 03:27:51.551731+00
+614,True seal,Aquatic foods,Pinnipeds,specific,FOOD00600,2026-07-30 03:27:51.551731+00
+615,Red algae,,,,,2026-07-30 03:27:51.551731+00
+616,Kombu,Aquatic foods,Seaweed,specific,FOOD00602,2026-07-30 03:27:51.551731+00
+617,Snail,,,,,2026-07-30 03:27:51.551731+00
+618,True sole,,,,,2026-07-30 03:27:51.551731+00
+619,Catfish,Aquatic foods,Fishes,specific,FOOD00605,2026-07-30 03:27:51.551731+00
+620,Thistle,Vegetables,Root vegetables,specific,FOOD00606,2026-07-30 03:27:51.551731+00
+621,Thunnus,,,,,2026-07-30 03:27:51.551731+00
+622,Walnut,Nuts,Nuts,specific,FOOD00608,2026-07-30 03:27:51.551731+00
+623,"Cetacea (Dolphin, Porpoise, Whale)",,,,,2026-07-30 03:27:51.551731+00
+624,"Columbidae (Dove, Pigeon)",Animal foods,Poultry,specific,FOOD00610,2026-07-30 03:27:51.551731+00
+625,Conch,,,,,2026-07-30 03:27:51.551731+00
+626,Grape wine,Beverages,Fermented beverages,specific,FOOD00612,2026-07-30 03:27:51.551731+00
+630,Liquor,,,,,2026-07-30 03:27:51.551731+00
+631,Cheese,Milk and milk products,Fermented milk products,specific,FOOD00617,2026-07-30 03:27:51.551731+00
+632,Milk (Cow),,,,,2026-07-30 03:27:51.551731+00
+633,Eggs,,,,,2026-07-30 03:27:51.551731+00
+634,Yogurt,,,,,2026-07-30 03:27:51.551731+00
+638,Bean,Pulses,Beans,specific,FOOD00621,2026-07-30 03:27:51.551731+00
+639,Vodka,Beverages,Distilled beverages,specific,FOOD00622,2026-07-30 03:27:51.551731+00
+640,Whisky,Beverages,Distilled beverages,specific,FOOD00623,2026-07-30 03:27:51.551731+00
+641,Ice cream,Confectioneries,Frozen desserts,specific,FOOD00624,2026-07-30 03:27:51.551731+00
+642,Gin,Beverages,Distilled beverages,specific,FOOD00625,2026-07-30 03:27:51.551731+00
+643,Honey,Confectioneries,Other confectioneries,specific,FOOD00626,2026-07-30 03:27:51.551731+00
+644,Liquorice,,,,,2026-07-30 03:27:51.551731+00
+645,Vinegar,Baking goods,Seasonings,specific,FOOD00628,2026-07-30 03:27:51.551731+00
+646,Rum,Beverages,Distilled beverages,specific,FOOD00629,2026-07-30 03:27:51.551731+00
+647,Port wine,Beverages,Fortified wines,specific,FOOD00630,2026-07-30 03:27:51.551731+00
+648,Vermouth,Beverages,Fortified wines,specific,FOOD00631,2026-07-30 03:27:51.551731+00
+649,Sherry,Beverages,Fortified wines,specific,FOOD00632,2026-07-30 03:27:51.551731+00
+650,Madeira wine,Beverages,Fortified wines,specific,FOOD00633,2026-07-30 03:27:51.551731+00
+651,Nougat,Confectioneries,Other confectioneries,specific,FOOD00634,2026-07-30 03:27:51.551731+00
+653,Toffee,Confectioneries,Other confectioneries,specific,FOOD00635,2026-07-30 03:27:51.551731+00
+654,Cake,Confectioneries,Desserts,specific,FOOD00636,2026-07-30 03:27:51.551731+00
+655,Pizza,Dishes,Other dishes,specific,FOOD00637,2026-07-30 03:27:51.551731+00
+656,Ymer,,,,,2026-07-30 03:27:51.551731+00
+657,Other snack food,,,,,2026-07-30 03:27:51.551731+00
+659,Crisp bread,Cereals and cereal products,Flat breads,specific,FOOD00640,2026-07-30 03:27:51.551731+00
+660,Pastry,,,,,2026-07-30 03:27:51.551731+00
+661,Dragée,Confectioneries,Candies,specific,FOOD00642,2026-07-30 03:27:51.551731+00
+662,Chewing gum,Confectioneries,Candies,specific,FOOD00643,2026-07-30 03:27:51.551731+00
+663,Marzipan,Confectioneries,Other confectioneries,specific,FOOD00644,2026-07-30 03:27:51.551731+00
+664,Salad dressing,,,,,2026-07-30 03:27:51.551731+00
+665,Sauce,Baking goods,Sauces,specific,FOOD00646,2026-07-30 03:27:51.551731+00
+666,Salt,Baking goods,Seasonings,specific,FOOD00647,2026-07-30 03:27:51.551731+00
+667,Butter,Milk and milk products,Other milk products,specific,FOOD00648,2026-07-30 03:27:51.551731+00
+668,Butter substitute,Baking goods,Substitutes,specific,FOOD00649,2026-07-30 03:27:51.551731+00
+669,Cream,Milk and milk products,Other milk products,specific,FOOD00650,2026-07-30 03:27:51.551731+00
+670,Sugar,Baking goods,Sugars,specific,FOOD00651,2026-07-30 03:27:51.551731+00
+671,Sausage,Dishes,Ground meat,specific,FOOD00652,2026-07-30 03:27:51.551731+00
+672,Meatball,Dishes,Ground meat,specific,FOOD00653,2026-07-30 03:27:51.551731+00
+673,Mustard,,,,,2026-07-30 03:27:51.551731+00
+674,Pate,Dishes,Ground meat,specific,FOOD00655,2026-07-30 03:27:51.551731+00
+676,Sugar substitute,,,,,2026-07-30 03:27:51.551731+00
+677,Meat bouillon,Baking goods,Baking goods,specific,FOOD00657,2026-07-30 03:27:51.551731+00
+679,Whey,Milk and milk products,Other milk products,specific,FOOD00658,2026-07-30 03:27:51.551731+00
+680,Casein,Milk and milk products,Other milk products,specific,FOOD00659,2026-07-30 03:27:51.551731+00
+681,Fruit preserve,,,,,2026-07-30 03:27:51.551731+00
+682,Leavening agent,,,,,2026-07-30 03:27:51.551731+00
+683,Marshmallow,Confectioneries,Candies,specific,FOOD00662,2026-07-30 03:27:51.551731+00
+684,Gelatin,Baking goods,Baking goods,specific,FOOD00663,2026-07-30 03:27:51.551731+00
+685,Water,Beverages,Waters,specific,FOOD00664,2026-07-30 03:27:51.551731+00
+686,Other fish product,,,,,2026-07-30 03:27:51.551731+00
+687,Milk (Human),Milk and milk products,Unfermented milks,specific,FOOD00666,2026-07-30 03:27:51.551731+00
+689,Other beverage,Beverages,Other beverages,specific,FOOD00667,2026-07-30 03:27:51.551731+00
+690,Baby food,Baby foods,Baby foods,specific,FOOD00668,2026-07-30 03:27:51.551731+00
+691,Dumpling,Dishes,Other dishes,specific,FOOD00669,2026-07-30 03:27:51.551731+00
+692,Soup,Dishes,Other dishes,specific,FOOD00670,2026-07-30 03:27:51.551731+00
+693,Other vegetable product,Vegetables,Vegetable products,specific,FOOD00671,2026-07-30 03:27:51.551731+00
+694,Unclassified food or beverage,Unclassified,Unclassified,specific,FOOD00672,2026-07-30 03:27:51.551731+00
+695,Syrup,Baking goods,Baking goods,specific,FOOD00673,2026-07-30 03:27:51.551731+00
+696,Tallow,Fats and oils,Animal fats,specific,FOOD00674,2026-07-30 03:27:51.551731+00
+697,Remoulade,Baking goods,Condiments,specific,FOOD00675,2026-07-30 03:27:51.551731+00
+698,Chocolate spread,Confectioneries,Spreads,specific,FOOD00676,2026-07-30 03:27:51.551731+00
+699,Fruit gum,Confectioneries,Candies,specific,FOOD00677,2026-07-30 03:27:51.551731+00
+700,Curry powder,Herbs and Spices,Herb and spice mixtures,specific,FOOD00678,2026-07-30 03:27:51.551731+00
+701,Other candy,,,,,2026-07-30 03:27:51.551731+00
+702,Meringue,Confectioneries,Other confectioneries,specific,FOOD00680,2026-07-30 03:27:51.551731+00
+703,Lard,Fats and oils,Animal fats,specific,FOOD00681,2026-07-30 03:27:51.551731+00
+704,Other animal fat,,,,,2026-07-30 03:27:51.551731+00
+706,Cocoa butter,Cocoa and cocoa products,Cocoa products,specific,FOOD00684,2026-07-30 03:27:51.551731+00
+707,Cocoa powder,Cocoa and cocoa products,Cocoa products,specific,FOOD00685,2026-07-30 03:27:51.551731+00
+709,Chocolate,Cocoa and cocoa products,Cocoa products,specific,FOOD00687,2026-07-30 03:27:51.551731+00
+710,Hot chocolate,Cocoa and cocoa products,Cocoa products,specific,FOOD00688,2026-07-30 03:27:51.551731+00
+711,Dried milk,Milk and milk products,Other milk products,specific,FOOD00689,2026-07-30 03:27:51.551731+00
+712,Milk (Other mammals),,,,,2026-07-30 03:27:51.551731+00
+713,Kefir,Milk and milk products,Fermented milks,specific,FOOD00691,2026-07-30 03:27:51.551731+00
+714,Buttermilk,Milk and milk products,Fermented milks,specific,FOOD00692,2026-07-30 03:27:51.551731+00
+715,Other fermented milk,Milk and milk products,Fermented milks,specific,FOOD00693,2026-07-30 03:27:51.551731+00
+716,Soy sauce,Soy,Soy products,specific,FOOD00694,2026-07-30 03:27:51.551731+00
+717,Miso,Soy,Soy products,specific,FOOD00695,2026-07-30 03:27:51.551731+00
+718,Tofu,Soy,Soy products,specific,FOOD00696,2026-07-30 03:27:51.551731+00
+721,Zwieback,Cereals and cereal products,Leavened breads,specific,FOOD00697,2026-07-30 03:27:51.551731+00
+722,Roe,Aquatic foods,Roe,generic,FOOD00698,2026-07-30 03:27:51.551731+00
+723,Cichlidae (Tilapia),Aquatic foods,Fishes,specific,FOOD00699,2026-07-30 03:27:51.551731+00
+724,Icing,Confectioneries,Other confectioneries,specific,FOOD00700,2026-07-30 03:27:51.551731+00
+725,Snack bar,Snack foods,Snack foods,specific,FOOD00701,2026-07-30 03:27:51.551731+00
+726,Green turtle,Aquatic foods,Other aquatic foods,specific,FOOD00702,2026-07-30 03:27:51.551731+00
+727,Energy drink,Beverages,Nutritional beverages,specific,FOOD00703,2026-07-30 03:27:51.551731+00
+728,Burrito,Dishes,Tex-Mex cuisine,specific,FOOD00704,2026-07-30 03:27:51.551731+00
+729,Hamburger,Dishes,Sandwiches,specific,FOOD00705,2026-07-30 03:27:51.551731+00
+730,Baked beans,Dishes,Other dishes,specific,FOOD00706,2026-07-30 03:27:51.551731+00
+731,Chili,Dishes,Tex-Mex cuisine,specific,FOOD00707,2026-07-30 03:27:51.551731+00
+732,Taco,Dishes,Tex-Mex cuisine,specific,FOOD00708,2026-07-30 03:27:51.551731+00
+733,Tortilla,Cereals and cereal products,Flat breads,specific,FOOD00709,2026-07-30 03:27:51.551731+00
+734,Nachos,Dishes,Tex-Mex cuisine,specific,FOOD00710,2026-07-30 03:27:51.551731+00
+735,Processed cheese,Milk and milk products,Fermented milk products,specific,FOOD00711,2026-07-30 03:27:51.551731+00
+736,Salad,Dishes,Other dishes,specific,FOOD00712,2026-07-30 03:27:51.551731+00
+737,Cream substitute,Baking goods,Substitutes,specific,FOOD00713,2026-07-30 03:27:51.551731+00
+738,Dulce de leche,Confectioneries,Spreads,specific,FOOD00714,2026-07-30 03:27:51.551731+00
+739,Topping,Baking goods,Baking goods,specific,FOOD00715,2026-07-30 03:27:51.551731+00
+740,Sweet custard,Confectioneries,Milk desserts,specific,FOOD00716,2026-07-30 03:27:51.551731+00
+742,Egg roll,Dishes,Asian cuisine,specific,FOOD00717,2026-07-30 03:27:51.551731+00
+743,Heart of palm,Vegetables,Other vegetables,specific,FOOD00718,2026-07-30 03:27:51.551731+00
+744,Popcorn,Snack foods,Snack foods,specific,FOOD00719,2026-07-30 03:27:51.551731+00
+745,Potato chip,Snack foods,Snack foods,specific,FOOD00720,2026-07-30 03:27:51.551731+00
+746,Tortilla chip,Snack foods,Snack foods,specific,FOOD00721,2026-07-30 03:27:51.551731+00
+747,Corn chip,Snack foods,Snack foods,specific,FOOD00722,2026-07-30 03:27:51.551731+00
+748,Hibiscus tea,Teas,Herbal teas,specific,FOOD00723,2026-07-30 03:27:51.551731+00
+749,Stew,Dishes,Other dishes,specific,FOOD00724,2026-07-30 03:27:51.551731+00
+750,Gelatin dessert,Confectioneries,Desserts,specific,FOOD00725,2026-07-30 03:27:51.551731+00
+751,Junket,Confectioneries,Milk desserts,specific,FOOD00726,2026-07-30 03:27:51.551731+00
+752,Falafel,Dishes,Other dishes,specific,FOOD00727,2026-07-30 03:27:51.551731+00
+753,Frybread,Dishes,Other dishes,specific,FOOD00728,2026-07-30 03:27:51.551731+00
+754,Other frozen dessert,,,,,2026-07-30 03:27:51.551731+00
+755,Lasagna,,,,,2026-07-30 03:27:51.551731+00
+756,Morchella (Morel),Vegetables,Mushrooms,specific,FOOD00731,2026-07-30 03:27:51.551731+00
+757,Pancake,Dishes,Other dishes,specific,FOOD00732,2026-07-30 03:27:51.551731+00
+758,Pectin,Baking goods,Baking goods,specific,FOOD00733,2026-07-30 03:27:51.551731+00
+759,Pudding,Confectioneries,Desserts,specific,FOOD00734,2026-07-30 03:27:51.551731+00
+760,Waffle,Dishes,Other dishes,specific,FOOD00735,2026-07-30 03:27:51.551731+00
+761,Soy milk,Soy,Soy products,specific,FOOD00736,2026-07-30 03:27:51.551731+00
+762,Meatloaf,Dishes,Ground meat,specific,FOOD00737,2026-07-30 03:27:51.551731+00
+763,Sake,Beverages,Fermented beverages,specific,FOOD00738,2026-07-30 03:27:51.551731+00
+764,Cocktail,Beverages,Alcoholic beverages,specific,FOOD00739,2026-07-30 03:27:51.551731+00
+765,Couscous,Dishes,Berber cuisine,specific,FOOD00740,2026-07-30 03:27:51.551731+00
+766,Bulgur,Cereals and cereal products,Cereal products,specific,FOOD00741,2026-07-30 03:27:51.551731+00
+767,Coffee substitute,Baking goods,Substitutes,specific,FOOD00742,2026-07-30 03:27:51.551731+00
+768,Coffee mocha,Coffee and coffee products,Coffee products,specific,FOOD00743,2026-07-30 03:27:51.551731+00
+769,Chimichanga,Dishes,Mexican cuisine,specific,FOOD00744,2026-07-30 03:27:51.551731+00
+770,Semolina,Cereals and cereal products,Cereal products,specific,FOOD00745,2026-07-30 03:27:51.551731+00
+771,Tapioca pearl,Baking goods,Baking goods,specific,FOOD00746,2026-07-30 03:27:51.551731+00
+772,Tostada,Dishes,Mexican cuisine,specific,FOOD00747,2026-07-30 03:27:51.551731+00
+773,Quesadilla,Dishes,Mexican cuisine,specific,FOOD00748,2026-07-30 03:27:51.551731+00
+774,Baked potato,Dishes,Potato dishes,specific,FOOD00749,2026-07-30 03:27:51.551731+00
+775,Hot dog,Dishes,Sandwiches,specific,FOOD00750,2026-07-30 03:27:51.551731+00
+776,Spread,Baking goods,Baking goods,specific,FOOD00751,2026-07-30 03:27:51.551731+00
+777,Enchilada,Dishes,Mexican cuisine,specific,FOOD00752,2026-07-30 03:27:51.551731+00
+778,Egg substitute,,,,,2026-07-30 03:27:51.551731+00
+779,Nutritional drink,Beverages,Nutritional beverages,specific,FOOD00754,2026-07-30 03:27:51.551731+00
+780,Other sandwich,Dishes,Sandwiches,specific,FOOD00755,2026-07-30 03:27:51.551731+00
+781,Ketchup,Baking goods,Condiments,specific,FOOD00756,2026-07-30 03:27:51.551731+00
+782,Breakfast sandwich,Dishes,Sandwiches,specific,FOOD00757,2026-07-30 03:27:51.551731+00
+783,Adobo,Baking goods,Seasonings,specific,FOOD00758,2026-07-30 03:27:51.551731+00
+784,Macaroni and cheese,Dishes,Pasta dishes,specific,FOOD00759,2026-07-30 03:27:51.551731+00
+785,Butterfat,Milk and milk products,Other milk products,specific,FOOD00760,2026-07-30 03:27:51.551731+00
+786,Horned melon,Gourds,Gourds,specific,FOOD00761,2026-07-30 03:27:51.551731+00
+787,Hushpuppy,Dishes,American cuisine,specific,FOOD00762,2026-07-30 03:27:51.551731+00
+788,Fruit juice,Beverages,Other beverages,specific,FOOD00763,2026-07-30 03:27:51.551731+00
+789,Relish,Baking goods,Condiments,specific,FOOD00764,2026-07-30 03:27:51.551731+00
+790,Other fruit product,Fruits,Fruit products,specific,FOOD00765,2026-07-30 03:27:51.551731+00
+791,Fruit salad,Fruits,Fruit products,specific,FOOD00766,2026-07-30 03:27:51.551731+00
+792,Soy yogurt,Soy,Soy products,specific,FOOD00767,2026-07-30 03:27:51.551731+00
+793,Vegetarian food,Dishes,Other dishes,specific,FOOD00768,2026-07-30 03:27:51.551731+00
+795,Cold cut,Dishes,Ground meat,specific,FOOD00770,2026-07-30 03:27:51.551731+00
+796,Mixed nuts,Nuts,Nuts,specific,FOOD00771,2026-07-30 03:27:51.551731+00
+797,Canola,Herbs and spices,Oilseed crops,specific,FOOD00772,2026-07-30 03:27:51.551731+00
+798,Babassu palm,Herbs and Spices,Oilseed crops,specific,FOOD00773,2026-07-30 03:27:51.551731+00
+799,Cupuaçu,Herbs and Spices,Oilseed crops,specific,FOOD00774,2026-07-30 03:27:51.551731+00
+800,Shea tree,Herbs and Spices,Oilseed crops,specific,FOOD00775,2026-07-30 03:27:51.551731+00
+801,Oil-seed Camellia,Herbs and Spices,Oilseed crops,specific,FOOD00776,2026-07-30 03:27:51.551731+00
+802,Ucuhuba,Herbs and Spices,Oilseed crops,specific,FOOD00777,2026-07-30 03:27:51.551731+00
+803,Phyllo dough,Baking goods,Baking goods,specific,FOOD00778,2026-07-30 03:27:51.551731+00
+804,Cooking oil,Baking goods,Baking goods,specific,FOOD00779,2026-07-30 03:27:51.551731+00
+805,Pie crust,,,,,2026-07-30 03:27:51.551731+00
+806,Pie filling,Baking goods,Baking goods,specific,FOOD00781,2026-07-30 03:27:51.551731+00
+807,Pie,Confectioneries,Desserts,specific,FOOD00782,2026-07-30 03:27:51.551731+00
+808,Shortening,Fats and oils,Vegetable fats,specific,FOOD00783,2026-07-30 03:27:51.551731+00
+809,Soy cream,Soy,Soy products,specific,FOOD00784,2026-07-30 03:27:51.551731+00
+810,Ice cream cone,Baking goods,Wrappers,specific,FOOD00785,2026-07-30 03:27:51.551731+00
+811,Molasses,Baking goods,Baking goods,specific,FOOD00786,2026-07-30 03:27:51.551731+00
+812,Cracker,Snack foods,Snack foods,specific,FOOD00787,2026-07-30 03:27:51.551731+00
+813,Nance,Fruits,Tropical fruits,specific,FOOD00788,2026-07-30 03:27:51.551731+00
+814,Naranjilla,Fruits,Tropical fruits,specific,FOOD00789,2026-07-30 03:27:51.551731+00
+815,Natto,Soy,Soy products,specific,FOOD00790,2026-07-30 03:27:51.551731+00
+816,Ravioli,Dishes,Pasta dishes,specific,FOOD00791,2026-07-30 03:27:51.551731+00
+817,Scrapple,Dishes,American cuisine,specific,FOOD00792,2026-07-30 03:27:51.551731+00
+818,Other pasta dish,Dishes,Pasta dishes,specific,FOOD00793,2026-07-30 03:27:51.551731+00
+819,Succotash,Dishes,American cuisine,specific,FOOD00794,2026-07-30 03:27:51.551731+00
+820,Tamale,Dishes,Latin American cuisine,specific,FOOD00795,2026-07-30 03:27:51.551731+00
+822,Rice cake,Dishes,Asian cuisine,specific,FOOD00796,2026-07-30 03:27:51.551731+00
+823,Tree fern,Vegetables,Other vegetables,specific,FOOD00797,2026-07-30 03:27:51.551731+00
+824,Evaporated milk,Milk and milk products,Other milk products,specific,FOOD00798,2026-07-30 03:27:51.551731+00
+825,Flour,Cereals and cereal products,Cereal products,specific,FOOD00799,2026-07-30 03:27:51.551731+00
+826,Akutaq,Confectioneries,Desserts,specific,FOOD00800,2026-07-30 03:27:51.551731+00
+829,Pita bread,Cereals and cereal products,Flat breads,specific,FOOD00802,2026-07-30 03:27:51.551731+00
+830,Focaccia,Cereals and cereal products,Flat breads,specific,FOOD00803,2026-07-30 03:27:51.551731+00
+831,Bagel,Cereals and cereal products,Leavened breads,specific,FOOD00804,2026-07-30 03:27:51.551731+00
+832,Other bread product,Cereals and cereal products,Bread products,specific,FOOD00805,2026-07-30 03:27:51.551731+00
+834,Piki bread,Cereals and cereal products,Flat breads,specific,FOOD00806,2026-07-30 03:27:51.551731+00
+835,French toast,Cereals and cereal products,Leavened breads,specific,FOOD00807,2026-07-30 03:27:51.551731+00
+836,Wheat bread,,,,,2026-07-30 03:27:51.551731+00
+837,Rye bread,Cereals and cereal products,Leavened breads,specific,FOOD00809,2026-07-30 03:27:51.551731+00
+838,Oat bread,Cereals and cereal products,Leavened breads,specific,FOOD00810,2026-07-30 03:27:51.551731+00
+839,Potato bread,Cereals and cereal products,Other breads,specific,FOOD00811,2026-07-30 03:27:51.551731+00
+840,Cornbread,Cereals and cereal products,Flat breads,specific,FOOD00812,2026-07-30 03:27:51.551731+00
+841,Corn grits,Cereals and cereal products,Cereal products,specific,FOOD00813,2026-07-30 03:27:51.551731+00
+842,Multigrain bread,Cereals and cereal products,Leavened breads,specific,FOOD00814,2026-07-30 03:27:51.551731+00
+843,Rice bread,Cereals and cereal products,Leavened breads,specific,FOOD00815,2026-07-30 03:27:51.551731+00
+844,Pan dulce,Cereals and cereal products,Leavened breads,specific,FOOD00816,2026-07-30 03:27:51.551731+00
+845,Raisin bread,Cereals and cereal products,Sweet breads,specific,FOOD00817,2026-07-30 03:27:51.551731+00
+846,Wonton wrapper,Baking goods,Wrappers,specific,FOOD00818,2026-07-30 03:27:51.551731+00
+848,Trail mix,Snack foods,Snack foods,specific,FOOD00819,2026-07-30 03:27:51.551731+00
+849,Greenthread tea,Teas,Herbal teas,specific,FOOD00820,2026-07-30 03:27:51.551731+00
+850,Fruit-flavor drink,Beverages,Other beverages,specific,FOOD00821,2026-07-30 03:27:51.551731+00
+851,Vegetable juice,Beverages,Other beverages,specific,FOOD00822,2026-07-30 03:27:51.551731+00
+852,Horchata,Beverages,Other beverages,specific,FOOD00823,2026-07-30 03:27:51.551731+00
+853,Soft drink,Beverages,Other beverages,specific,FOOD00824,2026-07-30 03:27:51.551731+00
+854,Frozen yogurt,Confectioneries,Frozen desserts,specific,FOOD00825,2026-07-30 03:27:51.551731+00
+855,Milkshake,Confectioneries,Frozen desserts,specific,FOOD00826,2026-07-30 03:27:51.551731+00
+856,Chocolate mousse,Confectioneries,Desserts,specific,FOOD00827,2026-07-30 03:27:51.551731+00
+857,Dripping,Fats and oils,Animal fats,specific,FOOD00828,2026-07-30 03:27:51.551731+00
+858,Pupusa,Dishes,Latin American cuisine,specific,FOOD00829,2026-07-30 03:27:51.551731+00
+859,Empanada,Dishes,Latin American cuisine,specific,FOOD00830,2026-07-30 03:27:51.551731+00
+860,Arepa,Dishes,Latin American cuisine,specific,FOOD00831,2026-07-30 03:27:51.551731+00
+861,Ascidians,,,,,2026-07-30 03:27:51.551731+00
+862,Gefilte fish,Dishes,Jewish cuisine,specific,FOOD00833,2026-07-30 03:27:51.551731+00
+863,Yellow pond-lily,Herbs and Spices,Herbs,specific,FOOD00834,2026-07-30 03:27:51.551731+00
+864,Fish burger,Dishes,Sandwiches,specific,FOOD00835,2026-07-30 03:27:51.551731+00
+865,Other dish,Dishes,Other dishes,specific,FOOD00836,2026-07-30 03:27:51.551731+00
+866,Pot pie,Dishes,Other dishes,specific,FOOD00837,2026-07-30 03:27:51.551731+00
+867,Stuffing,Baking goods,Baking goods,specific,FOOD00838,2026-07-30 03:27:51.551731+00
+868,Edible shell,Baking goods,Wrappers,specific,FOOD00839,2026-07-30 03:27:51.551731+00
+869,Fudge,Confectioneries,Candies,specific,FOOD00840,2026-07-30 03:27:51.551731+00
+870,Candy bar,Confectioneries,Candies,specific,FOOD00841,2026-07-30 03:27:51.551731+00
+871,Condensed milk,Milk and milk products,Other milk products,specific,FOOD00842,2026-07-30 03:27:51.551731+00
+872,Margarine,Fats and oils,Vegetable fats,specific,FOOD00843,2026-07-30 03:27:51.551731+00
+873,Margarine-like spread,Fats and oils,Vegetable fats,specific,FOOD00844,2026-07-30 03:27:51.551731+00
+874,Hummus,Dishes,Levantine cuisine,specific,FOOD00845,2026-07-30 03:27:51.551731+00
+876,Potato puffs,Dishes,Potato dishes,specific,FOOD00846,2026-07-30 03:27:51.551731+00
+877,Potato gratin,Dishes,Potato dishes,specific,FOOD00847,2026-07-30 03:27:51.551731+00
+878,Milk substitute,,,,,2026-07-30 03:27:51.551731+00
+880,Soft-necked garlic,Herbs and Spices,Herbs,specific,FOOD00850,2026-07-30 03:27:51.551731+00
+881,Cabbage,Vegetables,Cabbages,specific,FOOD00851,2026-07-30 03:27:51.551731+00
+884,Alcoholic beverages,Beverages,Alcoholic beverages,generic,FOOD00854,2026-07-30 03:27:51.551731+00
+888,Cereals and cereal products,Cereals and cereal products,Cereals and cereal products,generic,FOOD00858,2026-07-30 03:27:51.551731+00
+891,Coffee and coffee products,Coffee and coffee products,Coffee and coffee products,generic,FOOD00861,2026-07-30 03:27:51.551731+00
+896,Fishes,,,,,2026-07-30 03:27:51.551731+00
+939,Black tea,Teas,Teas,,FOOD00907,2026-07-30 03:27:51.551731+00
+940,Green tea,Teas,Teas,,FOOD00908,2026-07-30 03:27:51.551731+00
+957,Red tea,Teas,Teas,,FOOD00925,2026-07-30 03:27:51.551731+00
+985,Sour cream,Milk and milk products,Other milk products,,FOOD00953,2026-07-30 03:27:51.551731+00
+1019,White bread,Cereals and cereal products,Cereals,,FOOD00987,2026-07-30 03:27:51.551731+00
+1021,Herbal tea,Teas,Teas,,FOOD00989,2026-07-30 03:27:51.551731+00
+1022,Fish oil,,,,FOOD00990,2026-07-30 03:27:51.551731+00
+1023,Taco shell,,,,FOOD00991,2026-07-30 03:27:51.551731+00
+1024,Tostada shell,,,,FOOD00992,2026-07-30 03:27:51.551731+00

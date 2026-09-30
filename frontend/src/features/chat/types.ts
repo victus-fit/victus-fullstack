@@ -1,6 +1,6 @@
 export type ChatRole = 'assistant' | 'user';
 export type ChatStatus = 'ready' | 'submitted' | 'streaming';
-export type AgentWorkspace = 'chat' | 'diets' | 'biometrics' | 'profile' | 'about';
+export type AgentWorkspace = 'chat' | 'meal-log' | 'weekly-plan' | 'biometrics' | 'profile';
 
 export interface EvidenceReference {
   id: string;
@@ -45,5 +45,6 @@ export interface VictusChatController {
   reset: () => void;
   refreshConversations: () => Promise<void>;
   selectConversation: (conversationId: string) => Promise<void>;
+  deleteConversation: (conversationId: string) => Promise<void>;
   startNewConversation: () => void;
 }

@@ -1,14 +1,19 @@
 import {
   Activity,
   Apple,
-  Compass,
-  FileText,
+  CalendarDays,
+  LogOut,
   MessageSquarePlus,
   MessageSquareText,
-  UserRound,
+  MoreHorizontal,
+  PanelLeftClose,
+  PanelLeftOpen,
+  Trash2,
   type LucideIcon,
 } from 'lucide-react';
+import { useState } from 'react';
 import { CompassMark } from '../../../components/CompassMark';
+import { useLanguage } from '../../../i18n/LanguageContext';
 import type { AgentWorkspace, ConversationListItem } from '../types';
 
 interface SidebarProps {
@@ -16,47 +21,38 @@ interface SidebarProps {
   activeConversationId: string | null;
   conversations: ConversationListItem[];
   isCollapsed: boolean;
-  mode: 'demo' | 'app';
+  onToggleSidebar: () => void;
   onWorkspaceChange: (workspace: AgentWorkspace) => void;
   onNewConversation: () => void;
   onSelectConversation: (conversationId: string) => void;
+  onDeleteConversation: (conversationId: string) => Promise<void>;
+  onSignOut?: () => Promise<void> | void;
 }
 
 const agentApps: Array<{
   id: AgentWorkspace;
   label: string;
-  description: string;
   icon: LucideIcon;
 }> = [
   {
     id: 'chat',
     label: 'Chat',
-    description: 'Ajustes y preguntas sobre tu plan diario.',
     icon: MessageSquareText,
   },
   {
-    id: 'diets',
-    label: 'Plan semanal',
-    description: 'Comidas, adherencia, alternativas y restricciones.',
+    id: 'meal-log',
+    label: 'Registro de comidas',
     icon: Apple,
+  },
+  {
+    id: 'weekly-plan',
+    label: 'Plan semanal',
+    icon: CalendarDays,
   },
   {
     id: 'biometrics',
     label: 'Biométricas',
-    description: 'Peso, sueño, hábitos y señales de recuperación.',
     icon: Activity,
-  },
-  {
-    id: 'profile',
-    label: 'Perfil',
-    description: 'Preferencias, objetivos y contexto personal.',
-    icon: UserRound,
-  },
-  {
-    id: 'about',
-    label: 'Acerca de',
-    description: 'Alcance y límites de Victus.',
-    icon: FileText,
   },
 ];
 
@@ -71,11 +67,27 @@ export function Sidebar({
   activeConversationId,
   conversations,
   isCollapsed,
-  mode,
+  onToggleSidebar,
   onWorkspaceChange,
   onNewConversation,
   onSelectConversation,
+  onDeleteConversation,
+  onSignOut,
 }: SidebarProps) {
+  const { t } = useLanguage();
+  const [openMenuId, setOpenMenuId] = useState<string | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+
+  async function deleteThread(conversationId: string) {
+    setDeletingId(conversationId);
+    try {
+      await onDeleteConversation(conversationId);
+      setOpenMenuId(null);
+    } finally {
+      setDeletingId(null);
+    }
+  }
+
   return (
     <aside className={`sidebar ${isCollapsed ? 'is-collapsed' : ''}`} aria-label="Victus sidebar">
       <div className="brand-row">
@@ -84,12 +96,33 @@ export function Sidebar({
           <strong>victus</strong>
           <span>Plan personal activo</span>
         </div>
+        <div className="sidebar-actions">
+          <button
+            className="icon-button sidebar-icon-button"
+            onClick={onNewConversation}
+            type="button"
+            aria-label="Nueva conversación"
+            title="Nueva conversación"
+          >
+            <MessageSquarePlus size={15} />
+          </button>
+          <button
+            className="icon-button sidebar-icon-button"
+            onClick={onToggleSidebar}
+            type="button"
+            aria-label={isCollapsed ? 'Mostrar sidebar' : 'Ocultar sidebar'}
+            title={isCollapsed ? 'Mostrar sidebar' : 'Ocultar sidebar'}
+          >
+            {isCollapsed ? <PanelLeftOpen size={16} /> : <PanelLeftClose size={16} />}
+          </button>
+        </div>
       </div>
 
       <div className="sidebar-section-title">Principal</div>
       <nav className="agent-app-list" aria-label="Victus agent applications">
         {agentApps.map((app) => {
           const Icon = app.icon;
+          const label = app.id === 'meal-log' ? t('mealLog') : app.id === 'weekly-plan' ? t('weeklyPlan') : app.id === 'biometrics' ? t('biometrics') : t('chat');
           const isActive = activeWorkspace === app.id;
           return (
             <button
@@ -97,15 +130,14 @@ export function Sidebar({
               key={app.id}
               onClick={() => onWorkspaceChange(app.id)}
               type="button"
-              title={isCollapsed ? app.label : undefined}
-              aria-label={isCollapsed ? app.label : undefined}
+              title={isCollapsed ? label : undefined}
+              aria-label={isCollapsed ? label : undefined}
             >
               <span className="agent-app-icon" aria-hidden="true">
                 <Icon size={17} strokeWidth={1.9} />
               </span>
               <span className="agent-app-copy" aria-hidden={isCollapsed}>
-                <strong>{app.label}</strong>
-                <span>{app.description}</span>
+                <strong>{label}</strong>
               </span>
             </button>
           );
@@ -114,27 +146,57 @@ export function Sidebar({
 
       <div className="sidebar-section-title sidebar-optional">Conversations</div>
       <div className="thread-list sidebar-optional">
-        {mode === 'app' ? (
-          <button className="thread-action" type="button" onClick={onNewConversation}>
-            <MessageSquarePlus size={15} /> Nueva conversación
-          </button>
-        ) : null}
-        {mode === 'demo' ? (
-          <button className="thread-item is-active" type="button" onClick={() => onWorkspaceChange('chat')}>
-            <strong>Plan para bajar grasa sin perder energía</strong>
-            <span>Preview pública.</span>
-          </button>
-        ) : conversations.length ? (
+        {conversations.length ? (
           conversations.map((conversation) => (
-            <button
+            <div
               className={`thread-item ${conversation.conversation_id === activeConversationId ? 'is-active' : ''}`}
               key={conversation.conversation_id}
-              type="button"
+              role="button"
+              tabIndex={0}
               onClick={() => onSelectConversation(conversation.conversation_id)}
+              onKeyDown={(event) => {
+                if (event.key !== 'Enter' && event.key !== ' ') return;
+                event.preventDefault();
+                onSelectConversation(conversation.conversation_id);
+              }}
             >
-              <strong>{conversation.title}</strong>
-              <span>{conversation.pinned ? 'Fijado · ' : ''}{formatThreadDate(conversation.updated_at)}</span>
-            </button>
+              <span className="thread-copy">
+                <strong>{conversation.title}</strong>
+                <span>{conversation.pinned ? 'Fijado · ' : ''}{formatThreadDate(conversation.updated_at)}</span>
+              </span>
+              <span className="thread-menu-wrap">
+                <button
+                  className="thread-menu-button"
+                  type="button"
+                  aria-label={`Acciones para ${conversation.title}`}
+                  aria-expanded={openMenuId === conversation.conversation_id}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    setOpenMenuId((current) => current === conversation.conversation_id ? null : conversation.conversation_id);
+                  }}
+                >
+                  <MoreHorizontal size={15} />
+                </button>
+                {openMenuId === conversation.conversation_id ? (
+                  <span className="thread-menu" onClick={(event) => event.stopPropagation()}>
+                    <button
+                      className="thread-menu-option danger"
+                      type="button"
+                      disabled={deletingId === conversation.conversation_id}
+                      onClick={() => {
+                        if (deletingId === conversation.conversation_id) return;
+                        if (window.confirm('¿Eliminar esta conversación?')) {
+                          void deleteThread(conversation.conversation_id);
+                        }
+                      }}
+                    >
+                      <Trash2 size={14} />
+                      {deletingId === conversation.conversation_id ? 'Eliminando' : 'Eliminar'}
+                    </button>
+                  </span>
+                ) : null}
+              </span>
+            </div>
           ))
         ) : (
           <div className="thread-empty">
@@ -144,19 +206,12 @@ export function Sidebar({
         )}
       </div>
 
-      <div className="sidebar-footer sidebar-optional">
-        <div className="sidebar-status-card">
-          <span className="status-dot" />
-          <div>
-            <span>{mode === 'demo' ? 'Vista pública' : 'Sesión segura'}</span>
-            <strong>{mode === 'demo' ? 'Contexto listo' : 'Contexto actualizado'}</strong>
-          </div>
-        </div>
-        <div className="sidebar-architecture">
-          <Compass size={14} />
-          <span>Dieta · bienestar · preferencias</span>
-        </div>
-      </div>
+      {onSignOut ? <div className="sidebar-footer">
+        <button className="agent-app-item sidebar-profile-item" type="button" onClick={() => void onSignOut()}>
+          <span className="agent-app-icon" aria-hidden="true"><LogOut size={17} strokeWidth={1.9} /></span>
+          <span className="agent-app-copy"><strong>Cerrar sesión</strong></span>
+        </button>
+      </div> : null}
     </aside>
   );
 }

@@ -15,10 +15,10 @@
       "X-Victus-Conversation-Id": "uuid",
       "X-Victus-Agent-Turn-Id": "uuid"
     },
-    "body": "Incremental text chunks streamed to the browser"
+    "body": "Text streamed to the browser. If Victus Agent returns a JSON object, only its string `message` field is exposed and persisted."
   },
   "notes": [
-    "V1 uses a FastAPI mock gateway.",
-    "LangGraph integration should preserve the same browser-facing contract."
+    "Victus Agent integration must preserve this browser-facing contract.",
+    "Tracing, status, event, and Phoenix metadata must stay behind the backend boundary and must not be rendered as assistant text."
   ]
 }

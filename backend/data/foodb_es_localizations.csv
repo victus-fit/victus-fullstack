@@ -1,0 +1,770 @@
+food_id,display_name
+2,Col de Saboya
+4,Kiwi
+5,Allium
+6,Cebolla
+7,Puerro
+8,Ajo
+9,Cebollino
+11,Anacardo
+12,Piña
+13,Eneldo
+14,Anón
+15,Apio silvestre
+16,Maní
+17,Bardana
+18,Rábano
+19,Estragón
+20,Artemisa
+21,Espárrago
+22,Avena
+23,Carambola
+24,Nuez de Brasil
+25,Remolacha
+26,Borraja
+27,Mostaza china
+28,Colinabo sueco
+29,Colza
+30,Repollo
+31,Coliflor
+32,Coles de Bruselas
+33,Colirrábano
+34,Brócoli
+35,Col china
+36,Nabo
+37,Guandú
+38,Té
+39,Alcaparras
+40,Pimiento
+41,Papaya
+42,Cártamo
+43,Alcaravea
+44,Nuez pecana
+45,Castaña
+46,Manzanilla romana
+47,Garbanzo
+48,Escarola
+49,Achicoria
+50,Canela china
+51,Canela de Ceilán
+52,Sandía
+53,Lima
+54,Limón
+55,Pomelo chino
+56,"Mandarina (clementina, tangerina)"
+57,Naranja
+58,Café
+59,Café arábica
+60,Café robusta
+61,Cilantro
+62,Avellana común
+63,Azafrán
+64,Melón
+65,Pepino
+66,Cucurbita
+67,Comino
+68,Cúrcuma
+69,Membrillo
+70,Hierba limón
+71,Alcachofa
+72,Zanahoria silvestre
+73,Caqui japonés
+74,Cardamomo
+76,Níspero
+77,Rúcula (subesp.)
+79,Trigo sarraceno
+81,Higo
+82,Hinojo
+83,Fresa
+85,Soja
+86,Girasol
+87,Espino amarillo
+88,Cebada
+91,Col de pantano
+92,Batata
+93,Nuez negra
+94,Nuez común
+95,Lechuga
+97,Laurel
+98,Lentejas
+99,Berro de jardín
+100,Levístico
+101,Semilla de lino
+103,Lichi
+105,Manzana
+106,Mango
+108,Melisa
+112,Hierbabuena
+113,Menta piperita
+115,Melón amargo
+117,Mora negra
+118,Nuez moscada
+119,Albahaca
+120,Onagra
+121,Aceituna
+122,Mejorana
+124,Orégano
+125,Arroz
+126,Mijo
+127,Amapola
+128,Maracuyá
+129,Chirivía
+130,Aguacate
+131,Perejil
+132,Frijol escarlata
+133,Frijol de Lima
+134,Frijol común
+135,Dátil
+137,Anís
+138,Piñón
+139,Pimienta (especia)
+140,Pistacho
+141,Arveja
+142,Verdolaga
+143,"Prunus (cereza, ciruela)"
+144,Albaricoque
+145,Cereza
+146,Cereza ácida
+147,Ciruela europea
+148,Almendra
+149,Durazno
+150,Guayaba
+151,Granada
+152,Pera
+153,Rabanito
+154,Ruibarbo de jardín
+155,Grosella negra
+156,Grosella roja
+157,Grosella espinosa
+158,Berro
+159,Romero
+160,"Rubus (mora, frambuesa)"
+161,Mora de los pantanos
+162,Frambuesa roja
+164,Acedera
+165,Salvia
+166,Saúco negro
+167,Ajedrea de verano
+169,Centeno
+170,Sésamo
+171,Tomate de jardín
+173,Tomate de jardín (var.)
+174,Berenjena
+175,Papa
+177,Sorgo
+178,Espinaca
+179,Clavo de olor
+180,Tamarindo
+181,Diente de león
+182,Grano de cacao
+183,Tomillo
+184,Tilo
+186,Fenogreco
+187,Trigo común
+188,"Vaccinium (arándano, arándano rojo, arándano silvestre)"
+191,Arándano azul de arbusto alto
+192,Arándano rojo americano
+193,Arándano europeo
+194,Arándano rojo
+195,Vainilla
+197,Haba
+198,Frijol adzuki
+199,Frijol mungo negro
+200,Frijol mungo
+202,Caupí
+203,Uva muscadina
+204,Uva común
+205,Maíz
+206,Jengibre
+208,Banana
+214,Apionabo
+224,Longán
+229,Nectarina
+234,Rambután
+237,Acelga
+241,Cebolla galesa
+242,Trigo duro
+243,Chalota
+245,Zanahoria
+246,Triticale
+247,Col negra
+249,Hojas de apio
+252,Pak choi
+253,Col napa
+256,Pomelo
+261,Rábano daikon
+264,Remolacha roja
+268,Cerveza
+269,Otro pan
+270,Cereal de desayuno
+272,Otro producto de soja
+273,Otro producto de cereal
+274,Pasta
+275,Galleta
+277,Bebida espirituosa
+279,Otra bebida alcohólica
+280,Abulón
+281,Abiyuch
+282,Acerola
+283,Bellota
+284,Calabaza de invierno
+285,Agar
+286,Cangrejo real rojo
+287,Alfalfa
+288,Pimienta de Jamaica
+289,Amaranto
+290,Sagitaria
+291,Arrurruz
+292,Pera asiática
+293,Arenque del Atlántico
+294,Caballa del Atlántico
+295,Serrano pintado
+296,Abadejo del Atlántico
+297,Pez lobo del Atlántico
+298,Brotes de bambú
+299,Lubina rayada
+301,Hayuco
+302,Ballena beluga
+303,Bisonte
+305,Pez negro de Alaska
+306,Cangrejo azul
+307,Mejillón azul
+308,Atún rojo del norte
+309,Anjova
+311,Ballena de Groenlandia
+312,Fruta del pan
+313,Semilla de árbol del pan
+314,Rapini
+317,Lota
+318,Petasita gigante
+319,Palometa americana
+320,Nogal blanco
+321,Calabaza butternut
+322,Calabaza vinatera
+323,Cardo comestible
+325,Ciruela de Natal
+326,Algarroba
+327,Carpa
+328,Yuca
+329,Bagre de canal
+330,Chayote
+331,Chirimoya
+332,Perifollo
+333,Chía
+334,Pollo
+335,Brócoli chino
+336,Castaña china
+337,Castaña de agua china
+338,Crisantemo coronario
+339,Cisco
+340,Berberecho de Nuttall
+341,Coco
+342,Bacalao del Pacífico
+343,Bacalao del Atlántico
+344,Pulpo
+345,Canónigos
+346,Semilla de algodón
+347,Frijol catjang
+348,Malus (manzana silvestre)
+349,Baya de calabaza
+350,Corvina del Atlántico
+351,Maruca
+352,Sepia
+354,Pez diablo
+355,Romaza
+356,Dorado
+357,Corvina de agua dulce
+359,Cangrejo Dungeness
+360,Durián
+361,Ostra oriental
+362,Anguila de agua dulce
+363,Saúco
+366,Yampah de Oregón
+367,Anchoa europea
+368,Castaña europea
+369,Rodaballo
+370,Epilobio
+371,Pámpano de Florida
+372,Nueces de ginkgo
+374,Uva
+375,Fletán negro de Groenlandia/rodaballo
+376,Tomatillo silvestre
+377,Mero
+378,Gallina de Guinea
+379,Eglefino
+380,Hippoglossus (fletán común)
+381,Avellana
+382,Nuez de nogal americano
+384,Moringa
+385,Arándano de Alaska
+386,Frijol jacinto
+387,Musgo irlandés
+388,Jurel del Pacífico
+389,Yaca
+390,Castaña japonesa
+391,Jambolán
+392,Topinambur
+393,Azufaifo
+394,Yute
+395,Col rizada
+396,Alga kelp
+397,Caballa real
+398,Kumquat
+399,Cenizo
+400,Quitón coriáceo
+401,Puerro silvestre
+402,Maruca común
+403,Bacalao largo
+404,Bogavante americano
+405,Loganberry
+406,Loto
+407,Loto sagrado
+408,Lupino blanco
+409,Espinaca de Malabar
+410,Mamey amarillo
+411,Mangostán
+412,Hedysarum alpino
+413,Chano
+414,Rape
+416,Frijol polilla
+417,Ñame de montaña
+418,Lisa rayada
+420,Mostaza blanca
+421,Espinaca mostaza
+422,Espinaca de Nueva Zelanda
+423,Nopal
+424,Viruela de mar
+425,Pulpo gigante del Pacífico Norte
+426,Baya ohelo
+427,Okra
+428,Tunicado
+430,Avestruz
+431,Foca moteada
+432,Arenque del Pacífico
+433,Ostra del Pacífico
+434,Pez roca del Pacífico
+436,Ají (C. frutescens)
+437,Caqui común
+438,Faisán
+439,Lucio del norte
+440,Nuez pili
+441,Piñón de Colorado
+442,Pitanga
+443,Tuna de las llanuras
+444,Plátano francés
+445,Hierba carmín americana
+447,Amapola de opio
+448,Nabo de la pradera
+449,Tuna
+450,Quinoa
+453,Eperlano arcoíris
+454,Trucha arcoíris
+455,Jambolán de Malabar
+456,Escaramujo
+457,Flor de Jamaica
+458,Reloj anaranjado
+459,Bacalao negro
+460,Salmón rosado
+461,Salmón keta
+462,Salmón coho
+463,Salmón rojo
+464,Salmón chinook
+465,Salmón del Atlántico
+466,Salmonberry
+467,Salsifí
+468,Chicozapote
+469,Zapote mamey
+470,Caballa española
+471,Sardina del Pacífico
+472,Vieira
+473,Pargo blanco
+474,Pepino de mar
+475,León marino de Steller
+476,Foca barbuda
+477,Foca anillada
+478,Trucha de mar
+479,Flor de sesbania
+480,Sábalo americano
+481,Tiburón
+482,Inconnu
+483,"Oveja (carnero, cordero)"
+484,Sargo chopa
+485,Mostaza silvestre
+486,Atún listado
+487,Pargo
+488,Guanábana
+489,Espelta
+490,Espirulina
+491,Pichón
+493,Guayaba fresa
+494,Esturión beluga
+495,Matalote blanco
+496,Anona
+497,Pez sol pumpkinseed
+498,Pez espada
+499,Taro
+500,Teff
+501,Blanquillo
+502,Tomatillo mexicano
+503,Lufa
+504,"Salmonidae (salmón, trucha)"
+505,Pavo
+506,"Ganado vacuno (res, ternera)"
+507,Lucioperca americana
+508,Abadejo de Alaska
+509,Wasabi
+510,Calabaza de cera
+511,Buccino
+513,Coregono blanco ancho
+514,Pescado blanco
+515,Merlán
+516,Arroz silvestre
+517,Sauce de hoja de té
+518,Frijol alado
+519,Ñame
+520,Jícama
+521,Yautía
+522,Atún de aleta amarilla
+523,Serviola de cola amarilla
+524,Abadejo
+525,Atún blanco
+526,Gadus (bacalao común)
+527,Fletán del Atlántico
+529,Salmón del Pacífico
+530,Eperlano
+531,"Clupeinae (arenque, sardina, espadín)"
+532,Langosta espinosa
+533,Cangrejo de las nieves
+534,Frijol de ojo negro
+535,Ciervo
+536,Nuez de macadamia
+537,Percoidei (lubinas y otros)
+538,Perciformes
+540,Conejo
+541,Cabra doméstica
+542,Beefalo
+544,"Bivalvia (almeja, mejillón, ostra)"
+545,Calamar
+546,Camarón
+547,Cangrejo de río
+548,Pez plano
+549,Cerdo doméstico
+550,Morsa
+551,Ruibarbo silvestre de Alaska
+552,Trigo oriental
+553,Frijol de metro
+555,Codorniz
+556,Boysenberry
+557,Lima persa
+558,Feijoa
+559,Rowal
+560,Oreja de Judas
+561,Champiñón
+562,Shiitake
+563,Nori púrpura
+564,Wakame
+565,Enoki
+566,Epazote
+567,Seta de ostra
+568,Hongo oreja de nube
+569,Maitake
+570,Helecho avestruz
+571,Corvina spot
+572,Romaza ácida
+573,Tinda
+574,Menhaden del Atlántico
+575,Trigo
+576,Cerezo de Virginia común
+577,Agave
+578,Enea de hoja estrecha
+579,Medusa
+580,Anchoa
+581,Bacaladilla
+582,Brema
+583,Rebozuelo
+584,Esturión
+585,Salvelino
+586,Canela
+587,Cangrejo
+588,Limanda
+589,Mielga
+590,Anátidos
+591,Anguiliformes
+592,Rana verdadera
+593,Aguja
+594,Gadiformes
+595,Liebre de montaña
+596,Trucha de lago
+597,Lenguado limón
+598,Bogavante con pinzas
+599,Ciclóptero
+600,"Scombridae (bonito, caballa, atún)"
+601,Mejillón marino
+602,Gallineta nórdica
+603,Cigala
+604,Faneca noruega
+605,Palma aceitera
+606,Ostra verdadera
+608,Caqui
+609,Lucioperca
+610,"Pleuronectidae (limanda, fletán, solla)"
+611,Perdiz nival
+612,Perca oceánica del Pacífico
+613,Salsifí negro
+614,Foca verdadera
+615,Algas rojas
+616,Kombu
+617,Caracol
+618,Lenguado verdadero
+619,Bagre
+620,Cardo
+621,Thunnus
+622,Nuez
+623,"Cetacea (delfín, marsopa, ballena)"
+624,"Columbidae (tórtola, paloma)"
+625,Caracola
+626,Vino de uva
+630,Licor
+631,Queso
+632,Leche de vaca
+633,Huevos
+634,Yogur
+638,Frijol
+639,Vodka
+640,Whisky
+641,Helado
+642,Ginebra
+643,Miel
+644,Regaliz
+645,Vinagre
+646,Ron
+647,Vino de Oporto
+648,Vermut
+649,Jerez
+650,Vino de Madeira
+651,Turrón
+653,Toffee
+654,Pastel
+655,Pizza
+656,Ymer
+657,Otro snack
+659,Pan crujiente
+660,Bollería
+661,Gragea
+662,Goma de mascar
+663,Mazapán
+664,Aderezo para ensalada
+665,Salsa
+666,Sal
+667,Mantequilla
+668,Sustituto de mantequilla
+669,Crema
+670,Azúcar
+671,Salchicha
+672,Albóndiga
+673,Mostaza
+674,Paté
+676,Sustituto del azúcar
+677,Caldo de carne
+679,Suero de leche
+680,Caseína
+681,Conserva de fruta
+682,Agente leudante
+683,Malvavisco
+684,Gelatina
+685,Agua
+686,Otro producto de pescado
+687,Leche humana
+689,Otra bebida
+690,Alimento para bebés
+691,Dumpling
+692,Sopa
+693,Otro producto vegetal
+694,Alimento o bebida sin clasificar
+695,Jarabe
+696,Sebo
+697,Remoulade
+698,Crema de chocolate
+699,Gominola de fruta
+700,Curry en polvo
+701,Otro dulce
+702,Merengue
+703,Manteca de cerdo
+704,Otra grasa animal
+706,Manteca de cacao
+707,Cacao en polvo
+709,Chocolate
+710,Chocolate caliente
+711,Leche en polvo
+712,Leche de otros mamíferos
+713,Kéfir
+714,Suero de mantequilla
+715,Otra leche fermentada
+716,Salsa de soja
+717,Miso
+718,Tofu
+721,Biscote
+722,Huevas
+723,Cichlidae (tilapia)
+724,Glaseado
+725,Barra de snack
+726,Tortuga verde
+727,Bebida energética
+728,Burrito
+729,Hamburguesa
+730,Frijoles horneados
+731,Chili
+732,Taco
+733,Tortilla
+734,Nachos
+735,Queso procesado
+736,Ensalada
+737,Sustituto de crema
+738,Dulce de leche
+739,Cobertura
+740,Natilla dulce
+742,Rollito de huevo
+743,Palmito
+744,Palomitas de maíz
+745,Papas fritas tipo chip
+746,Chips de tortilla
+747,Chips de maíz
+748,Té de hibisco
+749,Estofado
+750,Postre de gelatina
+751,Cuajada dulce
+752,Falafel
+753,Pan frito
+754,Otro postre congelado
+755,Lasaña
+756,Morchella (colmenilla)
+757,Panqueque
+758,Pectina
+759,Pudín
+760,Waffle
+761,Leche de soja
+762,Pastel de carne
+763,Sake
+764,Cóctel
+765,Cuscús
+766,Bulgur
+767,Sustituto de café
+768,Café moca
+769,Chimichanga
+770,Sémola
+771,Perla de tapioca
+772,Tostada
+773,Quesadilla
+774,Papa al horno
+775,Hot dog
+776,Untable
+777,Enchilada
+778,Sustituto de huevo
+779,Bebida nutricional
+780,Otro sándwich
+781,Kétchup
+782,Sándwich de desayuno
+783,Adobo
+784,Macarrones con queso
+785,Grasa láctea
+786,Melón cornudo
+787,Hushpuppy
+788,Jugo de fruta
+789,Relish
+790,Otro producto de fruta
+791,Ensalada de frutas
+792,Yogur de soja
+793,Alimento vegetariano
+795,Fiambre
+796,Frutos secos mixtos
+797,Canola
+798,Palma de babasú
+799,Cupuaçu
+800,Árbol de karité
+801,Camelia oleaginosa
+802,Ucuhuba
+803,Masa filo
+804,Aceite de cocina
+805,Masa para tarta
+806,Relleno para tarta
+807,Tarta
+808,Manteca vegetal
+809,Crema de soja
+810,Cono de helado
+811,Melaza
+812,Galleta salada
+813,Nance
+814,Naranjilla
+815,Natto
+816,Ravioles
+817,Scrapple
+818,Otro plato de pasta
+819,Succotash
+820,Tamal
+822,Pastel de arroz
+823,Helecho arbóreo
+824,Leche evaporada
+825,Harina
+826,Akutaq
+829,Pan pita
+830,Focaccia
+831,Bagel
+832,Otro producto de pan
+834,Pan piki
+835,Tostada francesa
+836,Pan de trigo
+837,Pan de centeno
+838,Pan de avena
+839,Pan de papa
+840,Pan de maíz
+841,Sémola de maíz
+842,Pan multigrano
+843,Pan de arroz
+844,Pan dulce
+845,Pan con pasas
+846,Masa para wonton
+848,Mezcla de frutos secos
+849,Té de greenthread
+850,Bebida sabor a fruta
+851,Jugo de verduras
+852,Horchata
+853,Bebida gaseosa
+854,Yogur helado
+855,Batido de leche
+856,Mousse de chocolate
+857,Grasa de asado
+858,Pupusa
+859,Empanada
+860,Arepa
+861,Ascidias
+862,Pescado gefilte
+863,Nenúfar amarillo
+864,Hamburguesa de pescado
+865,Otro plato
+866,Pastel salado
+867,Relleno
+868,Caparazón comestible
+869,Fudge
+870,Barra de chocolate
+871,Leche condensada
+872,Margarina
+873,Untable tipo margarina
+874,Hummus
+876,Bocaditos de papa
+877,Papas gratinadas
+878,Sustituto de leche
+880,Ajo de cuello blando
+881,Col
+884,Bebidas alcohólicas
+888,Cereales y productos de cereales
+891,Café y productos de café
+896,Pescados
+939,Té negro
+940,Té verde
+957,Té rojo
+985,Crema agria
+1019,Pan blanco
+1021,Té de hierbas
+1022,Aceite de pescado
+1023,Tortilla para taco
+1024,Tostada crujiente

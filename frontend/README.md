@@ -2,9 +2,11 @@
 
 Vite + React + TypeScript frontend for Victus WebApp.
 
+See the [repository overview](../docs/Overview.md) for the fullstack runtime and the linked API catalog.
+
 ## Routes
 
-- `/`: public demo, the first face of the app.
+- `/`: public product landing page.
 - `/login`: login.
 - `/register`: registration.
 - `/app`: protected workspace.

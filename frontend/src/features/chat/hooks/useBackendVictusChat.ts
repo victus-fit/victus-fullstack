@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { apiFetch, apiStream } from '../../../lib/api';
-import { openingAssistantMessage } from '../data/demoResponses';
+import { openingAssistantMessage } from '../data/chatContent';
 import type { ChatMessageModel, ChatStatus, ConversationListItem, TraceStep, VictusChatController } from '../types';
 import { baseTrace, makeId, nowLabel, traceWith } from './chatShared';
+import { useLanguage } from '../../../i18n/LanguageContext';
 
 interface MessageResponse {
   message_id: string;
@@ -14,21 +15,6 @@ interface MessageResponse {
   updated_at: string;
   metadata_json: Record<string, unknown>;
 }
-
-const backendEvidence = [
-  {
-    id: 'gateway-v1',
-    title: 'FastAPI gateway',
-    summary: 'La respuesta protegida se transmite desde /api/chat/stream usando cookies HttpOnly y CSRF header.',
-    confidence: 'high' as const,
-  },
-  {
-    id: 'agent-link-v1',
-    title: 'Agent link',
-    summary: 'La webapp conserva ownership, request log y referencias lógicas hacia LangGraph sin duplicar su BDD.',
-    confidence: 'high' as const,
-  },
-];
 
 function openingMessage(): ChatMessageModel {
   return {
@@ -46,11 +32,11 @@ function messageFromApi(message: MessageResponse): ChatMessageModel {
     role: message.role,
     text: message.content_text,
     createdAt: Number.isNaN(date.getTime()) ? nowLabel() : new Intl.DateTimeFormat('en', { hour: '2-digit', minute: '2-digit' }).format(date),
-    evidence: message.role === 'assistant' && message.content_text ? backendEvidence : undefined,
   };
 }
 
 export function useBackendVictusChat(): VictusChatController {
+  const { language } = useLanguage();
   const [activeConversationId, setActiveConversationId] = useState<string | null>(null);
   const [conversations, setConversations] = useState<ConversationListItem[]>([]);
   const [isLoadingHistory, setIsLoadingHistory] = useState(false);
@@ -90,6 +76,14 @@ export function useBackendVictusChat(): VictusChatController {
     setMessages([openingMessage()]);
   }, []);
 
+  const deleteConversation = useCallback(async (conversationId: string) => {
+    await apiFetch<void>(`/api/conversations/${conversationId}`, { method: 'DELETE' });
+    setConversations((current) => current.filter((conversation) => conversation.conversation_id !== conversationId));
+    if (activeConversationId === conversationId) {
+      startNewConversation();
+    }
+  }, [activeConversationId, startNewConversation]);
+
   const sendMessage = useCallback((text: string) => {
     const trimmed = text.trim();
     if (!trimmed || status !== 'ready') return;
@@ -113,6 +107,7 @@ export function useBackendVictusChat(): VictusChatController {
           message: trimmed,
           conversation_id: activeConversationId,
           workspace_id: 'chat',
+          language,
         });
 
         const nextConversationId = response.headers.get('X-Victus-Conversation-Id');
@@ -138,11 +133,7 @@ export function useBackendVictusChat(): VictusChatController {
           );
         }
 
-        setMessages((current) =>
-          current.map((message) =>
-            message.id === assistantId ? { ...message, text: finalText, evidence: backendEvidence } : message,
-          ),
-        );
+        setMessages((current) => current.map((message) => message.id === assistantId ? { ...message, text: finalText } : message));
         setTrace(baseTrace.map((step) => ({ ...step, state: 'done' })));
         await refreshConversations();
       } catch (caught) {
@@ -162,21 +153,17 @@ export function useBackendVictusChat(): VictusChatController {
         if (activeRunRef.current === runId) setStatus('ready');
       }
     })();
-  }, [activeConversationId, refreshConversations, status]);
+  }, [activeConversationId, language, refreshConversations, status]);
 
   const reset = useCallback(() => {
     startNewConversation();
   }, [startNewConversation]);
 
-  const latestEvidence = useMemo(() => {
-    return [...messages].reverse().find((message) => message.evidence?.length)?.evidence ?? [];
-  }, [messages]);
-
   return {
     messages,
     status,
     trace,
-    latestEvidence,
+    latestEvidence: [],
     conversations,
     activeConversationId,
     isLoadingHistory,
@@ -184,6 +171,7 @@ export function useBackendVictusChat(): VictusChatController {
     reset,
     refreshConversations,
     selectConversation,
+    deleteConversation,
     startNewConversation,
   };
 }

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { ArrowLeft, CheckCircle2, KeyRound, LogIn, UserPlus } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { ArrowLeft, ArrowRight, Mail } from 'lucide-react';
 import { useAuth } from '../auth/AuthContext';
 import { CompassMark } from '../components/CompassMark';
 import { AUTH_BASE_URL, authClient } from '../lib/authClient';
@@ -9,16 +9,24 @@ interface AuthPageProps {
   mode: 'login' | 'register';
 }
 
+type PendingAction = 'email' | 'google' | null;
+
 export function AuthPage({ mode }: AuthPageProps) {
   const auth = useAuth();
-  const [localMode, setLocalMode] = useState<'login' | 'register'>(mode);
+  const [showEmailForm, setShowEmailForm] = useState(mode === 'register');
   const [displayName, setDisplayName] = useState('');
-  const [email, setEmail] = useState('usuario@victus.health');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [localError, setLocalError] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [pendingAction, setPendingAction] = useState<PendingAction>(null);
   const returnTo = new URLSearchParams(window.location.search).get('return_to');
-  const isRegister = localMode === 'register';
+  const isRegister = mode === 'register';
+  const isSubmitting = pendingAction !== null;
+
+  useEffect(() => {
+    setShowEmailForm(mode === 'register');
+    setLocalError(null);
+  }, [mode]);
 
   function finishAuth() {
     if (returnTo?.startsWith(window.location.origin) || returnTo?.startsWith('http://localhost:8000')) {
@@ -36,37 +44,24 @@ export function AuthPage({ mode }: AuthPageProps) {
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setIsSubmitting(true);
+    setPendingAction('email');
     setLocalError(null);
     try {
       if (isRegister) {
-        await auth.register({ email, password, display_name: displayName || 'Victus User' });
+        await auth.register({ email, password, display_name: displayName });
       } else {
         await auth.login({ email, password });
       }
       finishAuth();
     } catch (caught) {
-      setLocalError(caught instanceof Error ? caught.message : 'No se pudo completar la autenticación');
+      setLocalError(caught instanceof Error ? caught.message : 'Authentication could not be completed');
     } finally {
-      setIsSubmitting(false);
-    }
-  }
-
-  async function enterDemo() {
-    setIsSubmitting(true);
-    setLocalError(null);
-    try {
-      await auth.loginDemo();
-      finishAuth();
-    } catch (caught) {
-      setLocalError(caught instanceof Error ? caught.message : 'No se pudo abrir el perfil de prueba');
-    } finally {
-      setIsSubmitting(false);
+      setPendingAction(null);
     }
   }
 
   async function startGoogle() {
-    setIsSubmitting(true);
+    setPendingAction('google');
     setLocalError(null);
     try {
       await authClient.signIn.social({
@@ -74,84 +69,72 @@ export function AuthPage({ mode }: AuthPageProps) {
         callbackURL: betterAuthCallbackUrl(),
       });
     } catch (caught) {
-      setLocalError(caught instanceof Error ? caught.message : 'No se pudo iniciar sesión con Google');
-      setIsSubmitting(false);
+      setLocalError(caught instanceof Error ? caught.message : 'Google sign-in could not be started');
+      setPendingAction(null);
     }
+  }
+
+  function changeMode(nextMode: 'login' | 'register') {
+    setDisplayName('');
+    setPassword('');
+    setLocalError(null);
+    setShowEmailForm(nextMode === 'register');
+    const query = window.location.search;
+    navigate(`/${nextMode}${query}`);
   }
 
   return (
     <main className="auth-shell" id="main-content">
-      <section className="auth-card">
-        <div className="auth-brand">
-          <CompassMark />
-          <div>
-            <strong>Victus</strong>
-            <span>Cuenta privada</span>
-          </div>
-        </div>
-
-        <button className="ghost-link" type="button" onClick={() => navigate('/')}>
-          <ArrowLeft size={15} /> Volver
+      <section className="auth-card" aria-labelledby="auth-title">
+        <button className="auth-back" type="button" onClick={() => navigate('/')} aria-label="Back to home">
+          <ArrowLeft size={16} />
         </button>
 
+        <div className="auth-brand">
+          <CompassMark />
+          <span>Victus</span>
+        </div>
+
         <div className="auth-copy">
-          <span className="workspace-eyebrow">{returnTo ? 'Autorización segura' : 'Acceso'}</span>
-          <h1>
-            {returnTo ? 'Conecta tu sesión' : 'Entra o crea tu cuenta'}
+          {returnTo ? <span className="auth-context">Secure authorization</span> : null}
+          <h1 id="auth-title">
+            {returnTo ? 'Connect your account' : isRegister ? 'Create your account' : 'Sign in to Victus'}
           </h1>
           <p>
-            Usa Google para continuar. Si es tu primera vez, Victus creará tu cuenta y dejará lista la sesión privada.
+            {returnTo
+              ? 'Sign in to continue with the requested authorization.'
+              : isRegister
+                ? 'Save your preferences and tailor your nutrition plan.'
+                : 'Continue with your account to see your plan and progress.'}
           </p>
         </div>
 
-        <button className="google-auth-button" type="button" onClick={startGoogle} disabled={isSubmitting}>
-          <span className="google-auth-mark" aria-hidden="true">G</span>
-          <span>{isSubmitting ? 'Abriendo Google…' : 'Continuar con Google'}</span>
-        </button>
+        {localError || auth.error ? <div className="auth-error" role="alert">{localError ?? auth.error}</div> : null}
 
-        <div className="auth-trust-row">
-          <span><CheckCircle2 size={14} /> Cookies HttpOnly</span>
-          <span><CheckCircle2 size={14} /> Perfil privado</span>
-          {returnTo ? <span><CheckCircle2 size={14} /> Vuelve al CLI</span> : null}
-        </div>
-
-        {localError || auth.error ? <div className="auth-error">{localError ?? auth.error}</div> : null}
-
-        <details className="auth-dev-panel">
-          <summary><KeyRound size={15} /> Opciones de desarrollo</summary>
-
-          <div className="auth-provider-grid">
-            <button className="provider-button" type="button" onClick={enterDemo} disabled={isSubmitting}>
-              Perfil de prueba
-            </button>
-            <div className="auth-mode-row" role="group" aria-label="Modo de cuenta local">
-              <button
-                className={localMode === 'login' ? 'is-active' : ''}
-                type="button"
-                onClick={() => setLocalMode('login')}
-              >
-                Entrar
-              </button>
-              <button
-                className={localMode === 'register' ? 'is-active' : ''}
-                type="button"
-                onClick={() => setLocalMode('register')}
-              >
-                Crear
-              </button>
-            </div>
-          </div>
-
+        {showEmailForm ? (
           <form className="auth-form" onSubmit={onSubmit}>
             {isRegister ? (
               <label>
-                Nombre
-                <input value={displayName} onChange={(event) => setDisplayName(event.target.value)} placeholder="Carlos" />
+                Name
+                <input
+                  value={displayName}
+                  onChange={(event) => setDisplayName(event.target.value)}
+                  autoComplete="name"
+                  placeholder="Your name"
+                  required
+                />
               </label>
             ) : null}
             <label>
               Email
-              <input value={email} onChange={(event) => setEmail(event.target.value)} type="email" required />
+              <input
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                type="email"
+                autoComplete="email"
+                placeholder="tu@email.com"
+                required
+              />
             </label>
             <label>
               Password
@@ -159,17 +142,44 @@ export function AuthPage({ mode }: AuthPageProps) {
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
                 type="password"
+                autoComplete={isRegister ? 'new-password' : 'current-password'}
                 minLength={10}
+                placeholder="At least 10 characters"
                 required
               />
             </label>
 
             <button className="auth-submit" disabled={isSubmitting} type="submit">
-              {isRegister ? <UserPlus size={16} /> : <LogIn size={16} />}
-              {isSubmitting ? 'Procesando…' : isRegister ? 'Crear cuenta local' : 'Entrar con email'}
+              <span>{pendingAction === 'email' ? 'Processing…' : isRegister ? 'Create account' : 'Sign in'}</span>
+              {pendingAction !== 'email' ? <ArrowRight size={16} /> : null}
             </button>
           </form>
-        </details>
+        ) : (
+          <button className="email-auth-button" type="button" onClick={() => setShowEmailForm(true)} disabled={isSubmitting}>
+            <Mail size={17} />
+            <span>Continue with email</span>
+          </button>
+        )}
+
+        <div className="auth-divider"><span>o</span></div>
+
+        <button className="google-auth-button" type="button" onClick={startGoogle} disabled={isSubmitting}>
+          <span className="google-auth-mark" aria-hidden="true">G</span>
+          <span>{pendingAction === 'google' ? 'Opening Google…' : 'Continue with Google'}</span>
+        </button>
+
+        {showEmailForm && !isRegister ? (
+          <button className="auth-method-link" type="button" onClick={() => setShowEmailForm(false)} disabled={isSubmitting}>
+            Choose another method
+          </button>
+        ) : null}
+
+        <p className="auth-switch">
+          {isRegister ? 'Already have an account?' : 'New to Victus?'}{' '}
+          <button type="button" onClick={() => changeMode(isRegister ? 'login' : 'register')} disabled={isSubmitting}>
+            {isRegister ? 'Sign in' : 'Create account'}
+          </button>
+        </p>
       </section>
     </main>
   );

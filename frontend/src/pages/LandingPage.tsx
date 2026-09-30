@@ -2,25 +2,30 @@ import { useRef, useState } from 'react';
 import type React from 'react';
 import { ArrowRight, Compass, LogIn } from 'lucide-react';
 import { navigate } from '../lib/navigation';
+import { LanguageSwitcher } from '../components/LanguageSwitcher';
+import { useAuth } from '../auth/AuthContext';
+import { useBackendVictusChat } from '../features/chat/hooks/useBackendVictusChat';
+import { LandingAppPreview } from '../features/chat/components/LandingAppPreview';
+import { useDemoVictusChat } from '../features/chat/hooks/useDemoVictusChat';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const planDays = [
   {
-    label: 'Lun 13',
-    status: 'Completado',
+    label: 'Mon 13',
+    status: 'Complete',
     progress: 82,
-    observation: 'Los lunes te funciona mejor un desayuno simple y repetible.',
+    observation: 'A simple, repeatable breakfast works best for you on Mondays.',
     meals: [
-      ['Huevos, tostada integral y fruta', 'Desayuno · rápido y saciante', '440 kcal', '+28 g proteína'],
-      ['Lentejas con arroz y ensalada', 'Almuerzo · económico y completo', '590 kcal', 'Alta fibra'],
-      ['Yogur natural con plátano', 'Colación · fácil de transportar', '210 kcal', 'Energía estable'],
-      ['Pollo salteado con verduras', 'Cena · ligera y práctica', '530 kcal', '25 min'],
+      ['Eggs, whole-grain toast and fruit', 'Breakfast · quick and filling', '440 kcal', '+28 g protein'],
+      ['Lentils with rice and salad', 'Lunch · affordable and complete', '590 kcal', 'High fibre'],
+      ['Plain yogurt with banana', 'Snack · easy to take along', '210 kcal', 'Steady energy'],
+      ['Chicken stir-fry with vegetables', 'Dinner · light and practical', '530 kcal', '25 min'],
     ],
   },
   {
-    label: 'Mar 14',
-    status: 'Completado',
+    label: 'Tue 14', status: 'Complete',
     progress: 76,
-    observation: 'Los martes cenas más tarde; Victus mueve parte de la energía a la colación.',
+    observation: 'You eat dinner later on Tuesdays, so Victus shifts some energy into your snack.',
     meals: [
       ['Avena nocturna con berries', 'Desayuno · preparado la noche anterior', '410 kcal', 'Repetible'],
       ['Pasta integral con pavo', 'Almuerzo · energía sostenida', '640 kcal', '+35 g proteína'],
@@ -29,10 +34,9 @@ const planDays = [
     ],
   },
   {
-    label: 'Mié 15',
-    status: 'Hoy',
+    label: 'Wed 15', status: 'Today',
     progress: 71,
-    observation: 'Hoy tienes entrenamiento. La colación prioriza carbohidratos y proteína.',
+    observation: 'You train today. Your snack prioritizes carbohydrates and protein.',
     meals: [
       ['Yogur griego, avena y berries', 'Desayuno · alto en proteína y fibra', '420 kcal', 'Compatible'],
       ['Bowl de pollo, quinoa y verduras', 'Almuerzo · fácil de preparar', '610 kcal', '+32 g proteína'],
@@ -41,8 +45,7 @@ const planDays = [
     ],
   },
   {
-    label: 'Jue 16',
-    status: 'Planificado',
+    label: 'Thu 16', status: 'Planned',
     progress: 64,
     observation: 'El jueves suele ser ocupado; priorizamos preparaciones de menos de 20 minutos.',
     meals: [
@@ -53,7 +56,7 @@ const planDays = [
     ],
   },
   {
-    label: 'Vie 17',
+    label: 'Fri 17',
     status: 'Flexible',
     progress: 58,
     observation: 'Los viernes el plan deja margen para una comida social sin perder estructura.',
@@ -65,7 +68,7 @@ const planDays = [
     ],
   },
   {
-    label: 'Sáb 18',
+    label: 'Sat 18',
     status: 'Flexible',
     progress: 52,
     observation: 'El sábado priorizamos flexibilidad y una referencia simple de porciones.',
@@ -77,7 +80,7 @@ const planDays = [
     ],
   },
   {
-    label: 'Dom 19',
+    label: 'Sun 19',
     status: 'Flexible',
     progress: 47,
     observation: 'El domingo incluye preparación mínima para facilitar el inicio de la semana.',
@@ -93,10 +96,60 @@ const planDays = [
 const mealIcons = ['☀', '◐', '◇', '☾'];
 
 export function LandingPage() {
+  const auth = useAuth();
+  const chat = useBackendVictusChat();
+  const demoChat = useDemoVictusChat();
+  const { language } = useLanguage();
+  const copy = language === 'es' ? {
+    product: 'Producto', how: 'Cómo funciona', evidence: 'Evidencia', signIn: 'Ingresar', getStarted: 'Comenzar',
+    hero: 'Tu alimentación, convertida en un plan que sí puedes seguir.', description: 'Victus es un agente personal de nutrición y bienestar que adapta tus comidas a tu vida.', create: 'Crear mi plan', learn: 'Ver cómo funciona',
+    trust: 'Diseñado para apoyar decisiones reales, no para imponer dietas perfectas.',
+    trustItems: ['Personalización', 'Evidencia', 'Seguridad', 'Constancia', 'Privacidad'],
+    howKicker: 'Un agente que entiende tu vida',
+    howTitle: 'Recomendaciones útiles, sostenibles y explicables.',
+    howDescription: 'Victus combina tu información personal con conocimiento nutricional para sugerir pequeños cambios que puedes mantener en el tiempo.',
+    features: [
+      ['01', 'Personaliza', 'Adapta comidas, porciones y horarios a tus objetivos, preferencias y restricciones.'],
+      ['02', 'Aprende', 'Reconoce patrones de constancia y ajusta el plan según lo que realmente te funciona.'],
+      ['03', 'Explica', 'Muestra por qué se recomienda cada cambio y qué información lo fundamenta.'],
+      ['04', 'Protege', 'Evita recomendaciones que entren en conflicto con señales relevantes de salud.'],
+    ],
+    supportKicker: 'Acompañamiento diario',
+    supportTitle: 'Más que un menú. Ayuda para sostenerlo.',
+    supportDescription: 'Victus observa tu progreso, identifica obstáculos y sugiere ajustes concretos sin hacerte sentir que fallaste.',
+    insights: [
+      ['Mayor constancia con desayunos repetibles', 'Los desayunos de tres ingredientes se completan con más frecuencia.'],
+      ['Más hambre en días de entrenamiento', 'Se agregó una colación antes de entrenar con proteína y carbohidratos.'],
+      ['Plan ajustado, no reiniciado', 'Los cambios se incorporan sin eliminar tu progreso anterior.'],
+    ],
+  } : {
+    product: 'Product', how: 'How it works', evidence: 'Evidence', signIn: 'Sign in', getStarted: 'Get started',
+    hero: 'Your nutrition, turned into a plan you can actually follow.', description: 'Victus is a personal nutrition and wellbeing agent that adapts meals to your life.', create: 'Create my plan', learn: 'See how it works',
+    trust: 'Designed to support real decisions, not impose perfect diets.',
+    trustItems: ['Personalisation', 'Evidence', 'Safety', 'Consistency', 'Privacy'],
+    howKicker: 'An agent that understands your life',
+    howTitle: 'Useful, sustainable and explainable recommendations.',
+    howDescription: 'Victus combines your personal information with nutrition knowledge to suggest small changes that you can sustain over time.',
+    features: [
+      ['01', 'Personalise', 'Adapt meals, portions and schedules to your goals, preferences and restrictions.'],
+      ['02', 'Learn', 'Recognise consistency patterns and adjust the plan based on what actually works.'],
+      ['03', 'Explain', 'Show why each change is recommended and what information informed it.'],
+      ['04', 'Protect', 'Avoid recommendations that conflict with relevant health signals.'],
+    ],
+    supportKicker: 'Daily support',
+    supportTitle: 'More than a menu. Help to sustain it.',
+    supportDescription: 'Victus observes your progress, identifies friction and suggests concrete adjustments without making you feel like you failed.',
+    insights: [
+      ['More consistency with repeatable breakfasts', 'Breakfasts with three ingredients are completed more often.'],
+      ['Higher hunger on training days', 'A pre-workout snack with protein and carbohydrates was added.'],
+      ['Plan adjusted, not restarted', 'Changes are incorporated without deleting your previous progress.'],
+    ],
+  };
   const logoRef = useRef<HTMLImageElement | null>(null);
   const [activeDay, setActiveDay] = useState(2);
   const [activeMeal, setActiveMeal] = useState(0);
   const [chatOpen, setChatOpen] = useState(false);
+  const [previewMessage, setPreviewMessage] = useState('');
   const day = planDays[activeDay];
   const meal = day.meals[activeMeal];
 
@@ -114,6 +167,28 @@ export function LandingPage() {
     setActiveMeal(0);
   }
 
+  function continueWithPreviewMessage(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const message = previewMessage.trim();
+    if (!message) return;
+    if (auth.user) {
+      chat.sendMessage(message);
+      setPreviewMessage('');
+      return;
+    }
+    window.localStorage.setItem('victus-pending-message', message);
+    navigate(`/login?return_to=${encodeURIComponent(`${window.location.origin}/app`)}`);
+  }
+
+  function sendSuggestedMessage(message: string) {
+    setChatOpen(true);
+    if (auth.user) {
+      chat.sendMessage(message);
+      return;
+    }
+    setPreviewMessage(message);
+  }
+
   return (
     <main className="victus-landing" id="main-content">
       <header className="vl-nav">
@@ -124,12 +199,13 @@ export function LandingPage() {
             </span>
             <span>victus</span>
           </button>
-          <nav className="vl-nav-center" aria-label="Secciones">
-            <a href="#product">Producto</a>
-            <a href="#how">Cómo funciona</a>
-            <a href="#evidence">Evidencia</a>
+          <nav className="vl-nav-center" aria-label="Sections">
+            <a href="#product">{copy.product}</a>
+            <a href="#how">{copy.how}</a>
+            <a href="#evidence">{copy.evidence}</a>
           </nav>
           <div className="vl-nav-actions">
+            <LanguageSwitcher />
             <a
               className="vl-repo"
               href="https://github.com/search?q=victus-agent&type=repositories"
@@ -140,27 +216,26 @@ export function LandingPage() {
               <strong>victus-agent</strong>
             </a>
             <button className="vl-btn vl-btn-ghost" type="button" onClick={() => navigate('/login')}>
-              <LogIn size={16} /> Ingresar
+              <LogIn size={16} /> {copy.signIn}
             </button>
             <button className="vl-btn vl-btn-primary" type="button" onClick={() => navigate('/login')}>
-              Comenzar
+              {copy.getStarted}
             </button>
           </div>
         </div>
       </header>
 
       <section className="vl-hero vl-container">
-        <h1>Tu alimentación, convertida en un plan que sí puedes seguir.</h1>
+        <h1>{copy.hero}</h1>
         <p>
-          Victus es un agente personal de recomendación de dietas y bienestar. Aprende de tus objetivos,
-          preferencias, hábitos, restricciones y biométricas para adaptar tus comidas sin imponer dietas perfectas.
+          {copy.description}
         </p>
         <div className="vl-hero-actions">
           <button className="vl-btn vl-btn-primary" type="button" onClick={() => navigate('/login')}>
-            Crear mi plan <ArrowRight size={17} />
+            {copy.create} <ArrowRight size={17} />
           </button>
-          <a className="vl-btn" href="#how">
-            Ver cómo funciona
+          <a className="vl-btn" href="https://wiki.victus.fit/" target="_blank" rel="noreferrer">
+            {copy.learn}
           </a>
         </div>
       </section>
@@ -173,19 +248,20 @@ export function LandingPage() {
               <span className="vl-dot" />
               <span className="vl-dot" />
               <span className="vl-dot" />
-              <span className="vl-browser-title">Victus · Plan semanal personalizado</span>
+              <span className="vl-browser-title">Victus · Personalised weekly plan</span>
               <span className="vl-preview-live">
-                <i /> Preview interactiva
+                <i /> Interactive preview
               </span>
             </div>
             <div className="vl-app-preview">
+              <LandingAppPreview user={auth.user} chat={auth.user ? chat : demoChat} />
               <aside className="vl-app-side">
                 <div className="vl-preview-brand">
                   <img src="/victus-logo.svg" alt="" aria-hidden="true" />
                   <span>victus</span>
                 </div>
-                <div className="vl-workspace-label">TU ESPACIO</div>
-                {['Hoy', 'Conversaciones', 'Plan semanal', 'Biométricas', 'Perfil'].map((item, index) => (
+                <div className="vl-workspace-label">YOUR SPACE</div>
+                {['Today', 'Conversations', 'Weekly plan', 'Biometrics', 'Profile'].map((item, index) => (
                   <button className={`vl-navitem ${index === 0 ? 'active' : ''}`} key={item} type="button">
                     <span className="vl-nav-icon" />
                     {item}
@@ -194,23 +270,23 @@ export function LandingPage() {
                 <div className="vl-side-bottom">
                   <button className="vl-navitem" type="button">
                     <span className="vl-nav-icon" />
-                    Configuración
+                    Settings
                   </button>
                 </div>
               </aside>
 
-              <section className="vl-app-main" aria-label="Preview del plan Victus">
+              <section className="vl-app-main" aria-label="Victus plan preview">
                 <div className="vl-app-head">
                   <div>
-                    <div className="vl-app-title">Buenos días, Carlos</div>
-                    <div className="vl-app-sub">Tu plan de hoy está ajustado a tu meta y a tu actividad.</div>
+                    <div className="vl-app-title">Good morning, David</div>
+                    <div className="vl-app-sub">Your plan today is tailored to your goal and activity.</div>
                   </div>
                   <button className="vl-btn vl-btn-primary vl-ask-btn" type="button" onClick={() => setChatOpen(true)}>
-                    Hablar con Victus
+                    Talk to Victus
                   </button>
                 </div>
 
-                <div className="vl-week" aria-label="Semana">
+                <div className="vl-week" aria-label="Week">
                   {planDays.map((item, index) => (
                     <button
                       className={`vl-day ${index === activeDay ? 'active' : ''}`}
@@ -250,46 +326,51 @@ export function LandingPage() {
                 <div className={`vl-chat-drawer ${chatOpen ? 'open' : ''}`}>
                   <div className="vl-chat-head">
                     <span>Victus</span>
-                    <button type="button" onClick={() => setChatOpen(false)} aria-label="Cerrar chat">
+                    <button type="button" onClick={() => setChatOpen(false)} aria-label="Close chat">
                       x
                     </button>
                   </div>
                   <div className="vl-chat-body">
-                    <div className="vl-assistant-msg">
-                      Tu plan está bien equilibrado. Como hoy entrenas, mantendría la colación de las 17:30 y adelantaría
-                      la cena si terminas antes de las 20:00.
-                    </div>
+                    {auth.user ? (
+                      <div className="vl-live-messages" aria-live="polite">
+                        {chat.messages.slice(-4).map((message) => <div className={`vl-assistant-msg ${message.role}`} key={message.id}>{message.text || 'Victus is thinking…'}</div>)}
+                      </div>
+                    ) : <div className="vl-assistant-msg">Your plan is well balanced. Since you train today, keep your 5:30pm snack and move dinner earlier if you finish before 8pm.</div>}
                     <div className="vl-quick-actions">
-                      <button type="button">Cambiar almuerzo</button>
-                      <button type="button">Tengo poco tiempo</button>
-                      <button type="button">Hoy entreno</button>
+                      <button type="button" onClick={() => sendSuggestedMessage('Can you change my lunch without disrupting my plan?')}>Change lunch</button>
+                      <button type="button" onClick={() => sendSuggestedMessage('I am short on time today. What should I adjust?')}>I am short on time</button>
+                      <button type="button" onClick={() => sendSuggestedMessage('I train today. What should I adjust?')}>I train today</button>
                     </div>
+                    <form className="vl-preview-composer" onSubmit={continueWithPreviewMessage}>
+                      <input value={previewMessage} onChange={(event) => setPreviewMessage(event.target.value)} disabled={auth.isLoading || chat.status !== 'ready'} placeholder="Ask about your plan…" />
+                      <button type="submit" disabled={!previewMessage.trim() || auth.isLoading || Boolean(auth.user && chat.status !== 'ready')}>{auth.user ? 'Send' : 'Continue'}</button>
+                    </form>
                   </div>
                 </div>
               </section>
 
               <aside className="vl-context">
-                <h3>Tu contexto</h3>
+                <h3>David's context</h3>
                 <div className="vl-context-section">
-                  <div className="vl-context-label">Objetivo principal</div>
-                  <div className="vl-context-value">Mejorar composición corporal sin dietas extremas.</div>
+                  <div className="vl-context-label">Primary goal</div>
+                  <div className="vl-context-value">Improve body composition without extreme diets.</div>
                 </div>
                 <div className="vl-context-section">
-                  <div className="vl-context-label">Progreso semanal</div>
-                  <div className="vl-context-value">{Math.max(3, Math.round(day.progress / 14))} de 7 días dentro del plan</div>
+                  <div className="vl-context-label">Weekly progress</div>
+                  <div className="vl-context-value">{Math.max(3, Math.round(day.progress / 14))} of 7 days on plan</div>
                   <div className="vl-progress">
                     <span style={{ width: `${day.progress}%` }} />
                   </div>
                 </div>
                 <div className="vl-context-section">
-                  <div className="vl-context-label">Comida seleccionada</div>
+                  <div className="vl-context-label">Selected meal</div>
                   <div className="vl-selected-card">
                     <strong>{meal[0]}</strong>
-                    <p>{meal[1]} pensado para sostener energía y adherencia.</p>
+                    <p>{meal[1]} designed to support energy and consistency.</p>
                   </div>
                 </div>
                 <div className="vl-context-section">
-                  <div className="vl-context-label">Victus observó</div>
+                  <div className="vl-context-label">Victus noticed</div>
                   <div className="vl-context-value">{day.observation}</div>
                 </div>
               </aside>
@@ -300,13 +381,9 @@ export function LandingPage() {
 
       <section className="vl-trust">
         <div className="vl-container">
-          <p>Diseñado para acompañar decisiones reales, no para imponer dietas perfectas.</p>
+          <p>{copy.trust}</p>
           <div className="vl-trust-items">
-            <span>Personalización</span>
-            <span>Evidencia</span>
-            <span>Seguridad</span>
-            <span>Adherencia</span>
-            <span>Privacidad</span>
+            {copy.trustItems.map((item) => <span key={item}>{item}</span>)}
           </div>
         </div>
       </section>
@@ -314,24 +391,16 @@ export function LandingPage() {
       <section className="vl-section" id="how">
         <div className="vl-container">
           <div className="vl-section-head">
-            <div className="vl-section-kicker">Un agente que entiende tu vida</div>
-            <h2>Recomendaciones útiles, sostenibles y explicables.</h2>
-            <p>
-              Victus combina tu información personal con conocimiento nutricional para proponer cambios pequeños que
-              puedan mantenerse en el tiempo.
-            </p>
+            <div className="vl-section-kicker">{copy.howKicker}</div>
+            <h2>{copy.howTitle}</h2>
+            <p>{copy.howDescription}</p>
           </div>
           <div className="vl-feature-grid">
-            {[
-              ['01', 'Personaliza', 'Adapta comidas, porciones y horarios a tus metas, preferencias y restricciones.'],
-              ['02', 'Aprende', 'Reconoce patrones de adherencia y ajusta el plan según lo que realmente funciona.'],
-              ['03', 'Explica', 'Muestra por qué recomienda cada cambio y qué información utilizó.'],
-              ['04', 'Protege', 'Evita recomendaciones incompatibles con señales relevantes de salud.'],
-            ].map(([num, title, copy]) => (
+            {copy.features.map(([num, title, description]) => (
               <article className="vl-feature" key={num}>
                 <div className="vl-feature-num">{num}</div>
                 <h3>{title}</h3>
-                <p>{copy}</p>
+                <p>{description}</p>
               </article>
             ))}
           </div>
@@ -341,24 +410,17 @@ export function LandingPage() {
       <section className="vl-split" id="evidence">
         <div className="vl-container vl-split-grid">
           <div>
-            <div className="vl-section-kicker">Acompañamiento diario</div>
-            <h2>No solo entrega un menú. Te ayuda a sostenerlo.</h2>
-            <p>
-              Victus observa tu progreso, identifica fricciones y propone ajustes concretos sin hacerte sentir que
-              fallaste.
-            </p>
+            <div className="vl-section-kicker">{copy.supportKicker}</div>
+            <h2>{copy.supportTitle}</h2>
+            <p>{copy.supportDescription}</p>
           </div>
           <div className="vl-insight-panel">
-            {[
-              ['Mayor adherencia con desayunos repetibles', 'Los desayunos con 3 ingredientes se completan con mayor frecuencia.'],
-              ['Hambre elevada los días de entrenamiento', 'Se añadió una colación pre-entreno con proteína y carbohidratos.'],
-              ['Plan ajustado, no reiniciado', 'Los cambios se incorporan sin borrar tu progreso anterior.'],
-            ].map(([title, copy]) => (
+            {copy.insights.map(([title, description]) => (
               <div className="vl-insight-row" key={title}>
                 <span className="vl-status-dot" />
                 <div>
                   <strong>{title}</strong>
-                  <p>{copy}</p>
+                  <p>{description}</p>
                 </div>
               </div>
             ))}

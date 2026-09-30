@@ -3,14 +3,30 @@ import { useAuth } from '../auth/AuthContext';
 import { ChatShell } from '../features/chat/components/ChatShell';
 import { useBackendVictusChat } from '../features/chat/hooks/useBackendVictusChat';
 import { navigate } from '../lib/navigation';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export function ProtectedAppPage() {
   const auth = useAuth();
+  const { t } = useLanguage();
   const chat = useBackendVictusChat();
+
+  async function signOut() {
+    await auth.logout();
+    navigate('/');
+  }
 
   useEffect(() => {
     if (!auth.isLoading && !auth.user) navigate('/login');
   }, [auth.isLoading, auth.user]);
+
+  useEffect(() => {
+    if (!auth.user || chat.status !== 'ready') return;
+    const message = window.localStorage.getItem('victus-pending-message');
+    if (!message) return;
+    window.localStorage.removeItem('victus-pending-message');
+    chat.startNewConversation();
+    chat.sendMessage(message);
+  }, [auth.user, chat]);
 
   if (auth.isLoading) {
     return (
@@ -20,7 +36,7 @@ export function ProtectedAppPage() {
           <span className="typing-dot" />
           <span className="typing-dot" />
         </div>
-        <p>Validando sesión segura…</p>
+        <p>{t('loadingSession')}</p>
       </main>
     );
   }
@@ -29,13 +45,9 @@ export function ProtectedAppPage() {
 
   return (
     <ChatShell
-      mode="app"
       user={auth.user}
       chat={chat}
-      onLogout={async () => {
-        await auth.logout();
-        navigate('/');
-      }}
+      onSignOut={signOut}
     />
   );
 }
