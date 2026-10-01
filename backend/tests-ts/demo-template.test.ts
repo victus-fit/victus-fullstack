@@ -11,6 +11,7 @@ class TemplateDb {
   async query(text: string) {
     if (text.includes("FROM user_metric_entries")) return { rows: [{ metric_type: "weight", label: "Peso", recorded_at: "2026-09-28T00:00:00Z", value_number: 82, unit: "kg" }], rowCount: 1 };
     if (text.includes("FROM user_preference_items")) return { rows: [{ category: "nutrition", label: "Objetivo", value: "Mejorar composición corporal.", importance: 5, status: "active", source: "demo_template", metadata_json: { profile_version: "david-v1" } }], rowCount: 1 };
+    if (text.includes("FROM user_diet_plans")) return { rows: [{ plan_id: "00000000-0000-4000-8000-000000000010" }], rowCount: 1 };
     return { rows: [], rowCount: 0 };
   }
 }

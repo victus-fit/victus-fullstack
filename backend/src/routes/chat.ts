@@ -9,9 +9,12 @@ import { injectTraceHeaders, setSpanAttributes, withSpan } from "../telemetry.js
 
 export const chatRoutes = new Hono();
 
-function messageTextFromAgent(raw: string): string {
+type AgentInterrupt = { id: string; kind: string; question: string; details?: Record<string, unknown> };
+type AgentResult = { message: string; interrupt?: AgentInterrupt };
+
+export function resultFromAgent(raw: string): AgentResult {
   const trimmed = raw.trim();
-  if (!trimmed) return "";
+  if (!trimmed) return { message: "" };
 
   try {
     const parsed = JSON.parse(trimmed) as unknown;
@@ -21,13 +24,21 @@ function messageTextFromAgent(raw: string): string {
       "message" in parsed &&
       typeof (parsed as { message?: unknown }).message === "string"
     ) {
-      return (parsed as { message: string }).message;
+      const result = parsed as { message: string; interrupt?: unknown };
+      const interrupt = result.interrupt;
+      if (interrupt && typeof interrupt === "object") {
+        const candidate = interrupt as Record<string, unknown>;
+        if (typeof candidate.id === "string" && typeof candidate.kind === "string" && typeof candidate.question === "string") {
+          return { message: result.message, interrupt: { id: candidate.id, kind: candidate.kind, question: candidate.question, details: candidate.details as Record<string, unknown> | undefined } };
+        }
+      }
+      return { message: result.message };
     }
   } catch {
-    return raw;
+    return { message: raw };
   }
 
-  return raw;
+  return { message: raw };
 }
 
 chatRoutes.post("/api/chat/stream", async (c) => {
@@ -36,9 +47,14 @@ chatRoutes.post("/api/chat/stream", async (c) => {
     const user = await currentUser(c);
     const body = await c.req.json<Record<string, unknown>>();
     const message = typeof body.message === "string" ? body.message.trim() : "";
+    const resumeValue = body.resume && typeof body.resume === "object" && "value" in body.resume
+      ? (body.resume as { value: unknown }).value : undefined;
+    const isResume = resumeValue !== undefined;
     const workspaceId = typeof body.workspace_id === "string" ? body.workspace_id : "chat";
     const language = body.language === "es" ? "es" : "en";
-    if (!message || message.length > 8000) throw new HttpError(422, "Message is required");
+    if (!isResume && (!message || message.length > 8000)) throw new HttpError(422, "Message is required");
+    if (isResume && (!resumeValue || typeof resumeValue !== "object" || typeof (resumeValue as { accepted?: unknown }).accepted !== "boolean")) throw new HttpError(422, "Invalid confirmation response");
+    if (isResume && typeof body.conversation_id !== "string") throw new HttpError(422, "Conversation is required to resume");
     setSpanAttributes(span, {
       "victus.workspace_id": workspaceId,
       "victus.input.characters": message.length,
@@ -70,7 +86,7 @@ chatRoutes.post("/api/chat/stream", async (c) => {
       const userMessage = await db.query(
         `INSERT INTO app_messages(conversation_id,user_id,role,status,content_text,metadata_json)
          VALUES($1,$2,'user','completed',$3,$4) RETURNING message_id`,
-        [conversation.conversation_id, user.user_id, message, JSON.stringify({ source: "webapp" })],
+        [conversation.conversation_id, user.user_id, isResume ? ((resumeValue as { accepted: boolean }).accepted ? "Confirmado" : "Cancelado") : message, JSON.stringify({ source: "webapp", ...(isResume ? { resume: resumeValue } : {}) })],
       );
       const turnId = randomUUID();
       const assistantMessage = await db.query(
@@ -82,7 +98,7 @@ chatRoutes.post("/api/chat/stream", async (c) => {
         `INSERT INTO agent_requests(user_id,conversation_id,message_id,agent_user_id,agent_conversation_id,agent_turn_id,status,idempotency_key,request_payload)
          VALUES($1,$2,$3,$4,$5,$6,'running',$7,$8) RETURNING request_id`,
         [user.user_id, conversation.conversation_id, userMessage.rows[0].message_id, `webapp:${user.user_id}`,
-          conversation.agent_conversation_id, turnId, randomUUID(), JSON.stringify({ message, workspace_id: workspaceId })],
+          conversation.agent_conversation_id, turnId, randomUUID(), JSON.stringify({ ...(isResume ? { resume: resumeValue } : { message }), workspace_id: workspaceId })],
       );
       return {
         conversationId: conversation.conversation_id as string,
@@ -108,7 +124,7 @@ chatRoutes.post("/api/chat/stream", async (c) => {
         "victus.agent_conversation_id": state.agentConversationId,
         "victus.request_id": state.requestId,
         "victus.agent_turn_id": state.turnId,
-        "victus.agent.sent_as": "message",
+        "victus.agent.sent_as": isResume ? "resume" : "message",
       },
       async (requestSpan) => {
         const response = await fetch(`${settings.agentBaseUrl}/chat`, {
@@ -120,7 +136,7 @@ chatRoutes.post("/api/chat/stream", async (c) => {
           body: JSON.stringify({
             conversation_id: state.agentConversationId,
             request_id: state.turnId,
-            message,
+            ...(isResume ? { resume: { value: resumeValue } } : { message }),
             locale: language,
             timezone: user.timezone,
           }),
@@ -138,9 +154,13 @@ chatRoutes.post("/api/chat/stream", async (c) => {
       span.setAttribute("victus.agent.error_body", detail.slice(0, 2000));
       throw new HttpError(502, detail || `Victus Agent returned ${agentResponse.status}`);
     }
+    const rawText = await agentResponse.text();
+    const agentResult = resultFromAgent(rawText);
+    const finalText = agentResult.message;
 
     c.header("X-Victus-Conversation-Id", state.conversationId);
     c.header("X-Victus-Agent-Turn-Id", state.turnId);
+    if (agentResult.interrupt) c.header("X-Victus-Interrupt", Buffer.from(JSON.stringify(agentResult.interrupt)).toString("base64url"));
     c.header("Cache-Control", "no-cache");
     return streamText(c, async (stream) => {
       await withSpan(
@@ -152,28 +172,16 @@ chatRoutes.post("/api/chat/stream", async (c) => {
           "victus.agent_turn_id": state.turnId,
         },
         async (streamSpan) => {
-          const reader = agentResponse.body!.getReader();
-          const decoder = new TextDecoder();
-          let rawText = "";
-          let finalText = "";
           try {
-            while (true) {
-              const { value, done } = await reader.read();
-              if (done) break;
-              const chunk = decoder.decode(value, { stream: true });
-              rawText += chunk;
-            }
-            rawText += decoder.decode();
-            finalText = messageTextFromAgent(rawText);
             streamSpan.setAttribute("victus.agent.raw_response.characters", rawText.length);
             streamSpan.setAttribute("victus.final_ui_message.characters", finalText.length);
             streamSpan.setAttribute("victus.final_ui_message.preview", finalText.slice(0, 500));
             await stream.write(finalText);
-            await pool.query(`UPDATE app_messages SET content_text=$2,status='completed',updated_at=now() WHERE message_id=$1`, [state.assistantMessageId, finalText]);
-            await pool.query(`UPDATE agent_requests SET status='completed',completed_at=now(),response_summary=$2 WHERE request_id=$1`, [state.requestId, JSON.stringify({ source: "victus_agent", characters: finalText.length })]);
+            await pool.query(`UPDATE app_messages SET content_text=$2,status='completed',metadata_json=metadata_json || $3::jsonb,updated_at=now() WHERE message_id=$1`, [state.assistantMessageId, finalText, JSON.stringify(agentResult.interrupt ? { interrupt: agentResult.interrupt } : {})]);
+            await pool.query(`UPDATE agent_requests SET status='completed',completed_at=now(),response_summary=$2 WHERE request_id=$1`, [state.requestId, JSON.stringify({ source: "victus_agent", characters: finalText.length, ...(agentResult.interrupt ? { interrupt: agentResult.interrupt } : {}) })]);
             await pool.query(`UPDATE app_conversations SET updated_at=now() WHERE conversation_id=$1`, [state.conversationId]);
           } catch (error) {
-            const failedText = finalText || messageTextFromAgent(rawText);
+            const failedText = finalText || resultFromAgent(rawText).message;
             streamSpan.setAttribute("victus.final_ui_message.characters", failedText.length);
             streamSpan.setAttribute("victus.final_ui_message.preview", failedText.slice(0, 500));
             await pool.query(`UPDATE app_messages SET content_text=$2,status='failed',updated_at=now() WHERE message_id=$1`, [state.assistantMessageId, failedText]);

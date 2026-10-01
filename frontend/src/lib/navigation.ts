@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 
-export type AppRoute = 'landing' | 'login' | 'register' | 'app';
+export type AppRoute = 'landing' | 'login' | 'register' | 'onboarding' | 'app';
 
 function routeFromPath(pathname: string): AppRoute {
   if (pathname.startsWith('/login')) return 'login';
   if (pathname.startsWith('/register')) return 'register';
+  if (pathname.startsWith('/onboarding')) return 'onboarding';
   if (pathname.startsWith('/app')) return 'app';
   return 'landing';
 }

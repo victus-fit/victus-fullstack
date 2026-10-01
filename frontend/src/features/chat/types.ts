@@ -1,6 +1,6 @@
 export type ChatRole = 'assistant' | 'user';
 export type ChatStatus = 'ready' | 'submitted' | 'streaming';
-export type AgentWorkspace = 'chat' | 'meal-log' | 'weekly-plan' | 'biometrics' | 'profile';
+export type AgentWorkspace = 'chat' | 'meal-log' | 'weekly-plan' | 'biometrics' | 'profile' | 'settings';
 
 export interface EvidenceReference {
   id: string;
@@ -15,6 +15,14 @@ export interface ChatMessageModel {
   text: string;
   createdAt: string;
   evidence?: EvidenceReference[];
+  interrupt?: ChatInterrupt;
+}
+
+export interface ChatInterrupt {
+  id: string;
+  kind: string;
+  question: string;
+  details?: Record<string, unknown>;
 }
 
 export interface TraceStep {
@@ -42,6 +50,8 @@ export interface VictusChatController {
   activeConversationId: string | null;
   isLoadingHistory: boolean;
   sendMessage: (text: string) => void;
+  respondToConfirmation: (accepted: boolean) => void;
+  pendingInterrupt: ChatInterrupt | null;
   reset: () => void;
   refreshConversations: () => Promise<void>;
   selectConversation: (conversationId: string) => Promise<void>;

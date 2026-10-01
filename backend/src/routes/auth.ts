@@ -4,7 +4,7 @@ import { auth } from "../auth.js";
 import { settings } from "../config.js";
 import { pool, transaction } from "../db.js";
 import { clearSessionCookies, cookie, HttpError, issueAccessToken, randomToken, requireCsrf, setSessionCookies, sha256, signJwt, verifyJwt } from "../security.js";
-import { currentUser, ensureDefaults, issueSession, publicUser, upsertGoogleSession, type User } from "../session.js";
+import { currentUser, ensureDefaults, issueSession, markOnboardingPending, publicUser, upsertGoogleSession, type User } from "../session.js";
 
 export const authRoutes = new Hono();
 
@@ -28,6 +28,7 @@ authRoutes.post("/api/auth/register", async (c) => {
     await db.query(`INSERT INTO auth_identities(user_id,provider,provider_subject,email,email_verified,password_hash)
       VALUES($1,'email_password',$2,$2,false,$3)`, [user.user_id, email, await argon2.hash(password)]);
     await ensureDefaults(db, user.user_id);
+    await markOnboardingPending(db, user.user_id);
     const csrf = await issueSession(c, db, user);
     return { user, csrf };
   });
@@ -82,6 +83,16 @@ authRoutes.post("/api/auth/logout", async (c) => {
       await pool.query(`UPDATE web_sessions SET status='revoked',revoked_at=now() WHERE session_id=$1`, [payload.sid]);
     } catch { /* logout remains idempotent */ }
   }
+  clearSessionCookies(c);
+  return c.body(null, 204);
+});
+
+authRoutes.delete("/api/auth/account", async (c) => {
+  requireCsrf(c);
+  const user = await currentUser(c);
+  const body = await c.req.json<Record<string, unknown>>();
+  if (body.confirmation !== "ELIMINAR") throw new HttpError(422, "Confirmation must be ELIMINAR");
+  await pool.query("DELETE FROM app_users WHERE user_id=$1", [user.user_id]);
   clearSessionCookies(c);
   return c.body(null, 204);
 });

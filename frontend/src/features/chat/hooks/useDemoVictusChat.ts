@@ -9,8 +9,8 @@ function opening(language: 'en' | 'es'): ChatMessageModel {
     id: 'demo-opening',
     role: 'assistant',
     text: language === 'es'
-      ? 'Soy Victus. El perfil base de David es fijo, pero puedo registrar comidas con gramos o mililitros durante esta sesión temporal.'
-      : 'I am Victus. David’s base profile is fixed, but I can record meals in grams or milliliters for this temporary session.',
+      ? '¡Hola! Soy Victus. Durante esta demo te acompaño a registrar tus comidas; el perfil de David se mantiene fijo y tus cambios son temporales.'
+      : 'Hello! I am Victus. During this demo, I can help you log meals; David’s profile remains fixed and your changes are temporary.',
     createdAt: nowLabel(),
   };
 }
@@ -46,5 +46,5 @@ export function useDemoVictusChat(): VictusChatController {
   }, [language, status]);
   const startNewConversation = useCallback(() => { conversationId.current = `demo-${crypto.randomUUID()}`; setMessages([{ ...opening(language), id: makeId('assistant') }]); setStatus('ready'); }, [language]);
   const empty = useCallback(async () => undefined, []);
-  return { messages, status, trace, latestEvidence: useMemo(() => [], []), conversations: [], activeConversationId: null, isLoadingHistory: false, sendMessage, reset: startNewConversation, refreshConversations: empty, selectConversation: empty, deleteConversation: empty, startNewConversation };
+  return { messages, status, trace, latestEvidence: useMemo(() => [], []), conversations: [], activeConversationId: null, isLoadingHistory: false, sendMessage, respondToConfirmation: () => undefined, pendingInterrupt: null, reset: startNewConversation, refreshConversations: empty, selectConversation: empty, deleteConversation: empty, startNewConversation };
 }

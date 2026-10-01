@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import type { DbClient } from "../db.js";
-import { pool } from "../db.js";
+import { pool, transaction } from "../db.js";
 import { DEMO_DAVID_USER_ID } from "../demoTemplate.js";
 import { settings } from "../config.js";
 import { HttpError } from "../security.js";
@@ -96,7 +96,24 @@ export async function profileContext(
     );
     response.biometrics = metrics.rows.map((row) => ({ ...row, value_number: numeric(row.value_number) }));
   }
+  if (section === "overview") {
+    const preferences = await db.query(`SELECT category,label,value,importance,metadata_json
+      FROM user_preference_items
+      WHERE user_id=$1 AND status='active'
+      ORDER BY category,label`, [userId]);
+    response.preferences = preferences.rows;
+  }
   return response;
+}
+
+async function dietPlanProfileSnapshot(db: DbClient, subject: unknown) {
+  const profile = await profileContext(db, subject, "overview");
+  return {
+    captured_at: new Date().toISOString(),
+    biometrics: profile.biometrics ?? [],
+    preferences: profile.preferences ?? [],
+    current_diet: profile.current_diet ?? { date: null, entries: [], totals: {} },
+  };
 }
 
 export function createProfileContextRoutes(db: DbClient = pool): Hono {
@@ -130,15 +147,19 @@ export function createProfileContextRoutes(db: DbClient = pool): Hono {
       const active = await db.query(`UPDATE user_diet_plans SET status='archived',updated_at=now() WHERE user_id=$1 AND status='active'; UPDATE user_diet_plans SET status='active',updated_at=now() WHERE plan_id=$2 AND user_id=$1 RETURNING plan_id,status,active_revision_id`, [userId, planId]);
       return c.json(active.rows.at(-1) || {});
     }
-    if (!plan || typeof plan !== "object") throw new HttpError(422, "plan_json is required");
-    const preferences = await db.query(`SELECT category,label,value,importance,metadata_json FROM user_preference_items WHERE user_id=$1 AND status='active' ORDER BY category,label`, [userId]);
-    const planId = action === "refine" ? String(body.plan_id || "") : "";
-    const parent = planId ? await db.query(`SELECT plan_id FROM user_diet_plans WHERE plan_id=$1 AND user_id=$2`, [planId,userId]) : null;
-    if (planId && !parent?.rows[0]) throw new HttpError(404, "Diet plan not found");
-    const created = planId ? { plan_id: planId } : (await db.query(`INSERT INTO user_diet_plans(user_id,status) VALUES($1,'draft') RETURNING plan_id`, [userId])).rows[0];
-    const revision = await db.query(`INSERT INTO user_diet_plan_revisions(plan_id,revision_number,profile_snapshot,plan_json) SELECT $1,COALESCE(MAX(revision_number),0)+1,$2,$3 FROM user_diet_plan_revisions WHERE plan_id=$1 RETURNING revision_id,revision_number,created_at`, [created.plan_id, JSON.stringify({preferences:preferences.rows}), JSON.stringify(plan)]);
-    await db.query(`UPDATE user_diet_plans SET active_revision_id=$2,updated_at=now() WHERE plan_id=$1`, [created.plan_id,revision.rows[0].revision_id]);
-    return c.json({plan_id:created.plan_id,status:'draft',revision:revision.rows[0]},201);
+    if (!["create", "refine"].includes(action) || !plan || typeof plan !== "object") throw new HttpError(422, "action and plan_json are required");
+    const saveRevision = async (writeDb: DbClient) => {
+      const planId = action === "refine" ? String(body.plan_id || "") : "";
+      const parent = planId ? await writeDb.query(`SELECT plan_id FROM user_diet_plans WHERE plan_id=$1 AND user_id=$2`, [planId,userId]) : null;
+      if (planId && !parent?.rows[0]) throw new HttpError(404, "Diet plan not found");
+      const created = planId ? { plan_id: planId } : (await writeDb.query(`INSERT INTO user_diet_plans(user_id,status) VALUES($1,'draft') RETURNING plan_id`, [userId])).rows[0];
+      const snapshot = await dietPlanProfileSnapshot(writeDb, body.subject);
+      const revision = await writeDb.query(`INSERT INTO user_diet_plan_revisions(plan_id,revision_number,profile_snapshot,plan_json) SELECT $1,COALESCE(MAX(revision_number),0)+1,$2,$3 FROM user_diet_plan_revisions WHERE plan_id=$1 RETURNING revision_id,revision_number,created_at`, [created.plan_id, JSON.stringify(snapshot), JSON.stringify(plan)]);
+      await writeDb.query(`UPDATE user_diet_plans SET status='archived',updated_at=now() WHERE user_id=$1 AND status='active' AND plan_id<>$2`, [userId, created.plan_id]);
+      await writeDb.query(`UPDATE user_diet_plans SET status='active',active_revision_id=$3,updated_at=now() WHERE plan_id=$2 AND user_id=$1`, [userId, created.plan_id, revision.rows[0].revision_id]);
+      return {plan_id:created.plan_id,status:"active",revision:revision.rows[0]};
+    };
+    return c.json(await (db === pool ? transaction(saveRevision) : saveRevision(db)), 201);
   });
   return routes;
 }

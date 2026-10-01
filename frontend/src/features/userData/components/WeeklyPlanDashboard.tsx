@@ -1,58 +1,69 @@
 import { Check, LockKeyhole } from 'lucide-react';
+import { useActiveDietPlan } from '../hooks/useActiveDietPlan';
+import type { DietPlanDocument, DietPlanMeal } from '../types';
 
-const weeklyPlan = [
-  { day: 'Lunes', focus: 'Fuerza · tren superior', calories: '2.400 kcal', meals: ['Avena nocturna · frutos rojos · yogur', 'Pollo al limón · arroz integral · ensalada', 'Salmón · papa asada · brócoli', 'Yogur griego · nueces'] },
-  { day: 'Martes', focus: 'Cardio suave', calories: '2.250 kcal', meals: ['Huevos revueltos · tostada integral · palta', 'Pavo · quinoa · verduras asadas', 'Lentejas guisadas · ensalada verde', 'Manzana · mantequilla de maní'] },
-  { day: 'Miércoles', focus: 'Fuerza · tren inferior', calories: '2.400 kcal', meals: ['Avena nocturna · frutos rojos · yogur', 'Carne magra · camote · ensalada', 'Pasta integral · atún · tomate', 'Batido de proteína · plátano'] },
-  { day: 'Jueves', focus: 'Recuperación activa', calories: '2.250 kcal', meals: ['Omelette de verduras · pan de masa madre', 'Salmón · couscous · espárragos', 'Pollo al horno · verduras', 'Kéfir · almendras'] },
-  { day: 'Viernes', focus: 'Fuerza · cuerpo completo', calories: '2.400 kcal', meals: ['Yogur griego · granola · fruta', 'Bowl de pollo · arroz · palta', 'Merluza · puré de coliflor · ensalada', 'Tostada integral · ricota'] },
-  { day: 'Sábado', focus: 'Movimiento libre', calories: '2.300 kcal', meals: ['Panqueques de avena · fruta', 'Ensalada tibia de garbanzos · huevo', 'Tacos de pescado · repollo · palta', 'Chocolate 70% · frutillas'] },
-  { day: 'Domingo', focus: 'Descanso', calories: '2.200 kcal', meals: ['Huevos · fruta · tostada integral', 'Pollo asado · papas · ensalada', 'Crema de verduras · pan integral', 'Yogur natural · semillas'] },
-];
+const numberFormat = new Intl.NumberFormat('es-CL', { maximumFractionDigits: 0 });
 
-interface WeeklyPlanDashboardProps {
-  hasAssignedPlan: boolean;
+function mealItems(meal: DietPlanMeal): string {
+  const items = meal.food_items ?? [];
+  if (items.length === 0) return meal.name;
+  return `${meal.name}: ${items.map((item) => {
+    const quantity = item.quantity == null ? '' : `${item.quantity}${item.unit ? ` ${item.unit}` : ''} `;
+    return `${quantity}${item.name}`;
+  }).join(' · ')}`;
 }
 
-export function WeeklyPlanDashboard({ hasAssignedPlan }: WeeklyPlanDashboardProps) {
-  if (!hasAssignedPlan) {
-    return (
-      <section className="workspace-card weekly-plan-empty">
-        <span className="workspace-eyebrow">Plan semanal</span>
-        <h1>Aún no tienes un plan asignado</h1>
-        <p>Tu plan aparecerá aquí cuando esté creado para tu perfil.</p>
-      </section>
-    );
+function planDays(plan: DietPlanDocument) {
+  if (plan.days && plan.days.length > 0) {
+    return plan.days.map((day, index) => ({
+      day: day.day || `Día ${index + 1}`,
+      focus: day.focus || 'Plan personalizado',
+      calories: day.calories == null ? null : `${numberFormat.format(Number(day.calories))} kcal`,
+      meals: day.meals ?? [],
+    }));
   }
+  return [{ day: 'Todos los días', focus: 'Estructura diaria', calories: null, meals: plan.meals ?? [] }];
+}
+
+export function WeeklyPlanDashboard() {
+  const { plan, isLoading, error, refresh } = useActiveDietPlan();
+
+  if (isLoading) return <section className="workspace-card weekly-plan-empty"><p>Cargando tu plan activo…</p></section>;
+  if (error) return <section className="workspace-card weekly-plan-empty"><h1>No se pudo cargar tu plan</h1><p>{error}</p><button className="primary-pill" type="button" onClick={() => void refresh()}>Reintentar</button></section>;
+  if (!plan) {
+    return <section className="workspace-card weekly-plan-empty"><span className="workspace-eyebrow">Plan semanal</span><h1>Aún no tienes un plan activo</h1><p>Pídele a Victus que cree y active tu primera dieta; aparecerá aquí automáticamente.</p></section>;
+  }
+
+  const document = plan.plan_json;
+  const targets = document.targets;
+  const days = planDays(document);
+  const hasTargets = Boolean(targets && Object.values(targets).some((value) => Number(value) > 0));
 
   return (
     <div className="weekly-plan-layout">
       <section className="weekly-plan-hero">
         <div>
-          <span className="workspace-eyebrow">Plan seleccionado · David</span>
+          <span className="workspace-eyebrow">Plan activo · revisión {plan.revision_number}</span>
           <h1>Plan semanal</h1>
-          <p>Una semana equilibrada para sostener composición corporal, energía y recuperación.</p>
+          <p>{document.description || 'Tu plan personalizado está listo para seguir y ajustar con Victus.'}</p>
         </div>
-        <div className="weekly-plan-status"><LockKeyhole size={15} aria-hidden="true" /><span>Beta · solo lectura</span></div>
+        <div className="weekly-plan-status"><LockKeyhole size={15} aria-hidden="true" /><span>Activo · solo lectura</span></div>
       </section>
 
-      <section className="weekly-plan-targets" aria-label="Objetivos diarios del plan">
-        <div><span>Promedio diario</span><strong>2.300 kcal</strong></div>
-        <div><span>Proteína</span><strong>170 g</strong></div>
-        <div><span>Carbohidratos</span><strong>250 g</strong></div>
-        <div><span>Grasas</span><strong>75 g</strong></div>
-      </section>
+      {hasTargets ? (
+        <section className="weekly-plan-targets" aria-label="Objetivos diarios del plan">
+          {targets?.calories_kcal ? <div><span>Objetivo diario</span><strong>{numberFormat.format(targets.calories_kcal)} kcal</strong></div> : null}
+          {targets?.protein_g ? <div><span>Proteína</span><strong>{numberFormat.format(targets.protein_g)} g</strong></div> : null}
+          {targets?.carbohydrate_g ? <div><span>Carbohidratos</span><strong>{numberFormat.format(targets.carbohydrate_g)} g</strong></div> : null}
+          {targets?.fat_g ? <div><span>Grasas</span><strong>{numberFormat.format(targets.fat_g)} g</strong></div> : null}
+        </section>
+      ) : null}
 
-      <section className="weekly-plan-days" aria-label="Comidas del plan semanal">
-        {weeklyPlan.map((plan, index) => (
-          <article className={`weekly-plan-day${index === 0 ? ' is-today' : ''}`} key={plan.day}>
-            <header>
-              <div><span>{index === 0 ? 'Hoy' : plan.focus}</span><h2>{plan.day}</h2></div>
-              <strong>{plan.calories}</strong>
-            </header>
-            <ul>
-              {plan.meals.map((meal) => <li key={meal}><Check size={14} aria-hidden="true" /><span>{meal}</span></li>)}
-            </ul>
+      <section className="weekly-plan-days" aria-label="Comidas del plan">
+        {days.map((day, index) => (
+          <article className={`weekly-plan-day${index === 0 ? ' is-today' : ''}`} key={`${day.day}-${index}`}>
+            <header><div><span>{day.focus}</span><h2>{day.day}</h2></div>{day.calories ? <strong>{day.calories}</strong> : null}</header>
+            {day.meals.length > 0 ? <ul>{day.meals.map((meal, mealIndex) => <li key={`${meal.name}-${mealIndex}`}><Check size={14} aria-hidden="true" /><span>{mealItems(meal)}</span></li>)}</ul> : <p>Victus no añadió comidas a esta sección del plan.</p>}
           </article>
         ))}
       </section>

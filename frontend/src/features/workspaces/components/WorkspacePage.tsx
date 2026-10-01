@@ -6,12 +6,14 @@ import { DataLoadingState } from '../../userData/components/DataLoadingState';
 import { DietsDashboard } from '../../userData/components/DietsDashboard';
 import { ProfileDashboard } from '../../userData/components/ProfileDashboard';
 import { WeeklyPlanDashboard } from '../../userData/components/WeeklyPlanDashboard';
+import { SettingsDashboard } from '../../userData/components/SettingsDashboard';
 import { useHealthOverview } from '../../userData/hooks/useHealthOverview';
 import type { AgentWorkspace } from '../../chat/types';
 
 interface WorkspacePageProps {
   workspace: Exclude<AgentWorkspace, 'chat'>;
   user?: AuthUser | null;
+  onDeleteAccount?: () => Promise<void>;
 }
 
 const labels: Record<Exclude<AgentWorkspace, 'chat'>, { title: string; subtitle: string }> = {
@@ -19,6 +21,7 @@ const labels: Record<Exclude<AgentWorkspace, 'chat'>, { title: string; subtitle:
   'weekly-plan': { title: 'Plan semanal', subtitle: 'Plan elegido para David.' },
   biometrics: { title: 'Biométricas', subtitle: 'Peso, sueño, energía y recuperación.' },
   profile: { title: 'Perfil', subtitle: 'Preferencias, objetivos y contexto personal.' },
+  settings: { title: 'Ajustes', subtitle: 'Cuenta y privacidad.' },
 };
 
 const workspaceTransition = {
@@ -38,15 +41,15 @@ function WorkspaceHeader({ workspace }: Pick<WorkspacePageProps, 'workspace'>) {
   );
 }
 
-export function WorkspacePage({ workspace, user }: WorkspacePageProps) {
+export function WorkspacePage({ workspace, user, onDeleteAccount }: WorkspacePageProps) {
   const overview = useHealthOverview();
-  const hasDavidWeeklyPlan = user === null || user?.primary_email === 'demo-david@victus.invalid';
-
   let content: React.ReactNode;
   if (workspace === 'meal-log') {
     content = <div className="workspace-content-shell data-content-shell"><DietsDashboard /></div>;
   } else if (workspace === 'weekly-plan') {
-    content = <div className="workspace-content-shell data-content-shell"><WeeklyPlanDashboard hasAssignedPlan={hasDavidWeeklyPlan} /></div>;
+    content = <div className="workspace-content-shell data-content-shell"><WeeklyPlanDashboard /></div>;
+  } else if (workspace === 'settings') {
+    content = onDeleteAccount ? <SettingsDashboard onDeleteAccount={onDeleteAccount} /> : null;
   } else if (overview.isLoading) {
     content = <div className="workspace-content-shell"><DataLoadingState /></div>;
   } else if (overview.error || !overview.data) {

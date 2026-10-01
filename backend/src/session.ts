@@ -19,6 +19,10 @@ export async function ensureDefaults(db: DbClient, userId: string): Promise<void
   await db.query(`INSERT INTO user_settings(user_id) VALUES($1) ON CONFLICT(user_id) DO NOTHING`, [userId]);
 }
 
+export async function markOnboardingPending(db: DbClient, userId: string): Promise<void> {
+  await db.query(`UPDATE user_settings SET ui_preferences=jsonb_set(ui_preferences,'{onboarding_completed}','false'::jsonb,true),updated_at=now() WHERE user_id=$1`, [userId]);
+}
+
 export async function issueSession(c: Context, db: DbClient, user: User): Promise<string> {
   const sid = randomUUID();
   const jti = randomToken();
@@ -66,6 +70,7 @@ export async function upsertGoogleSession(c: Context, identity: { id?: string; e
   const email = identity.email?.trim().toLowerCase();
   if (!email) throw new HttpError(401, "Better Auth session is missing email");
   return transaction(async (db) => {
+    const existing = await db.query<{ user_id: string }>("SELECT user_id FROM app_users WHERE primary_email=$1", [email]);
     const users = await db.query<User>(
       `INSERT INTO app_users(primary_email,display_name,avatar_url) VALUES($1,$2,$3)
        ON CONFLICT(primary_email) DO UPDATE SET display_name=COALESCE(app_users.display_name,EXCLUDED.display_name),
@@ -80,6 +85,7 @@ export async function upsertGoogleSession(c: Context, identity: { id?: string; e
       [user.user_id, identity.id || email, email, JSON.stringify({ better_auth_user_id: identity.id || email, image: identity.image || null })],
     );
     await ensureDefaults(db, user.user_id);
+    if (!existing.rowCount) await markOnboardingPending(db, user.user_id);
     const csrf = await issueSession(c, db, user);
     return { user, csrf };
   });

@@ -58,6 +58,38 @@ function dayTotals(entries: Array<Record<string, unknown>>, nutrients: Array<Rec
   };
 }
 
+export type MacroTargets = { protein_g: number; carbohydrate_g: number; fat_g: number };
+
+export function macroCompletion(totals: { protein_g: number; carbohydrate_g: number; fat_g: number }, targets: MacroTargets | null) {
+  if (!targets) return null;
+  const percent = (actual: number, target: number) => target > 0 ? Math.round((actual / target) * 100) : 0;
+  const protein_percent = percent(totals.protein_g, targets.protein_g);
+  const carbohydrate_percent = percent(totals.carbohydrate_g, targets.carbohydrate_g);
+  const fat_percent = percent(totals.fat_g, targets.fat_g);
+  return { protein_percent, carbohydrate_percent, fat_percent, overall_percent: Math.round((Math.min(protein_percent, 100) + Math.min(carbohydrate_percent, 100) + Math.min(fat_percent, 100)) / 3) };
+}
+
+function parseMacroTargets(value: unknown): MacroTargets | null {
+  if (!value || typeof value !== "object") return null;
+  const targets = (value as { targets?: unknown }).targets;
+  if (!targets || typeof targets !== "object") return null;
+  const record = targets as Record<string, unknown>;
+  const protein_g = asNumber(record.protein_g);
+  const carbohydrate_g = asNumber(record.carbohydrate_g);
+  const fat_g = asNumber(record.fat_g);
+  return protein_g > 0 && carbohydrate_g > 0 && fat_g > 0 ? { protein_g, carbohydrate_g, fat_g } : null;
+}
+
+async function activeMacroTargets(db: DbClient, userId: string): Promise<MacroTargets | null> {
+  const result = await db.query<{ plan_json: unknown }>(
+    `SELECT r.plan_json FROM user_diet_plans p
+     JOIN user_diet_plan_revisions r ON r.revision_id=p.active_revision_id
+     WHERE p.user_id=$1 AND p.status='active' LIMIT 1`,
+    [userId],
+  );
+  return parseMacroTargets(result.rows[0]?.plan_json);
+}
+
 export function createMealLogRoutes(db: DbClient = pool, requireUser: RequireUser = currentUser, transactionRunner?: TransactionRunner): Hono {
   const routes = new Hono();
   const runInTransaction: TransactionRunner = transactionRunner ?? (async (work) => db === pool ? transaction(work) : work(db));
@@ -96,7 +128,7 @@ export function createMealLogRoutes(db: DbClient = pool, requireUser: RequireUse
   routes.get("/api/meal-logs/:date", async (c) => {
     const user = await requireUser(c) as { user_id: string };
     const consumedOn = requiredDate(c.req.param("date"));
-    const [entriesResult, nutrientsResult] = await Promise.all([
+    const [entriesResult, nutrientsResult, targets] = await Promise.all([
       db.query(
         `SELECT e.meal_log_entry_id,e.consumed_on,e.meal_type,e.food_id,e.description_snapshot,e.quantity,e.serving_grams,e.notes,e.created_at,e.updated_at,
           COALESCE(MAX(n.amount_per_100g) FILTER (WHERE n.nutrient_id=${nutrientIds.energy}),0) * e.serving_grams * e.quantity / 100 calories_kcal,
@@ -137,9 +169,11 @@ export function createMealLogRoutes(db: DbClient = pool, requireUser: RequireUse
          END`,
         [user.user_id, consumedOn],
       ),
+      activeMacroTargets(db, user.user_id),
     ]);
     const entries = entriesResult.rows.map((row) => serializeEntry(row as Record<string, unknown>));
-    return c.json({ consumed_on: consumedOn, entries, totals: dayTotals(entries, nutrientsResult.rows as Array<Record<string, unknown>>) });
+    const totals = dayTotals(entries, nutrientsResult.rows as Array<Record<string, unknown>>);
+    return c.json({ consumed_on: consumedOn, entries, totals, targets, completion: macroCompletion(totals, targets) });
   });
 
   routes.post("/api/meal-logs/:date/entries", async (c) => {

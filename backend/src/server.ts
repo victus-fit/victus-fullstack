@@ -8,10 +8,13 @@ import { HttpError } from "./security.js";
 import { initializeSchema } from "./schema.js";
 import { initializeDevAuth } from "./devAuth.js";
 import { authRoutes } from "./routes/auth.js";
+import { agentMealCaptureRoutes } from "./routes/agentMealCapture.js";
 import { chatRoutes } from "./routes/chat.js";
 import { devAuthRoutes } from "./routes/devAuth.js";
 import { demoChatRoutes } from "./routes/demoChat.js";
 import { demoDataRoutes, initializeDemoTemplate } from "./routes/demoData.js";
+import { dietPlanRoutes } from "./routes/dietPlans.js";
+import { evidenceStatsRoutes } from "./routes/evidenceStats.js";
 import { foodRoutes } from "./routes/foods.js";
 import { mealLogRoutes } from "./routes/mealLogs.js";
 import { oauthRoutes } from "./routes/oauth.js";
@@ -41,10 +44,13 @@ app.use("*", async (c, next) => {
 });
 
 app.route("/", authRoutes);
+app.route("/", agentMealCaptureRoutes);
 app.route("/", chatRoutes);
 app.route("/", devAuthRoutes);
 app.route("/", demoChatRoutes);
 app.route("/", demoDataRoutes);
+app.route("/", dietPlanRoutes);
+app.route("/", evidenceStatsRoutes);
 app.route("/", foodRoutes);
 app.route("/", mealLogRoutes);
 app.route("/", oauthRoutes);

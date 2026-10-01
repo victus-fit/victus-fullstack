@@ -33,7 +33,7 @@ export function AuthPage({ mode }: AuthPageProps) {
       window.location.href = returnTo;
       return;
     }
-    navigate('/app');
+    navigate(isRegister ? '/onboarding' : '/app');
   }
 
   function betterAuthCallbackUrl() {

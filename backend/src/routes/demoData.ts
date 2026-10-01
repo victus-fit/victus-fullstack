@@ -10,6 +10,7 @@ import { loadDemoDavidTemplate, type DemoTemplate } from "../demoTemplate.js";
 
 type MealType = "breakfast" | "lunch" | "dinner" | "snack";
 type Nutrients = { calories_kcal: number; protein_g: number; fat_g: number; carbohydrate_g: number; fiber_g: number; sugars_g: number };
+type MacroTargets = { protein_g: number; carbohydrate_g: number; fat_g: number };
 type DemoMeal = Nutrients & { meal_log_entry_id: string; consumed_on: string; meal_type: MealType; food_id: number; description_snapshot: string; quantity: number; serving_grams: number; notes: string | null; source: "demo_template" | "demo" };
 type DemoMetric = { metric_entry_id: string; metric_type: string; label: string; recorded_at: string; value_number: number | null; value_text: string | null; unit: string | null; source: string; notes: string | null; metadata_json: Record<string, unknown> };
 type DemoSession = { expires_at: number; meals: Map<string, DemoMeal>; metrics: DemoMetric[]; preferences: DemoTemplate["preferences"] };
@@ -24,6 +25,12 @@ const nutrientIds = { energy: 38, protein: 2, fat: 1, carbohydrate: 3, fiber: 5 
 
 function number(value: unknown): number { const parsed = Number(value); return Number.isFinite(parsed) ? parsed : 0; }
 function date(value: string | undefined, label = "date"): string { if (!value || !datePattern.test(value) || Number.isNaN(new Date(`${value}T12:00:00Z`).getTime())) throw new HttpError(422, `Invalid ${label}`); return value; }
+function todayInProfileTimezone(): string {
+  const parts = new Intl.DateTimeFormat("en-US", { timeZone: "America/Santiago", year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(new Date());
+  const values = new Map(parts.map((part) => [part.type, part.value]));
+  return `${values.get("year")}-${values.get("month")}-${values.get("day")}`;
+}
+function addDays(value: string, amount: number): string { const next = new Date(`${value}T12:00:00Z`); next.setUTCDate(next.getUTCDate() + amount); return next.toISOString().slice(0, 10); }
 function positive(value: unknown, label: string): number { const parsed = number(value); if (parsed <= 0) throw new HttpError(422, `${label} must be greater than zero`); return parsed; }
 function sessionId(header: string | undefined): string { if (!header || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(header)) throw new HttpError(401, "Missing demo session"); return header; }
 function getSessionById(id: string): DemoSession {
@@ -31,9 +38,11 @@ function getSessionById(id: string): DemoSession {
   for (const [key, value] of sessions) if (value.expires_at <= now) sessions.delete(key);
   const existing = sessions.get(id);
   if (existing) { existing.expires_at = now + sessionTtlMs; return existing; }
+  const mealGroups = [...demoTemplate.meals.reduce((groups, meal) => { const items = groups.get(meal.consumed_on) ?? []; items.push(meal); groups.set(meal.consumed_on, items); return groups; }, new Map<string, DemoTemplate["meals"]>()).entries()].sort(([left], [right]) => right.localeCompare(left));
+  const rollingMeals = mealGroups.flatMap(([, meals], index) => meals.map((meal) => ({ ...meal, consumed_on: addDays(todayInProfileTimezone(), -index) })));
   const created = {
     expires_at: now + sessionTtlMs,
-    meals: new Map(demoTemplate.meals.map((meal) => {
+    meals: new Map(rollingMeals.map((meal) => {
       const mealLogEntryId = randomUUID();
       return [mealLogEntryId, { ...meal, meal_log_entry_id: mealLogEntryId, sugars_g: 0, source: "demo_template" as const }];
     })),
@@ -56,6 +65,17 @@ function demoMealType(occurredAtText: string): MealType {
   return "snack";
 }
 function totals(entries: DemoMeal[]): Nutrients { return entries.reduce<Nutrients>((sum, entry) => ({ calories_kcal: sum.calories_kcal + entry.calories_kcal, protein_g: sum.protein_g + entry.protein_g, fat_g: sum.fat_g + entry.fat_g, carbohydrate_g: sum.carbohydrate_g + entry.carbohydrate_g, fiber_g: sum.fiber_g + entry.fiber_g, sugars_g: 0 }), { calories_kcal: 0, protein_g: 0, fat_g: 0, carbohydrate_g: 0, fiber_g: 0, sugars_g: 0 }); }
+function macroTargets(preferences: DemoTemplate["preferences"]): MacroTargets | null {
+  const value = preferences.find((preference) => preference.label === "Objetivos diarios")?.metadata_json;
+  const protein_g = number(value?.protein_g); const carbohydrate_g = number(value?.carbohydrates_g); const fat_g = number(value?.fat_g);
+  return protein_g > 0 && carbohydrate_g > 0 && fat_g > 0 ? { protein_g, carbohydrate_g, fat_g } : null;
+}
+function macroCompletion(sum: Nutrients, targets: MacroTargets | null) {
+  if (!targets) return null;
+  const percent = (actual: number, target: number) => target > 0 ? Math.round((actual / target) * 100) : 0;
+  const protein_percent = percent(sum.protein_g, targets.protein_g); const carbohydrate_percent = percent(sum.carbohydrate_g, targets.carbohydrate_g); const fat_percent = percent(sum.fat_g, targets.fat_g);
+  return { protein_percent, carbohydrate_percent, fat_percent, overall_percent: Math.round((Math.min(protein_percent, 100) + Math.min(carbohydrate_percent, 100) + Math.min(fat_percent, 100)) / 3) };
+}
 function rounded(entry: DemoMeal): DemoMeal { return { ...entry, calories_kcal: Number(entry.calories_kcal.toFixed(2)), protein_g: Number(entry.protein_g.toFixed(2)), fat_g: Number(entry.fat_g.toFixed(2)), carbohydrate_g: Number(entry.carbohydrate_g.toFixed(2)), fiber_g: Number(entry.fiber_g.toFixed(2)) }; }
 
 async function foodWithNutrients(db: DbClient, foodId: number, displayName?: string) {
@@ -161,7 +181,7 @@ export function createDemoDataRoutes(db: DbClient = pool): Hono {
   });
   routes.get("/api/demo/meal-logs/:date", async (c) => {
     const store = getSession(c.req.header("x-demo-session-id")); const consumedOn = date(c.req.param("date")); const entries = [...store.meals.values()].filter((entry) => entry.consumed_on === consumedOn).map(rounded);
-    const sum = totals(entries); return c.json({ consumed_on: consumedOn, entries, totals: { ...sum, nutrients: [{ nutrient_id: nutrientIds.energy, name: "Energía", unit_name: "kcal", display_rank: 1, total_amount: sum.calories_kcal }, { nutrient_id: nutrientIds.protein, name: "Proteínas", unit_name: "g", display_rank: 2, total_amount: sum.protein_g }, { nutrient_id: nutrientIds.carbohydrate, name: "Carbohidratos", unit_name: "g", display_rank: 3, total_amount: sum.carbohydrate_g }, { nutrient_id: nutrientIds.fat, name: "Grasas", unit_name: "g", display_rank: 4, total_amount: sum.fat_g }, { nutrient_id: nutrientIds.fiber, name: "Fibra", unit_name: "g", display_rank: 5, total_amount: sum.fiber_g }] } });
+    const sum = totals(entries); const targets = macroTargets(store.preferences); return c.json({ consumed_on: consumedOn, entries, targets, completion: macroCompletion(sum, targets), totals: { ...sum, nutrients: [{ nutrient_id: nutrientIds.energy, name: "Energía", unit_name: "kcal", display_rank: 1, total_amount: sum.calories_kcal }, { nutrient_id: nutrientIds.protein, name: "Proteínas", unit_name: "g", display_rank: 2, total_amount: sum.protein_g }, { nutrient_id: nutrientIds.carbohydrate, name: "Carbohidratos", unit_name: "g", display_rank: 3, total_amount: sum.carbohydrate_g }, { nutrient_id: nutrientIds.fat, name: "Grasas", unit_name: "g", display_rank: 4, total_amount: sum.fat_g }, { nutrient_id: nutrientIds.fiber, name: "Fibra", unit_name: "g", display_rank: 5, total_amount: sum.fiber_g }] } });
   });
   routes.post("/api/demo/meal-logs/:date/entries", async (c) => {
     const store = getSession(c.req.header("x-demo-session-id")); const consumedOn = date(c.req.param("date")); const body = await c.req.json<Record<string, unknown>>(); const mealType = body.meal_type;

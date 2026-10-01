@@ -1,6 +1,7 @@
 import { apiFetch } from '../../lib/api';
 import type {
   CreateMealLogEntryInput,
+  ActiveDietPlanResponse,
   CreateMetricEntryInput,
   FoodDetail,
   FoodSearchResponse,
@@ -15,6 +16,10 @@ import type {
 
 export function getHealthOverview(): Promise<HealthOverview> {
   return apiFetch<HealthOverview>('/api/users/me/health-overview');
+}
+
+export function getActiveDietPlan(): Promise<ActiveDietPlanResponse> {
+  return apiFetch<ActiveDietPlanResponse>('/api/users/me/diet-plan');
 }
 
 export function createMetricEntry(input: CreateMetricEntryInput): Promise<MetricEntry> {

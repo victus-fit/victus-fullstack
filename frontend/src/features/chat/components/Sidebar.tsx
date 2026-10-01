@@ -8,11 +8,13 @@ import {
   MoreHorizontal,
   PanelLeftClose,
   PanelLeftOpen,
+  Settings,
   Trash2,
   type LucideIcon,
 } from 'lucide-react';
 import { useState } from 'react';
 import { CompassMark } from '../../../components/CompassMark';
+import { LanguageSwitcher } from '../../../components/LanguageSwitcher';
 import { useLanguage } from '../../../i18n/LanguageContext';
 import type { AgentWorkspace, ConversationListItem } from '../types';
 
@@ -122,7 +124,7 @@ export function Sidebar({
       <nav className="agent-app-list" aria-label="Victus agent applications">
         {agentApps.map((app) => {
           const Icon = app.icon;
-          const label = app.id === 'meal-log' ? t('mealLog') : app.id === 'weekly-plan' ? t('weeklyPlan') : app.id === 'biometrics' ? t('biometrics') : t('chat');
+          const label = app.id === 'meal-log' ? t('mealLog') : app.id === 'weekly-plan' ? t('weeklyPlan') : app.id === 'biometrics' ? t('biometrics') : app.id === 'settings' ? 'Ajustes' : t('chat');
           const isActive = activeWorkspace === app.id;
           return (
             <button
@@ -207,6 +209,11 @@ export function Sidebar({
       </div>
 
       {onSignOut ? <div className="sidebar-footer">
+        <div className="sidebar-language"><LanguageSwitcher /></div>
+        <button className={`agent-app-item sidebar-profile-item ${activeWorkspace === 'settings' ? 'is-active' : ''}`} type="button" onClick={() => onWorkspaceChange('settings')}>
+          <span className="agent-app-icon" aria-hidden="true"><Settings size={17} strokeWidth={1.9} /></span>
+          <span className="agent-app-copy"><strong>Ajustes</strong></span>
+        </button>
         <button className="agent-app-item sidebar-profile-item" type="button" onClick={() => void onSignOut()}>
           <span className="agent-app-icon" aria-hidden="true"><LogOut size={17} strokeWidth={1.9} /></span>
           <span className="agent-app-copy"><strong>Cerrar sesión</strong></span>

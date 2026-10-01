@@ -75,6 +75,52 @@ export interface UserSettings {
   ui_preferences: Record<string, unknown>;
 }
 
+export interface DietPlanFoodItem {
+  name: string;
+  quantity?: number | null;
+  unit?: string | null;
+}
+
+export interface DietPlanMeal {
+  name: string;
+  food_items?: DietPlanFoodItem[];
+}
+
+export interface DietPlanDay {
+  day?: string;
+  focus?: string;
+  calories?: number | string;
+  meals?: DietPlanMeal[];
+}
+
+export interface DietPlanDocument {
+  description?: string;
+  targets?: {
+    calories_kcal?: number;
+    protein_g?: number;
+    carbohydrate_g?: number;
+    fat_g?: number;
+  };
+  meals?: DietPlanMeal[];
+  days?: DietPlanDay[];
+}
+
+export interface ActiveDietPlan {
+  plan_id: string;
+  status: string;
+  active_revision_id: string;
+  updated_at: string;
+  revision_id: string;
+  revision_number: number;
+  created_at: string;
+  profile_snapshot: unknown;
+  plan_json: DietPlanDocument;
+}
+
+export interface ActiveDietPlanResponse {
+  plan: ActiveDietPlan | null;
+}
+
 export type MealType = 'breakfast' | 'lunch' | 'dinner' | 'snack';
 
 export interface FoodSearchResult {
@@ -159,6 +205,8 @@ export interface MealLogDayDetail {
     sugars_g: number;
     nutrients: DailyNutrientTotal[];
   };
+  targets: { protein_g: number; carbohydrate_g: number; fat_g: number } | null;
+  completion: { protein_percent: number; carbohydrate_percent: number; fat_percent: number; overall_percent: number } | null;
 }
 
 export interface MealLogCalendarResponse {

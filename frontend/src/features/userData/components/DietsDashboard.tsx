@@ -192,6 +192,7 @@ export function DietsDashboard() {
 
   const entries = day.data?.entries ?? [];
   const totals = day.data?.totals;
+  const targets = day.data?.targets;
 
   return (
     <div className="meal-log-layout">
@@ -225,6 +226,14 @@ export function DietsDashboard() {
           <div><span>Carbohidratos</span><strong>{numberFormat.format(totals?.carbohydrate_g ?? 0)} g</strong></div>
           <div><span>Grasas</span><strong>{numberFormat.format(totals?.fat_g ?? 0)} g</strong></div>
         </div>
+        {targets ? <div className="meal-completion" aria-label="Objetivos de macronutrientes">
+          <div className="meal-completion-heading"><span>Plan activo</span><strong>Objetivos de macronutrientes</strong></div>
+          <div className="meal-completion-grid">
+            <div><span>Proteína</span><strong>{numberFormat.format(totals?.protein_g ?? 0)} g</strong><small>Objetivo: {numberFormat.format(targets.protein_g)} g</small></div>
+            <div><span>Carbohidratos</span><strong>{numberFormat.format(totals?.carbohydrate_g ?? 0)} g</strong><small>Objetivo: {numberFormat.format(targets.carbohydrate_g)} g</small></div>
+            <div><span>Grasas</span><strong>{numberFormat.format(totals?.fat_g ?? 0)} g</strong><small>Objetivo: {numberFormat.format(targets.fat_g)} g</small></div>
+          </div>
+        </div> : null}
         {day.error ? <div className="meal-error-state"><span>{day.error}</span><button className="secondary-button" type="button" onClick={() => void day.refresh()}>Reintentar</button></div> : null}
       </section>
 

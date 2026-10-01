@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type React from 'react';
-import { ArrowRight, Compass, LogIn } from 'lucide-react';
+import { ArrowRight, ClipboardPlus, Compass, FileSearch, FileText, LogIn, Salad, UserPen } from 'lucide-react';
 import { navigate } from '../lib/navigation';
 import { LanguageSwitcher } from '../components/LanguageSwitcher';
 import { useAuth } from '../auth/AuthContext';
@@ -8,6 +8,7 @@ import { useBackendVictusChat } from '../features/chat/hooks/useBackendVictusCha
 import { LandingAppPreview } from '../features/chat/components/LandingAppPreview';
 import { useDemoVictusChat } from '../features/chat/hooks/useDemoVictusChat';
 import { useLanguage } from '../i18n/LanguageContext';
+import { apiFetch } from '../lib/api';
 
 const planDays = [
   {
@@ -95,6 +96,20 @@ const planDays = [
 
 const mealIcons = ['☀', '◐', '◇', '☾'];
 
+type EvidenceStats = {
+  collection: string;
+  evidence_count: number;
+  paper_count: number;
+};
+
+function GitHubMark({ size = 17 }: { size?: number }) {
+  return (
+    <svg aria-hidden="true" fill="currentColor" height={size} viewBox="0 0 24 24" width={size}>
+      <path d="M12 .297a12 12 0 0 0-3.794 23.4c.6.111.82-.26.82-.577v-2.234c-3.338.726-4.043-1.416-4.043-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.73.083-.73 1.205.085 1.839 1.237 1.839 1.237 1.07 1.835 2.807 1.305 3.492.998.108-.775.419-1.305.762-1.605-2.665-.303-5.467-1.332-5.467-5.93 0-1.31.469-2.381 1.235-3.221-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 0 1 6.009 0c2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.118 3.176.77.84 1.233 1.911 1.233 3.221 0 4.61-2.807 5.624-5.479 5.921.43.371.815 1.102.815 2.222v3.293c0 .32.216.694.825.576A12.003 12.003 0 0 0 12 .297Z" />
+    </svg>
+  );
+}
+
 export function LandingPage() {
   const auth = useAuth();
   const chat = useBackendVictusChat();
@@ -102,9 +117,15 @@ export function LandingPage() {
   const { language } = useLanguage();
   const copy = language === 'es' ? {
     product: 'Producto', how: 'Cómo funciona', evidence: 'Evidencia', signIn: 'Ingresar', getStarted: 'Comenzar',
-    hero: 'Tu alimentación, convertida en un plan que sí puedes seguir.', description: 'Victus es un agente personal de nutrición y bienestar que adapta tus comidas a tu vida.', create: 'Crear mi plan', learn: 'Ver cómo funciona',
-    trust: 'Diseñado para apoyar decisiones reales, no para imponer dietas perfectas.',
-    trustItems: ['Personalización', 'Evidencia', 'Seguridad', 'Constancia', 'Privacidad'],
+    hero: 'Tu alimentación, convertida en un plan que sí puedes seguir.', description: 'Registra tus comidas, ajusta tu perfil y crea planes de alimentación que se adapten a tu vida. Pregunta con libertad y recibe respuestas respaldadas por evidencia científica.', create: 'Crear mi plan', learn: 'Ver cómo funciona',
+    capabilitiesKicker: 'Capacidades', capabilitiesTitle: 'Pregunta, registra y ajusta con contexto.', capabilitiesDescription: 'En esta demo, el perfil de David no se modifica y los registros de comida son temporales. Con tu propia cuenta, Victus también puede trabajar sobre tu perfil y plan.',
+    capabilities: [
+      ['Registro de comidas', 'Registra comidas y bebidas con cantidades exactas en gramos o mililitros.', '“Comí 180 g de pollo y tomé 250 ml de leche.”', 'Disponible en demo'],
+      ['Perfil', 'Consulta y actualiza preferencias, restricciones y objetivos de tu propio perfil.', '“Soy vegetariano; actualiza mis preferencias.”', 'Con tu cuenta'],
+      ['Plan de dieta', 'Crea, ajusta o activa un plan de alimentación según tu contexto.', '“Crea un plan para ganar masa muscular.”', 'Con tu cuenta'],
+      ['Evidencia', 'Busca evidencia científica breve para responder dudas de nutrición y salud.', '“¿Qué evidencia hay sobre la proteína antes de entrenar?”', 'Pregunta libre'],
+    ],
+    ragKicker: 'Evidencia en vivo', ragTitle: 'Un RAG que conecta tus preguntas con evidencia.', ragDescription: 'Victus consulta un índice de evidencia científica para fundamentar sus respuestas. Estas cifras se actualizan automáticamente al incorporar nueva evidencia.', papers: 'papers indexados', evidencePassages: 'fragmentos de evidencia', loading: 'Consultando índice de evidencia…', unavailable: 'Las métricas del índice no están disponibles ahora.',
     howKicker: 'Un agente que entiende tu vida',
     howTitle: 'Recomendaciones útiles, sostenibles y explicables.',
     howDescription: 'Victus combina tu información personal con conocimiento nutricional para sugerir pequeños cambios que puedes mantener en el tiempo.',
@@ -124,9 +145,15 @@ export function LandingPage() {
     ],
   } : {
     product: 'Product', how: 'How it works', evidence: 'Evidence', signIn: 'Sign in', getStarted: 'Get started',
-    hero: 'Your nutrition, turned into a plan you can actually follow.', description: 'Victus is a personal nutrition and wellbeing agent that adapts meals to your life.', create: 'Create my plan', learn: 'See how it works',
-    trust: 'Designed to support real decisions, not impose perfect diets.',
-    trustItems: ['Personalisation', 'Evidence', 'Safety', 'Consistency', 'Privacy'],
+    hero: 'Your nutrition, turned into a plan you can actually follow.', description: 'Log meals, adjust your profile and create nutrition plans that fit your life. Ask freely and get answers grounded in scientific evidence.', create: 'Create my plan', learn: 'See how it works',
+    capabilitiesKicker: 'Capabilities', capabilitiesTitle: 'Ask, log and adjust with context.', capabilitiesDescription: 'In this demo, David’s profile cannot be changed and meal logs are temporary. With your own account, Victus can also work with your profile and plan.',
+    capabilities: [
+      ['Meal logging', 'Log meals and drinks with exact quantities in grams or millilitres.', '“I ate 180 g of chicken and drank 250 ml of milk.”', 'Available in demo'],
+      ['Profile', 'Review and update preferences, restrictions and goals in your own profile.', '“I am vegetarian; update my preferences.”', 'With your account'],
+      ['Diet plan', 'Create, refine or activate a nutrition plan for your context.', '“Create a plan to build muscle.”', 'With your account'],
+      ['Evidence', 'Find concise scientific evidence for nutrition and health questions.', '“What evidence supports protein before training?”', 'Ask freely'],
+    ],
+    ragKicker: 'Live evidence', ragTitle: 'A RAG that connects your questions with evidence.', ragDescription: 'Victus queries a scientific evidence index to ground its responses. These counts refresh automatically as new evidence is added.', papers: 'indexed papers', evidencePassages: 'evidence passages', loading: 'Checking the evidence index…', unavailable: 'Index metrics are unavailable right now.',
     howKicker: 'An agent that understands your life',
     howTitle: 'Useful, sustainable and explainable recommendations.',
     howDescription: 'Victus combines your personal information with nutrition knowledge to suggest small changes that you can sustain over time.',
@@ -150,8 +177,27 @@ export function LandingPage() {
   const [activeMeal, setActiveMeal] = useState(0);
   const [chatOpen, setChatOpen] = useState(false);
   const [previewMessage, setPreviewMessage] = useState('');
+  const [evidenceStats, setEvidenceStats] = useState<EvidenceStats | null>(null);
+  const [evidenceStatsUnavailable, setEvidenceStatsUnavailable] = useState(false);
   const day = planDays[activeDay];
   const meal = day.meals[activeMeal];
+
+  useEffect(() => {
+    let active = true;
+    async function refreshEvidenceStats() {
+      try {
+        const next = await apiFetch<EvidenceStats>('/api/evidence/stats');
+        if (!active) return;
+        setEvidenceStats(next);
+        setEvidenceStatsUnavailable(false);
+      } catch {
+        if (active) setEvidenceStatsUnavailable(true);
+      }
+    }
+    void refreshEvidenceStats();
+    const intervalId = window.setInterval(() => { void refreshEvidenceStats(); }, 60_000);
+    return () => { active = false; window.clearInterval(intervalId); };
+  }, []);
 
   function nudgeCompass() {
     const logo = logoRef.current;
@@ -208,18 +254,15 @@ export function LandingPage() {
             <LanguageSwitcher />
             <a
               className="vl-repo"
-              href="https://github.com/search?q=victus-agent&type=repositories"
+              href="https://github.com/victus-fit/victus-agent"
               target="_blank"
               rel="noreferrer"
             >
-              <Compass size={17} />
+              <GitHubMark />
               <strong>victus-agent</strong>
             </a>
-            <button className="vl-btn vl-btn-ghost" type="button" onClick={() => navigate('/login')}>
-              <LogIn size={16} /> {copy.signIn}
-            </button>
             <button className="vl-btn vl-btn-primary" type="button" onClick={() => navigate('/login')}>
-              {copy.getStarted}
+              <LogIn size={16} /> {copy.getStarted}
             </button>
           </div>
         </div>
@@ -235,7 +278,7 @@ export function LandingPage() {
             {copy.create} <ArrowRight size={17} />
           </button>
           <a className="vl-btn" href="https://wiki.victus.fit/" target="_blank" rel="noreferrer">
-            {copy.learn}
+            <FileText size={17} /> {copy.learn}
           </a>
         </div>
       </section>
@@ -267,12 +310,6 @@ export function LandingPage() {
                     {item}
                   </button>
                 ))}
-                <div className="vl-side-bottom">
-                  <button className="vl-navitem" type="button">
-                    <span className="vl-nav-icon" />
-                    Settings
-                  </button>
-                </div>
               </aside>
 
               <section className="vl-app-main" aria-label="Victus plan preview">
@@ -377,13 +414,46 @@ export function LandingPage() {
             </div>
           </div>
         </div>
+
+        <div className="vl-container vl-capabilities" aria-labelledby="capabilities-title">
+          <div className="vl-capabilities-head">
+            <div className="vl-section-kicker">{copy.capabilitiesKicker}</div>
+            <h2 id="capabilities-title">{copy.capabilitiesTitle}</h2>
+            <p>{copy.capabilitiesDescription}</p>
+          </div>
+          <div className="vl-capability-grid">
+            {copy.capabilities.map(([title, description, example, availability], index) => {
+              const Icon = [ClipboardPlus, UserPen, Salad, FileSearch][index]!;
+              return (
+                <article className="vl-capability" key={title}>
+                  <div className="vl-capability-icon"><Icon size={19} strokeWidth={1.8} /></div>
+                  <div>
+                    <div className="vl-capability-title-row">
+                      <h3>{title}</h3>
+                      <span>{availability}</span>
+                    </div>
+                    <p>{description}</p>
+                    <blockquote>{example}</blockquote>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
       </section>
 
-      <section className="vl-trust">
-        <div className="vl-container">
-          <p>{copy.trust}</p>
-          <div className="vl-trust-items">
-            {copy.trustItems.map((item) => <span key={item}>{item}</span>)}
+      <section className="vl-rag" aria-live="polite">
+        <div className="vl-container vl-rag-grid">
+          <div>
+            <div className="vl-section-kicker">{copy.ragKicker}</div>
+            <h2>{copy.ragTitle}</h2>
+            <p>{copy.ragDescription}</p>
+          </div>
+          <div className="vl-rag-metrics">
+            {evidenceStats ? <>
+              <div><strong>{new Intl.NumberFormat(language === 'es' ? 'es-CL' : 'en-US').format(evidenceStats.paper_count)}</strong><span>{copy.papers}</span></div>
+              <div><strong>{new Intl.NumberFormat(language === 'es' ? 'es-CL' : 'en-US').format(evidenceStats.evidence_count)}</strong><span>{copy.evidencePassages}</span></div>
+            </> : <p className="vl-rag-status">{evidenceStatsUnavailable ? copy.unavailable : copy.loading}</p>}
           </div>
         </div>
       </section>
