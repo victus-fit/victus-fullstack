@@ -6,6 +6,7 @@ import { DataLoadingState } from '../../userData/components/DataLoadingState';
 import { DietsDashboard } from '../../userData/components/DietsDashboard';
 import { ProfileDashboard } from '../../userData/components/ProfileDashboard';
 import { WeeklyPlanDashboard } from '../../userData/components/WeeklyPlanDashboard';
+import { DemoCurrentDiet } from '../../demo/DemoCurrentDiet';
 import { SettingsDashboard } from '../../userData/components/SettingsDashboard';
 import { useHealthOverview } from '../../userData/hooks/useHealthOverview';
 import type { AgentWorkspace } from '../../chat/types';
@@ -18,7 +19,7 @@ interface WorkspacePageProps {
 
 const labels: Record<Exclude<AgentWorkspace, 'chat'>, { title: string; subtitle: string }> = {
   'meal-log': { title: 'Registro de comidas', subtitle: 'Registro diario de comidas y nutrientes.' },
-  'weekly-plan': { title: 'Plan semanal', subtitle: 'Plan elegido para David.' },
+  'weekly-plan': { title: 'Plan semanal', subtitle: 'Tu planificación nutricional activa.' },
   biometrics: { title: 'Biométricas', subtitle: 'Peso, sueño, energía y recuperación.' },
   profile: { title: 'Perfil', subtitle: 'Preferencias, objetivos y contexto personal.' },
   settings: { title: 'Ajustes', subtitle: 'Cuenta y privacidad.' },
@@ -43,6 +44,7 @@ function WorkspaceHeader({ workspace }: Pick<WorkspacePageProps, 'workspace'>) {
 
 export function WorkspacePage({ workspace, user, onDeleteAccount }: WorkspacePageProps) {
   const overview = useHealthOverview();
+  if (workspace === 'weekly-plan' && !user) return <DemoCurrentDiet />;
   let content: React.ReactNode;
   if (workspace === 'meal-log') {
     content = <div className="workspace-content-shell data-content-shell"><DietsDashboard /></div>;

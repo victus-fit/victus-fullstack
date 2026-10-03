@@ -12,3 +12,13 @@ export const auth = betterAuth({
     google: { clientId: settings.googleClientId, clientSecret: settings.googleClientSecret },
   },
 });
+
+/**
+ * Applies Better Auth's additive, idempotent schema migration before requests
+ * can create OAuth state or sessions. Keeping this beside the auth config
+ * guarantees the generated schema stays aligned with the installed library.
+ */
+export async function initializeAuthSchema(): Promise<void> {
+  const context = await auth.$context;
+  await context.runMigrations();
+}

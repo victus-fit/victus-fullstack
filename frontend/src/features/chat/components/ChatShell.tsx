@@ -33,7 +33,7 @@ export function ChatShell({ user, chat, onSignOut, onDeleteAccount }: ChatShellP
     startNewConversation,
   } = chat;
   const [activeWorkspace, setActiveWorkspace] = useState<AgentWorkspace>('chat');
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(() => window.innerWidth <= 760);
   const [hasActiveDiet, setHasActiveDiet] = useState<boolean | null>(null);
   const [hasRequestedFirstDiet, setHasRequestedFirstDiet] = useState(false);
   const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -98,6 +98,13 @@ export function ChatShell({ user, chat, onSignOut, onDeleteAccount }: ChatShellP
         onSelectConversation={openConversation}
         onDeleteConversation={deleteConversation}
         onSignOut={onSignOut}
+      />
+      <button
+        className={`sidebar-backdrop${isSidebarCollapsed ? '' : ' is-visible'}`}
+        type="button"
+        aria-label="Cerrar navegación"
+        tabIndex={isSidebarCollapsed ? -1 : 0}
+        onClick={() => setIsSidebarCollapsed(true)}
       />
 
       {activeWorkspace === 'chat' ? (

@@ -13,7 +13,7 @@ interface LandingAppPreviewProps {
 }
 
 export function LandingAppPreview({ user, chat }: LandingAppPreviewProps) {
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(() => window.innerWidth <= 760);
   const [activeWorkspace, setActiveWorkspace] = useState<AgentWorkspace>('chat');
   const isReady = chat.status === 'ready';
 
@@ -27,6 +27,17 @@ export function LandingAppPreview({ user, chat }: LandingAppPreviewProps) {
     chat.sendMessage(message);
   }
 
+  function openWorkspace(workspace: AgentWorkspace) {
+    setActiveWorkspace(workspace);
+    if (window.innerWidth <= 760) setIsSidebarCollapsed(true);
+  }
+
+  function newConversation() {
+    setActiveWorkspace('chat');
+    chat.startNewConversation();
+    if (window.innerWidth <= 760) setIsSidebarCollapsed(true);
+  }
+
   return (
     <div className={`app-shell landing-app-preview ${isSidebarCollapsed ? 'is-sidebar-collapsed' : ''}`}>
       <Sidebar
@@ -35,10 +46,17 @@ export function LandingAppPreview({ user, chat }: LandingAppPreviewProps) {
         conversations={chat.conversations}
         isCollapsed={isSidebarCollapsed}
         onToggleSidebar={() => setIsSidebarCollapsed((value) => !value)}
-        onWorkspaceChange={setActiveWorkspace}
-        onNewConversation={() => { setActiveWorkspace('chat'); chat.startNewConversation(); }}
-        onSelectConversation={(id) => { setActiveWorkspace('chat'); void chat.selectConversation(id); }}
+        onWorkspaceChange={openWorkspace}
+        onNewConversation={newConversation}
+        onSelectConversation={(id) => { setActiveWorkspace('chat'); void chat.selectConversation(id); if (window.innerWidth <= 760) setIsSidebarCollapsed(true); }}
         onDeleteConversation={chat.deleteConversation}
+      />
+      <button
+        className={`sidebar-backdrop${isSidebarCollapsed ? '' : ' is-visible'}`}
+        type="button"
+        aria-label="Cerrar navegación"
+        tabIndex={isSidebarCollapsed ? -1 : 0}
+        onClick={() => setIsSidebarCollapsed(true)}
       />
       {activeWorkspace === 'chat' ? <main className="chat-main">
         <header className="chat-header">

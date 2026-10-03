@@ -1,7 +1,7 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import { auth } from "./auth.js";
+import { auth, initializeAuthSchema } from "./auth.js";
 import { settings } from "./config.js";
 import { pool } from "./db.js";
 import { HttpError } from "./security.js";
@@ -69,6 +69,7 @@ app.onError((error, c) => {
   return c.json({ detail: "Internal Server Error" }, 500);
 });
 
+await initializeAuthSchema();
 await initializeSchema();
 await initializeDemoTemplate();
 await initializeDevAuth();
