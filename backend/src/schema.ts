@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS oauth_authorization_codes (
 CREATE TABLE IF NOT EXISTS user_settings (
   user_id uuid PRIMARY KEY REFERENCES app_users(user_id) ON DELETE CASCADE, theme varchar(16) NOT NULL DEFAULT 'dark',
   sidebar_collapsed boolean NOT NULL DEFAULT false, default_workspace_id varchar(64) NOT NULL DEFAULT 'chat',
-  density varchar(32) NOT NULL DEFAULT 'comfortable', preferred_language varchar(16) NOT NULL DEFAULT 'en',
+  density varchar(32) NOT NULL DEFAULT 'comfortable', preferred_language varchar(16) NOT NULL DEFAULT 'es',
   ui_preferences jsonb NOT NULL DEFAULT '{}', updated_at timestamptz NOT NULL DEFAULT now()
 );
 CREATE TABLE IF NOT EXISTS app_workspaces (
@@ -207,7 +207,7 @@ ALTER TABLE user_settings ALTER COLUMN theme SET DEFAULT 'dark';
 ALTER TABLE user_settings ALTER COLUMN sidebar_collapsed SET DEFAULT false;
 ALTER TABLE user_settings ALTER COLUMN default_workspace_id SET DEFAULT 'chat';
 ALTER TABLE user_settings ALTER COLUMN density SET DEFAULT 'comfortable';
-ALTER TABLE user_settings ALTER COLUMN preferred_language SET DEFAULT 'en';
+ALTER TABLE user_settings ALTER COLUMN preferred_language SET DEFAULT 'es';
 ALTER TABLE user_settings ALTER COLUMN ui_preferences SET DEFAULT '{}';
 ALTER TABLE app_workspaces ALTER COLUMN status SET DEFAULT 'active';
 ALTER TABLE app_workspaces ALTER COLUMN sort_order SET DEFAULT 0;

@@ -59,7 +59,7 @@ export async function seedDemoDavid(db: DbClient): Promise<void> {
      ON CONFLICT(user_id) DO UPDATE SET display_name=EXCLUDED.display_name,updated_at=now()`,
     [DEMO_DAVID_USER_ID, "demo-david@victus.invalid", "David"],
   );
-  await db.query("INSERT INTO user_settings(user_id,preferred_language) VALUES($1,'en') ON CONFLICT(user_id) DO NOTHING", [DEMO_DAVID_USER_ID]);
+  await db.query("INSERT INTO user_settings(user_id,preferred_language) VALUES($1,'es') ON CONFLICT(user_id) DO NOTHING", [DEMO_DAVID_USER_ID]);
   for (const [metricType, label, value, unit] of metrics) {
     await db.query(
       `INSERT INTO user_metric_entries(user_id,metric_type,label,recorded_at,value_number,unit,source,metadata_json)

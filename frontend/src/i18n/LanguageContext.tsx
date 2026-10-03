@@ -13,9 +13,9 @@ interface Context { language: Language; locale: string; t: (key: Key) => string;
 const LanguageContext = createContext<Context | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>(() => (localStorage.getItem(storageKey) === 'es' ? 'es' : 'en'));
+  const [language, setLanguageState] = useState<Language>(() => (localStorage.getItem(storageKey) === 'en' ? 'en' : 'es'));
   const manuallySelected = useRef(false);
-  useEffect(() => { void getUserSettings().then((settings) => { if (!manuallySelected.current) setLanguageState(settings.preferred_language); }).catch(() => undefined); }, []);
+  useEffect(() => { void getUserSettings().then((settings) => { if (!manuallySelected.current && localStorage.getItem(storageKey) === 'en') setLanguageState(settings.preferred_language); }).catch(() => undefined); }, []);
   useEffect(() => { document.documentElement.lang = language; localStorage.setItem(storageKey, language); }, [language]);
   const setLanguage = useCallback((next: Language) => { manuallySelected.current = true; setLanguageState(next); void updateUserSettings({ preferred_language: next }).catch(() => undefined); }, []);
   const value = useMemo(() => ({ language, locale: language === 'en' ? 'en-US' : 'es-CL', t: (key: Key) => dictionary[language][key], setLanguage }), [language, setLanguage]);

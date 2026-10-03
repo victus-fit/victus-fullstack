@@ -5709,3 +5709,151 @@ a:focus-visible {
     grid-template-columns: 82px minmax(0, 1fr);
   }
 }
+
+/* Keep a short conversation list compact and reserve the drawer's remaining
+   space for its account controls instead of stretching a lone conversation. */
+.thread-list {
+  align-content: start;
+  grid-auto-rows: min-content;
+}
+
+@media (max-width: 760px) {
+  .sidebar .thread-list {
+    flex: 0 1 auto;
+    max-height: min(32dvh, 320px);
+  }
+
+  .workspace-content-shell {
+    min-width: 0;
+    padding: 14px 12px 24px;
+  }
+
+  .workspace-main .workspace-header {
+    min-height: 58px;
+    padding: 0 14px;
+  }
+
+  .meal-calendar-heading,
+  .meal-entry-row,
+  .meal-editor-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .meal-calendar-controls,
+  .meal-entry-actions {
+    justify-content: space-between;
+  }
+
+  .meal-week-grid {
+    grid-template-columns: repeat(7, minmax(64px, 1fr));
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+  }
+
+  .meal-day-button {
+    scroll-snap-align: start;
+    min-height: 74px;
+    padding: 8px;
+  }
+
+  .meal-entry-actions,
+  .meal-editor-actions {
+    width: 100%;
+  }
+
+  .meal-entry-actions .meal-icon-button,
+  .meal-editor-actions > button {
+    flex: 1 1 auto;
+  }
+
+  .weekly-plan-layout,
+  .data-workspace-layout,
+  .meal-log-layout {
+    min-width: 0;
+  }
+
+  .weekly-plan-hero,
+  .weekly-plan-day,
+  .workspace-card,
+  .meal-calendar-panel,
+  .meal-day-overview,
+  .meal-section,
+  .meal-nutrient-panel {
+    min-width: 0;
+  }
+}
+
+/* The public preview remains interactive on very narrow phones: a compact
+   rail leaves a usable textarea and the fixed context pills no longer consume
+   the limited canvas height. */
+@media (max-width: 480px) {
+  .vl-app-preview {
+    height: 480px;
+  }
+
+  .landing-app-preview,
+  .landing-app-preview.is-sidebar-collapsed {
+    height: 100%;
+    min-height: 0;
+    grid-template-columns: 50px minmax(0, 1fr);
+    gap: 6px;
+    padding: 6px;
+  }
+
+  .landing-app-preview > .sidebar.is-collapsed {
+    width: 50px;
+    padding: 10px 6px;
+  }
+
+  .landing-app-preview > .sidebar.is-collapsed .brand-row {
+    gap: 6px;
+  }
+
+  .landing-app-preview .compass-mark {
+    width: 26px;
+    min-width: 26px;
+    height: 26px;
+    min-height: 26px;
+  }
+
+  .landing-app-preview > .sidebar.is-collapsed .agent-app-item {
+    min-height: 34px;
+    padding: 8px 0;
+  }
+
+  .landing-app-preview .chat-main {
+    grid-template-rows: 50px minmax(0, 1fr) auto;
+  }
+
+  .landing-app-preview .chat-header {
+    min-height: 50px;
+    padding: 10px 12px;
+  }
+
+  .landing-app-preview .chat-context-strip {
+    display: none;
+  }
+
+  .landing-app-preview .chat-inner {
+    padding: 14px 12px;
+  }
+
+  .landing-app-preview .composer-wrap {
+    padding: 8px 10px 10px;
+  }
+
+  .landing-app-preview .composer-inner {
+    width: 100%;
+  }
+
+  .landing-app-preview .composer {
+    gap: 6px;
+    padding: 7px;
+  }
+
+  .landing-app-preview .composer textarea {
+    min-height: 40px;
+    height: 40px;
+  }
+}
