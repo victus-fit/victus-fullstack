@@ -9,6 +9,7 @@
     "build": "tsc --noEmit",
     "test": "node --import tsx --test tests-ts/**/*.test.ts",
     "materialize:foodb-content": "tsx scripts/materialize-foodb-content.ts",
+    "bootstrap:foodb-catalog": "tsx scripts/bootstrap-foodb-catalog.ts",
     "import:foodb-localizations": "tsx scripts/import-foodb-localizations.ts",
     "demo:jwks": "tsx scripts/print-demo-jwks.ts"
   },

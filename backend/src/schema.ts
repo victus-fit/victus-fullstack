@@ -1,5 +1,6 @@
 import { pool } from "./db.js";
 import { seedDemoDavid } from "./demoTemplate.js";
+import { ensureFoodbCatalog } from "./foodbBootstrap.js";
 
 const ddl = `
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
@@ -248,5 +249,6 @@ export async function initializeSchema(): Promise<void> {
       row,
     );
   }
+  await ensureFoodbCatalog(pool);
   await seedDemoDavid(pool);
 }
