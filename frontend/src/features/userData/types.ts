@@ -79,11 +79,14 @@ export interface DietPlanFoodItem {
   name: string;
   quantity?: number | null;
   unit?: string | null;
+  portion?: string;
 }
 
 export interface DietPlanMeal {
-  name: string;
+  name?: string;
+  meal_type?: string;
   food_items?: DietPlanFoodItem[];
+  foods?: DietPlanFoodItem[];
 }
 
 export interface DietPlanDay {
@@ -95,7 +98,14 @@ export interface DietPlanDay {
 
 export interface DietPlanDocument {
   description?: string;
+  week_overview?: string;
   targets?: {
+    calories_kcal?: number;
+    protein_g?: number;
+    carbohydrate_g?: number;
+    fat_g?: number;
+  };
+  goals?: {
     calories_kcal?: number;
     protein_g?: number;
     carbohydrate_g?: number;

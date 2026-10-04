@@ -31,6 +31,56 @@ function numeric(value: unknown): number {
   return Number.isFinite(parsed) ? parsed : 0;
 }
 
+const weeklyDietDays = new Set(["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]);
+
+function record(value: unknown): Record<string, unknown> | null {
+  return value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : null;
+}
+
+function nonEmptyString(value: unknown): value is string {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
+function positiveNumber(value: unknown): boolean {
+  return typeof value === "number" && Number.isFinite(value) && value > 0;
+}
+
+export function weeklyDietPlanError(plan: unknown): string | null {
+  const document = record(plan);
+  if (!document || !nonEmptyString(document.description)) return "Diet plan requires a description";
+
+  const targets = record(document.targets);
+  if (!targets || !["calories_kcal", "protein_g", "carbohydrate_g", "fat_g"].every((key) => positiveNumber(targets[key]))) {
+    return "Diet plan requires positive daily nutrition targets";
+  }
+
+  if (!Array.isArray(document.days) || document.days.length !== 7) return "Diet plan requires exactly seven days";
+  const seenDays = new Set<string>();
+  for (const value of document.days) {
+    const day = record(value);
+    if (!day || !nonEmptyString(day.day) || !weeklyDietDays.has(day.day) || seenDays.has(day.day)) {
+      return "Diet plan days must be each Spanish weekday exactly once";
+    }
+    seenDays.add(day.day);
+    if (!nonEmptyString(day.focus) || !positiveNumber(day.calories) || !Array.isArray(day.meals) || day.meals.length < 2 || day.meals.length > 3) {
+      return "Each day requires a focus, calories, and two or three meals";
+    }
+    for (const value of day.meals) {
+      const meal = record(value);
+      if (!meal || !nonEmptyString(meal.name) || !Array.isArray(meal.food_items) || meal.food_items.length === 0) {
+        return "Each meal requires a name and at least one food";
+      }
+      for (const value of meal.food_items) {
+        const food = record(value);
+        if (!food || !nonEmptyString(food.name) || !nonEmptyString(food.portion)) {
+          return "Each food requires a name and portion";
+        }
+      }
+    }
+  }
+  return seenDays.size === weeklyDietDays.size ? null : "Diet plan days must include the full week";
+}
+
 export async function profileContext(
   db: DbClient,
   subject: unknown,
@@ -144,20 +194,31 @@ export function createProfileContextRoutes(db: DbClient = pool): Hono {
     const action = String(body.action || ""); const plan = body.plan_json;
     if (action === "activate") {
       const planId = String(body.plan_id || "");
-      const active = await db.query(`UPDATE user_diet_plans SET status='archived',updated_at=now() WHERE user_id=$1 AND status='active'; UPDATE user_diet_plans SET status='active',updated_at=now() WHERE plan_id=$2 AND user_id=$1 RETURNING plan_id,status,active_revision_id`, [userId, planId]);
-      return c.json(active.rows.at(-1) || {});
+      const active = await db.query(`WITH activated AS (
+        UPDATE user_diet_plans SET status='active',updated_at=now()
+        WHERE plan_id=$2 AND user_id=$1 AND status='draft'
+        RETURNING plan_id,status,active_revision_id
+      ), archived AS (
+        UPDATE user_diet_plans SET status='archived',updated_at=now()
+        WHERE user_id=$1 AND status='active' AND plan_id<>(SELECT plan_id FROM activated)
+      ) SELECT * FROM activated`, [userId, planId]);
+      const result = active.rows[0];
+      if (!result) throw new HttpError(404, "Draft diet plan not found");
+      return c.json(result);
     }
     if (!["create", "refine"].includes(action) || !plan || typeof plan !== "object") throw new HttpError(422, "action and plan_json are required");
+    const planError = weeklyDietPlanError(plan);
+    if (planError) throw new HttpError(422, planError);
     const saveRevision = async (writeDb: DbClient) => {
       const planId = action === "refine" ? String(body.plan_id || "") : "";
-      const parent = planId ? await writeDb.query(`SELECT plan_id FROM user_diet_plans WHERE plan_id=$1 AND user_id=$2`, [planId,userId]) : null;
+      const parent = planId ? await writeDb.query<{ plan_id: string; status: string }>(`SELECT plan_id,status FROM user_diet_plans WHERE plan_id=$1 AND user_id=$2`, [planId,userId]) : null;
       if (planId && !parent?.rows[0]) throw new HttpError(404, "Diet plan not found");
+      if (action === "refine" && parent?.rows[0]?.status !== "draft") throw new HttpError(409, "Only draft diet plans can be refined");
       const created = planId ? { plan_id: planId } : (await writeDb.query(`INSERT INTO user_diet_plans(user_id,status) VALUES($1,'draft') RETURNING plan_id`, [userId])).rows[0];
       const snapshot = await dietPlanProfileSnapshot(writeDb, body.subject);
       const revision = await writeDb.query(`INSERT INTO user_diet_plan_revisions(plan_id,revision_number,profile_snapshot,plan_json) SELECT $1,COALESCE(MAX(revision_number),0)+1,$2,$3 FROM user_diet_plan_revisions WHERE plan_id=$1 RETURNING revision_id,revision_number,created_at`, [created.plan_id, JSON.stringify(snapshot), JSON.stringify(plan)]);
-      await writeDb.query(`UPDATE user_diet_plans SET status='archived',updated_at=now() WHERE user_id=$1 AND status='active' AND plan_id<>$2`, [userId, created.plan_id]);
-      await writeDb.query(`UPDATE user_diet_plans SET status='active',active_revision_id=$3,updated_at=now() WHERE plan_id=$2 AND user_id=$1`, [userId, created.plan_id, revision.rows[0].revision_id]);
-      return {plan_id:created.plan_id,status:"active",revision:revision.rows[0]};
+      await writeDb.query(`UPDATE user_diet_plans SET active_revision_id=$3,updated_at=now() WHERE plan_id=$2 AND user_id=$1`, [userId, created.plan_id, revision.rows[0].revision_id]);
+      return {plan_id:created.plan_id,status:"draft",revision:revision.rows[0]};
     };
     return c.json(await (db === pool ? transaction(saveRevision) : saveRevision(db)), 201);
   });

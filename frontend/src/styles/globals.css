@@ -528,7 +528,7 @@ button:disabled {
 }
 
 .message-text {
-  white-space: pre-wrap;
+  white-space: normal;
   font-size: 14.5px;
   line-height: 1.66;
   text-wrap: pretty;
@@ -3171,14 +3171,14 @@ button:disabled {
 }
 
 @media (max-width: 760px) {
-  .app-shell,
-  .app-shell.is-sidebar-collapsed {
+  .app-shell:not(.landing-app-preview),
+  .app-shell:not(.landing-app-preview).is-sidebar-collapsed {
     height: 100dvh;
     min-height: 100dvh;
     overflow: hidden;
   }
 
-  .chat-main {
+  .app-shell:not(.landing-app-preview) > .chat-main {
     display: grid;
     height: 100dvh;
     min-height: 0;
@@ -5078,6 +5078,27 @@ a:focus-visible {
 .message-text li {
   margin: 4px 0;
   padding-left: 2px;
+}
+
+.message-text li > p {
+  margin: 0;
+}
+
+.message-text h1,
+.message-text h2,
+.message-text h3,
+.message-text h4 {
+  margin: 14px 0 6px;
+  color: var(--color-text-primary);
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.message-text hr {
+  height: 1px;
+  margin: 14px 0;
+  border: 0;
+  background: var(--color-border-subtle);
 }
 
 .message-text li::marker {

@@ -1,15 +1,26 @@
 import { Check, LockKeyhole } from 'lucide-react';
 import { useActiveDietPlan } from '../hooks/useActiveDietPlan';
-import type { DietPlanDocument, DietPlanMeal } from '../types';
+import type { DietPlanDocument, DietPlanFoodItem, DietPlanMeal } from '../types';
 
 const numberFormat = new Intl.NumberFormat('es-CL', { maximumFractionDigits: 0 });
 
+function mealLabel(meal: DietPlanMeal): string {
+  return meal.name ?? meal.meal_type ?? 'Comida';
+}
+
+function foodLabel(item: DietPlanFoodItem): string {
+  if (item.portion) return `${item.name} (${item.portion})`;
+  const quantity = item.quantity == null ? '' : `${item.quantity}${item.unit ? ` ${item.unit}` : ''} `;
+  return `${quantity}${item.name}`.trim();
+}
+
 function mealItems(meal: DietPlanMeal): string {
-  const items = meal.food_items ?? [];
-  if (items.length === 0) return meal.name;
-  return `${meal.name}: ${items.map((item) => {
+  const items = meal.food_items ?? meal.foods ?? [];
+  const label = mealLabel(meal);
+  if (items.length === 0) return label;
+  return `${label}: ${items.map((item) => {
     const quantity = item.quantity == null ? '' : `${item.quantity}${item.unit ? ` ${item.unit}` : ''} `;
-    return `${quantity}${item.name}`;
+    return item.portion ? foodLabel(item) : `${quantity}${item.name}`;
   }).join(' · ')}`;
 }
 
@@ -35,7 +46,7 @@ export function WeeklyPlanDashboard() {
   }
 
   const document = plan.plan_json;
-  const targets = document.targets;
+  const targets = document.targets ?? document.goals;
   const days = planDays(document);
   const hasTargets = Boolean(targets && Object.values(targets).some((value) => Number(value) > 0));
 
@@ -45,7 +56,7 @@ export function WeeklyPlanDashboard() {
         <div>
           <span className="workspace-eyebrow">Plan activo · revisión {plan.revision_number}</span>
           <h1>Plan semanal</h1>
-          <p>{document.description || 'Tu plan personalizado está listo para seguir y ajustar con Victus.'}</p>
+          <p>{document.description ?? document.week_overview ?? 'Tu plan personalizado está listo para seguir y ajustar con Victus.'}</p>
         </div>
         <div className="weekly-plan-status"><LockKeyhole size={15} aria-hidden="true" /><span>Activo · solo lectura</span></div>
       </section>
@@ -63,7 +74,7 @@ export function WeeklyPlanDashboard() {
         {days.map((day, index) => (
           <article className={`weekly-plan-day${index === 0 ? ' is-today' : ''}`} key={`${day.day}-${index}`}>
             <header><div><span>{day.focus}</span><h2>{day.day}</h2></div>{day.calories ? <strong>{day.calories}</strong> : null}</header>
-            {day.meals.length > 0 ? <ul>{day.meals.map((meal, mealIndex) => <li key={`${meal.name}-${mealIndex}`}><Check size={14} aria-hidden="true" /><span>{mealItems(meal)}</span></li>)}</ul> : <p>Victus no añadió comidas a esta sección del plan.</p>}
+            {day.meals.length > 0 ? <ul>{day.meals.map((meal, mealIndex) => <li key={`${mealLabel(meal)}-${mealIndex}`}><Check size={14} aria-hidden="true" /><span>{mealItems(meal)}</span></li>)}</ul> : <p>Victus no añadió comidas a esta sección del plan.</p>}
           </article>
         ))}
       </section>
